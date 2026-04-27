@@ -52,3 +52,8 @@ yarn.lock
 .python-version
 Pipfile.lock
 poetry.lock
+ios/
+android/
+www/
+node_modules/
+resources/
