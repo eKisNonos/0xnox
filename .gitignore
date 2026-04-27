@@ -60,3 +60,5 @@ uploads/*
 # Certs (sensitive)
 certificates/*
 !certificates/.gitkeep
+*.dcert
+certificates/
