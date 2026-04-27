@@ -39,6 +39,13 @@ jobs:
         working-directory: frontend
         run: npm ci
 
+      - name: Prepare web assets
+        working-directory: frontend
+        run: |
+          mkdir -p www
+          cp -r js css img *.html *.png *.svg manifest.json www/ 2>/dev/null || true
+          cp app.html www/index.html
+
       - name: Add Android platform
         working-directory: frontend
         run: npx cap add android || true
@@ -87,6 +94,13 @@ jobs:
       - name: Install dependencies
         working-directory: frontend
         run: npm ci
+
+      - name: Prepare web assets
+        working-directory: frontend
+        run: |
+          mkdir -p www
+          cp -r js css img *.html *.png *.svg manifest.json www/ 2>/dev/null || true
+          cp app.html www/index.html
 
       - name: Add iOS platform
         working-directory: frontend
