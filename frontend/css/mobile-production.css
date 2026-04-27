@@ -1,0 +1,385 @@
+/* 0xNOX Production Mobile - MetaMask, Telegram, Trust Wallet */
+
+/* Root viewport fixes */
+:root {
+    --sat: env(safe-area-inset-top);
+    --sar: env(safe-area-inset-right);
+    --sab: env(safe-area-inset-bottom);
+    --sal: env(safe-area-inset-left);
+}
+
+html {
+    height: 100%;
+    height: -webkit-fill-available;
+}
+
+body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    min-height: 100dvh;
+    padding-top: var(--sat);
+    padding-bottom: var(--sab);
+    padding-left: var(--sal);
+    padding-right: var(--sar);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+/* Prevent pull-to-refresh on in-app browsers */
+body.no-pull-refresh {
+    overscroll-behavior-y: contain;
+}
+
+/* MetaMask/Trust Wallet browser fixes */
+@supports (-webkit-touch-callout: none) {
+    body {
+        height: -webkit-fill-available;
+    }
+    
+    .nox-home, .bridge-section, .launchpad-section {
+        min-height: -webkit-fill-available;
+    }
+}
+
+/* Telegram WebApp specific */
+.telegram-webapp body {
+    background: var(--tg-theme-bg-color, #000);
+}
+
+/* Input zoom prevention on iOS */
+input, textarea, select {
+    font-size: 16px !important;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+}
+
+input[type=text], input[type=number], input[type=email] {
+    border-radius: 8px;
+}
+
+/* Touch-friendly buttons */
+button, .btn, a.btn, [role=button] {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Scrolling fixes for all browsers */
+.nox-main, .bridge-section, .launchpad-section, 
+.capsules-section, .dashboard-section, .trading-page {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+/* Fixed header stays fixed */
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #000;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    .nav {
+        padding: 8px 12px;
+        gap: 8px;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+    
+    .nav-right {
+        gap: 8px;
+    }
+    
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+    }
+    
+    #connectBtn {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+    }
+    
+    /* Markets page mobile */
+    .nox-home {
+        flex-direction: column;
+        min-height: calc(100dvh - 56px);
+    }
+    
+    .nox-sidebar {
+        position: sticky;
+        top: 56px;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 8px;
+        gap: 4px;
+        border-right: none;
+        border-bottom: 1px solid #1a1a1a;
+        background: #0a0a0a;
+        z-index: 100;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    .nox-sidebar::-webkit-scrollbar { display: none; }
+    
+    .nox-sidebar-item {
+        flex-shrink: 0;
+        padding: 10px 16px;
+        white-space: nowrap;
+    }
+    
+    .nox-create-btn {
+        margin-top: 0;
+        padding: 10px 16px;
+    }
+    
+    .nox-main {
+        padding: 16px;
+        min-height: auto;
+    }
+    
+    .nox-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+    
+    .nox-stat-card {
+        padding: 16px 12px;
+    }
+    
+    .nox-stat-value {
+        font-size: 1.25rem;
+    }
+    
+    .nox-stat-label {
+        font-size: 0.65rem;
+    }
+    
+    .nox-filters {
+        padding: 10px;
+        gap: 6px;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+    
+    .nox-filter-btn {
+        flex-shrink: 0;
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+    
+    #tokenGrid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 12px;
+    }
+    
+    /* Launch page mobile */
+    .launchpad-inner {
+        padding: 0 12px;
+    }
+    
+    .launchpad-hero h1 {
+        font-size: 1.5rem;
+    }
+    
+    .launch-card-header, .media-section, 
+    .details-section, .social-section, .summary-section {
+        padding: 16px;
+    }
+    
+    .media-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .social-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Bridge page mobile */
+    .bridge-hero h1 {
+        font-size: 1.5rem;
+    }
+    
+    .bridge-card {
+        padding: 16px;
+    }
+    
+    .bridge-network-select {
+        flex-direction: column;
+    }
+    
+    /* Portfolio mobile */
+    .portfolio-stats {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    /* Trading terminal mobile */
+    .trading-page {
+        flex-direction: column;
+    }
+    
+    .trading-header {
+        flex-wrap: wrap;
+        padding: 12px;
+    }
+    
+    .pair-stats {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 12px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+    .nox-stat-card {
+        padding: 12px 8px;
+    }
+    
+    .nox-stat-value {
+        font-size: 1rem;
+    }
+    
+    #connectBtn {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .nav-logo span {
+        display: none;
+    }
+}
+
+/* Landscape phone */
+@media (max-height: 500px) and (orientation: landscape) {
+    .nox-sidebar {
+        position: relative;
+        top: 0;
+    }
+    
+    .nav {
+        padding: 6px 12px;
+    }
+}
+
+/* Modal fixes for mobile */
+.modal-overlay {
+    padding: var(--sab) var(--sar) var(--sat) var(--sal);
+}
+
+.modal {
+    max-height: calc(100dvh - 40px);
+    overflow-y: auto;
+    margin: 20px;
+}
+
+/* Wallet connect modal mobile */
+.wc-modal {
+    max-width: calc(100vw - 32px);
+    max-height: calc(100dvh - 100px);
+}
+
+/* Toast positioning */
+.toast {
+    bottom: calc(20px + var(--sab));
+    left: 16px;
+    right: 16px;
+    max-width: none;
+}
+
+/* Keyboard open state */
+@media (max-height: 400px) {
+    .modal {
+        padding: 12px;
+    }
+    
+    .launch-btn {
+        padding: 12px;
+    }
+}
+
+/* Mobile hamburger menu */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.nav-toggle span {
+    width: 24px;
+    height: 2px;
+    background: #e6edf3;
+    transition: all 0.3s;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #000;
+        flex-direction: column;
+        padding: 20px;
+        gap: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 999;
+        overflow-y: auto;
+    }
+    
+    .nav-links.show {
+        transform: translateX(0);
+    }
+    
+    .nav-links a {
+        padding: 16px 0;
+        border-bottom: 1px solid #1a1a1a;
+        font-size: 1.1rem;
+    }
+    
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+}

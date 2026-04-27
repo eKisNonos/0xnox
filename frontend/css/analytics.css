@@ -1,0 +1,533 @@
+/* Professional Analytics Dashboard Styles */
+
+/* Analytics Grid */
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 1024px) {
+    .analytics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Analytics Card */
+.analytics-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(102,255,255,0.1);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.analytics-card:hover {
+    border-color: rgba(102,255,255,0.3);
+    transform: translateY(-2px);
+}
+
+.analytics-card.main-stat {
+    background: linear-gradient(135deg, rgba(102,255,255,0.1) 0%, rgba(102,255,255,0.02) 100%);
+    border-color: rgba(102,255,255,0.25);
+}
+
+.stat-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.stat-icon {
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgba(102,255,255,0.1);
+    border-radius: 8px;
+}
+
+.stat-icon.pulse {
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.stat-title {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.stat-sub {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 4px;
+}
+
+.stat-change {
+    font-size: 0.85rem;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-change.positive {
+    color: #00ff88;
+}
+
+.stat-change.negative {
+    color: #ff4444;
+}
+
+/* Analytics Charts Section */
+.analytics-charts {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 900px) {
+    .analytics-charts {
+        grid-template-columns: 1fr;
+    }
+}
+
+.chart-card, .metrics-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(102,255,255,0.1);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.chart-header h3, .metrics-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0;
+}
+
+.chart-tabs {
+    display: flex;
+    gap: 4px;
+    background: rgba(0,0,0,0.3);
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.chart-tab {
+    padding: 6px 12px;
+    border: none;
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.chart-tab:hover {
+    color: var(--text);
+}
+
+.chart-tab.active {
+    background: var(--accent);
+    color: #000;
+}
+
+.chart-container {
+    height: 200px;
+    width: 100%;
+}
+
+/* Metrics Card */
+.metrics-card h3 {
+    margin-bottom: 16px;
+}
+
+.metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(102,255,255,0.05);
+}
+
+.metric-row:last-child {
+    border-bottom: none;
+}
+
+.metric-label {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+}
+
+.metric-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.metric-value.pending {
+    color: #ffaa00;
+}
+
+.metric-bar {
+    flex: 1;
+    height: 6px;
+    background: rgba(102,255,255,0.1);
+    border-radius: 3px;
+    margin: 0 12px;
+    overflow: hidden;
+}
+
+.metric-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent) 0%, #00ff88 100%);
+    border-radius: 3px;
+    transition: width 0.5s ease;
+}
+
+/* Bridge Flow Section */
+.bridge-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 24px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(102,255,255,0.1);
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 600px) {
+    .bridge-flow {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .flow-arrow {
+        transform: rotate(90deg);
+    }
+}
+
+.flow-stat {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 24px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 12px;
+    min-width: 200px;
+}
+
+.flow-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.flow-icon.eth {
+    background: linear-gradient(135deg, #627eea 0%, #3c3c3d 100%);
+    color: white;
+}
+
+.flow-icon.cf {
+    background: linear-gradient(135deg, #66ffff 0%, #00cccc 100%);
+    color: #000;
+}
+
+.flow-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.flow-label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.flow-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.flow-arrow {
+    color: var(--accent);
+    animation: flowPulse 2s ease-in-out infinite;
+}
+
+@keyframes flowPulse {
+    0%, 100% { opacity: 1; transform: translateX(0); }
+    50% { opacity: 0.7; transform: translateX(4px); }
+}
+
+/* Homepage Token Analytics */
+.token-analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+@media (max-width: 900px) {
+    .token-analytics-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .token-analytics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.token-stat-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(102,255,255,0.1);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.token-stat-card:hover {
+    border-color: rgba(102,255,255,0.3);
+    transform: translateY(-2px);
+}
+
+.token-stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.token-stat-label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+
+/* Launchpad Analytics */
+.launchpad-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+    .launchpad-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.metric-card {
+    background: linear-gradient(135deg, rgba(102,255,255,0.05) 0%, transparent 100%);
+    border: 1px solid rgba(102,255,255,0.15);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+}
+
+.metric-card-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(102,255,255,0.1);
+    border-radius: 10px;
+    color: var(--accent);
+    margin-bottom: 12px;
+}
+
+.metric-card-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 4px;
+}
+
+.metric-card-label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+
+.metric-card-change {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.metric-card-change.up {
+    background: rgba(0,255,136,0.1);
+    color: #00ff88;
+}
+
+.metric-card-change.down {
+    background: rgba(255,68,68,0.1);
+    color: #ff4444;
+}
+
+/* Live Activity Feed */
+.activity-feed {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(102,255,255,0.1);
+    border-radius: 12px;
+    padding: 16px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.activity-feed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(102,255,255,0.1);
+}
+
+.activity-feed-header h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    background: #00ff88;
+    border-radius: 50%;
+    animation: livePulse 2s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,255,136,0.4); }
+    50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(0,255,136,0); }
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(102,255,255,0.05);
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 0.8rem;
+}
+
+.activity-icon.buy {
+    background: rgba(0,255,136,0.1);
+    color: #00ff88;
+}
+
+.activity-icon.sell {
+    background: rgba(255,68,68,0.1);
+    color: #ff4444;
+}
+
+.activity-icon.bridge {
+    background: rgba(102,255,255,0.1);
+    color: var(--accent);
+}
+
+.activity-icon.create {
+    background: rgba(255,170,0,0.1);
+    color: #ffaa00;
+}
+
+.activity-content {
+    flex: 1;
+}
+
+.activity-title {
+    font-size: 0.85rem;
+    color: var(--text);
+    margin-bottom: 2px;
+}
+
+.activity-meta {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+}
+
+.activity-amount {
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+}

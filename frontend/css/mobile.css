@@ -1,0 +1,883 @@
+/* 0xNOX Mobile Responsive Fixes */
+/* This file contains all mobile-specific overrides and fixes */
+
+/* ============================================
+   GLOBAL MOBILE FIXES
+   ============================================ */
+
+/* Prevent horizontal overflow on all pages */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+}
+
+/* Safe area support for notched devices */
+body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+}
+
+/* All scrollable containers */
+.nox-main,
+.bridge-section,
+.dashboard-section,
+.launchpad-section,
+.capsules-section,
+.trading-page {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+}
+
+/* ============================================
+   MOBILE BREAKPOINT - TABLETS (max-width: 900px)
+   ============================================ */
+@media (max-width: 900px) {
+    /* Bridge page fixes */
+    .cf-address-input {
+        flex-direction: column;
+    }
+
+    .cf-address-input input {
+        width: 100%;
+    }
+
+    .cf-address-input .gen-btn {
+        width: 100%;
+        padding: var(--space-md);
+    }
+}
+
+/* ============================================
+   MOBILE BREAKPOINT - PHONES (max-width: 768px)
+   ============================================ */
+@media (max-width: 768px) {
+    /* Navigation fixes */
+    .nav {
+        padding: 10px 12px;
+    }
+
+    .nav-right {
+        gap: 6px;
+    }
+
+    #connectBtn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    /* Markets home/discovery page */
+    .nox-home {
+        flex-direction: column;
+    }
+
+    .nox-sidebar {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 8px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        gap: 4px;
+    }
+
+    .nox-sidebar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nox-sidebar-item {
+        flex-shrink: 0;
+        padding: 10px 14px;
+        font-size: 0.85rem;
+    }
+
+    .nox-sidebar-item span {
+        display: inline;
+    }
+
+    .nox-sidebar-item svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .nox-create-btn {
+        display: none;
+    }
+
+    .nox-main {
+        padding: 12px;
+    }
+
+    .nox-search input {
+        font-size: 16px; /* Prevent zoom on iOS */
+        padding: 12px 16px 12px 44px;
+    }
+
+    .trending-section h2 {
+        font-size: 1.2rem;
+    }
+
+    .trending-card {
+        flex: 0 0 220px;
+    }
+
+    .trending-card-image {
+        height: 120px;
+    }
+
+    .nox-filters {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nox-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nox-filter {
+        flex-shrink: 0;
+        padding: 8px 14px;
+        font-size: 0.85rem;
+    }
+
+    .token-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .token-card-inner {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .token-card-image {
+        width: 70px;
+        height: 70px;
+    }
+
+    /* Bridge page responsive fixes */
+    .bridge-section {
+        padding: 16px 12px;
+        padding-top: 70px;
+    }
+
+    .bridge-inner {
+        padding: 0;
+    }
+
+    .bridge-hero {
+        margin-bottom: 20px;
+    }
+
+    .bridge-hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .bridge-hero p {
+        font-size: 0.9rem;
+    }
+
+    .bridge-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .bridge-stat {
+        padding: 14px;
+    }
+
+    .bridge-stat-value {
+        font-size: 1.2rem;
+    }
+
+    .bridge-stat-label {
+        font-size: 0.7rem;
+    }
+
+    .bridge-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .bridge-card {
+        padding: 16px;
+    }
+
+    .bridge-direction {
+        flex-direction: column;
+        gap: 12px;
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+    }
+
+    .bridge-arrow {
+        transform: rotate(90deg);
+    }
+
+    .chain-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    /* Cellframe Wallet responsive */
+    .cf-wallet-selector {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+
+    .cf-wallet-active {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .cf-wallet-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 0.75rem;
+    }
+
+    .cf-wallet-info {
+        flex: 1 1 60%;
+        min-width: 0;
+    }
+
+    .cf-wallet-name {
+        font-size: 0.9rem;
+    }
+
+    .cf-wallet-addr {
+        font-size: 0.7rem;
+        word-break: break-all;
+    }
+
+    .cf-wallet-balance {
+        font-size: 0.85rem;
+        flex: 0 0 auto;
+    }
+
+    .cf-wallet-switch {
+        padding: 10px;
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    .cf-wallet-item {
+        flex-wrap: wrap;
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .cf-wallet-item-info {
+        flex: 1 1 60%;
+        min-width: 0;
+    }
+
+    .cf-wallet-item-addr {
+        word-break: break-all;
+    }
+
+    .cf-wallet-item-balance {
+        font-size: 0.8rem;
+    }
+
+    .cf-manager-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .cf-manager-actions .btn {
+        width: 100%;
+    }
+
+    /* Modal responsive fixes */
+    .modal-overlay {
+        padding: 12px;
+        align-items: flex-start;
+        padding-top: 60px;
+    }
+
+    .modal,
+    .cf-modal {
+        max-width: 100%;
+        width: 100%;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        margin: 0;
+    }
+
+    .modal-header {
+        padding: 14px 16px;
+        position: sticky;
+        top: 0;
+        background: var(--bg-secondary);
+        z-index: 10;
+    }
+
+    .modal-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .modal-body {
+        padding: 16px;
+    }
+
+    .modal-close {
+        min-width: 44px;
+        min-height: 44px;
+        font-size: 1.5rem;
+    }
+
+    .cf-backup-value {
+        font-size: 0.7rem;
+        padding: 10px;
+        padding-right: 50px;
+    }
+
+    .cf-backup-field .copy-btn {
+        padding: 8px 10px;
+    }
+
+    .cf-menu-modal .modal-body {
+        padding: 12px;
+    }
+
+    .cf-menu-address {
+        font-size: 0.7rem;
+        word-break: break-all;
+        padding: 10px;
+        background: var(--bg-tertiary);
+        border-radius: 6px;
+        margin-bottom: 12px;
+    }
+
+    /* Dashboard responsive */
+    .dashboard-inner {
+        padding: 0 12px;
+        padding-top: 70px;
+    }
+
+    .dashboard-title {
+        font-size: 1.4rem;
+    }
+
+    .dashboard-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 0;
+    }
+
+    .dashboard-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .dashboard-tab {
+        flex-shrink: 0;
+        padding: 12px 16px;
+        white-space: nowrap;
+    }
+
+    .portfolio-stats {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .portfolio-stat {
+        padding: 14px;
+    }
+
+    .portfolio-stat-value {
+        font-size: 1.3rem;
+    }
+
+    .creator-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .creator-stat-card {
+        padding: 14px;
+    }
+
+    .creator-content {
+        grid-template-columns: 1fr;
+    }
+
+    .holding-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 16px;
+    }
+
+    .holding-balance {
+        text-align: center;
+    }
+
+    /* Capsules responsive */
+    .capsules-section {
+        padding: 16px 12px;
+    }
+
+    .capsules-hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .capsules-stats {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .capsule-stat-value {
+        font-size: 1.5rem;
+    }
+
+    .capsules-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .capsule-filters {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .capsules-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* Launchpad responsive */
+    .launchpad-section {
+        padding: 16px 0;
+    }
+
+    .launchpad-inner {
+        padding: 0 12px;
+    }
+
+    .launchpad-hero h1 {
+        font-size: 1.6rem;
+    }
+
+    .launch-card-header,
+    .media-section,
+    .details-section,
+    .social-section,
+    .summary-section {
+        padding: 16px;
+    }
+
+    .launch-steps {
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .step-connector {
+        display: none;
+    }
+
+    .launch-step {
+        font-size: 0.75rem;
+    }
+
+    .step-number {
+        width: 24px;
+        height: 24px;
+        font-size: 0.7rem;
+    }
+
+    .media-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .social-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .works-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .launch-btn {
+        padding: 16px;
+        font-size: 1rem;
+    }
+
+    /* Trading page responsive */
+    .trading-page {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+        min-height: auto;
+        height: auto;
+    }
+
+    .trading-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px 12px;
+    }
+
+    .trading-pair {
+        width: 100%;
+    }
+
+    .pair-info h1 {
+        font-size: 1rem;
+    }
+
+    .pair-stats {
+        width: 100%;
+        margin-left: 0;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .pair-stat {
+        flex: 1 1 45%;
+        min-width: 70px;
+        text-align: left;
+    }
+
+    .pair-stat-value {
+        font-size: 0.9rem;
+    }
+
+    .pair-stat-label {
+        font-size: 0.65rem;
+    }
+
+    .trading-actions {
+        width: 100%;
+        display: flex;
+    }
+
+    .trading-actions .btn {
+        flex: 1;
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+
+    .token-sidebar {
+        display: none;
+    }
+
+    .chart-area {
+        min-height: 250px;
+    }
+
+    .chart-container {
+        min-height: 200px;
+    }
+
+    .chart-controls {
+        padding: 8px 12px;
+    }
+
+    .chart-timeframes {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .trading-panel {
+        border-top: 1px solid var(--border);
+    }
+
+    .trade-form {
+        padding: 12px;
+    }
+
+    .trade-quick-amounts {
+        flex-wrap: wrap;
+    }
+
+    .trade-quick-btn {
+        flex: 1 1 22%;
+        min-width: 50px;
+        padding: 8px 4px;
+        font-size: 0.7rem;
+    }
+
+    .trade-btn {
+        padding: 14px;
+        font-size: 1rem;
+    }
+
+    .recent-trades {
+        max-height: 150px;
+        padding: 10px;
+    }
+
+    .token-comments {
+        padding: 10px;
+    }
+
+    .comments-list {
+        max-height: 150px;
+    }
+
+    /* Form inputs - prevent zoom on iOS */
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    textarea,
+    select {
+        font-size: 16px !important;
+    }
+
+    /* Buttons - minimum touch target */
+    .btn,
+    button,
+    .nox-filter,
+    .sidebar-filter,
+    .chart-tf,
+    .trade-tab {
+        min-height: 44px;
+    }
+
+    /* Toast notifications */
+    .toast {
+        left: 12px;
+        right: 12px;
+        max-width: none;
+        width: auto;
+    }
+}
+
+/* ============================================
+   MOBILE BREAKPOINT - SMALL PHONES (max-width: 480px)
+   ============================================ */
+@media (max-width: 480px) {
+    /* Extra small screen adjustments */
+    .nav-logo {
+        font-size: 1rem;
+    }
+
+    #connectBtn {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+
+    .nox-sidebar-item {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+
+    .nox-filter {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .trending-card {
+        flex: 0 0 180px;
+    }
+
+    .trending-card-image {
+        height: 100px;
+    }
+
+    .trending-card-mcap {
+        font-size: 1.2rem;
+    }
+
+    .token-card-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .token-card-name {
+        font-size: 1rem;
+    }
+
+    .bridge-hero h1 {
+        font-size: 1.3rem;
+    }
+
+    .bridge-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .chain-box span {
+        font-size: 0.75rem;
+    }
+
+    .dashboard-title {
+        font-size: 1.2rem;
+    }
+
+    .launchpad-hero h1 {
+        font-size: 1.4rem;
+    }
+
+    .works-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pair-stat {
+        flex: 1 1 100%;
+    }
+
+    .trade-quick-btn {
+        flex: 1 1 30%;
+    }
+
+    .cf-wallet-active {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cf-wallet-info {
+        text-align: center;
+    }
+
+    .cf-wallet-balance {
+        text-align: center;
+        width: 100%;
+    }
+
+    .modal-header h2 {
+        font-size: 1rem;
+    }
+}
+
+/* ============================================
+   LANDSCAPE ORIENTATION FIXES
+   ============================================ */
+@media (max-height: 500px) and (orientation: landscape) {
+    .nav {
+        height: 48px;
+        padding: 8px 12px;
+    }
+
+    body {
+        padding-top: 48px;
+    }
+
+    .modal-overlay {
+        padding-top: 50px;
+    }
+
+    .modal {
+        max-height: calc(100vh - 60px);
+    }
+
+    .nox-sidebar {
+        padding: 6px;
+    }
+
+    .nox-sidebar-item {
+        padding: 6px 10px;
+    }
+}
+
+/* ============================================
+   TOUCH DEVICE ENHANCEMENTS
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+    /* Disable hover effects on touch devices */
+    .token-card:hover,
+    .holding-card:hover,
+    .capsule-card:hover,
+    .created-token-card:hover {
+        transform: none;
+    }
+
+    /* Active states for touch */
+    .token-card:active,
+    .holding-card:active,
+    .capsule-card:active,
+    .btn:active {
+        transform: scale(0.98);
+        opacity: 0.9;
+    }
+
+    /* Larger tap targets */
+    .nox-filter,
+    .sidebar-filter,
+    .chart-tf,
+    .bridge-tab,
+    .dashboard-tab {
+        padding: 10px 16px;
+    }
+
+    /* Scrollbar hiding for touch */
+    .nox-filters::-webkit-scrollbar,
+    .dashboard-tabs::-webkit-scrollbar,
+    .nox-sidebar::-webkit-scrollbar,
+    .trending-carousel::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* ============================================
+   iOS SPECIFIC FIXES
+   ============================================ */
+@supports (-webkit-touch-callout: none) {
+    /* Fix for iOS viewport issues */
+    body {
+        min-height: -webkit-fill-available;
+    }
+
+    .nox-home,
+    .bridge-section,
+    .dashboard-section,
+    .launchpad-section,
+    .trading-page {
+        min-height: -webkit-fill-available;
+    }
+
+    /* Fix for iOS bottom bar */
+    .modal-overlay {
+        padding-bottom: env(safe-area-inset-bottom, 20px);
+    }
+
+    /* Fix position:fixed issues in iOS */
+    .nav {
+        position: sticky;
+        position: -webkit-sticky;
+    }
+}
+
+/* ============================================
+   DARK MODE / HIGH CONTRAST
+   ============================================ */
+@media (prefers-contrast: high) {
+    .btn {
+        border: 2px solid var(--accent);
+    }
+
+    .token-card,
+    .bridge-card,
+    .capsule-card {
+        border-width: 2px;
+    }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .token-card:hover,
+    .btn:hover,
+    .trending-card:hover {
+        transform: none;
+    }
+}

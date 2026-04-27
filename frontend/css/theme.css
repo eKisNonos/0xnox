@@ -1,0 +1,348 @@
+/* 0xNOX Theme System - Light & Dark Mode */
+
+/* ============================================
+   DARK MODE (Default)
+   ============================================ */
+:root {
+    --bg-primary: #000000;
+    --bg-secondary: #0a0a0a;
+    --bg-tertiary: #111111;
+    --text-primary: #e6edf3;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
+    --accent: #66FFFF;
+    --accent-hover: #99FFFF;
+    --accent-dim: #2E5C5C;
+    --accent-glow: rgba(102, 255, 255, 0.3);
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --border: #1a1a1a;
+    --card-bg: var(--bg-secondary);
+    --card-border: var(--border);
+    --modal-bg: var(--bg-secondary);
+    --input-bg: var(--bg-primary);
+    --shadow: rgba(0, 0, 0, 0.5);
+    --logo-color: #66FFFF;
+    color-scheme: dark;
+}
+
+/* ============================================
+   LIGHT MODE
+   ============================================ */
+[data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #f0f1f3;
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a5568;
+    --text-muted: #718096;
+    --accent: #0891b2;
+    --accent-hover: #0e7490;
+    --accent-dim: #cffafe;
+    --accent-glow: rgba(8, 145, 178, 0.2);
+    --success: #16a34a;
+    --warning: #d97706;
+    --error: #dc2626;
+    --border: #e2e8f0;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --modal-bg: #ffffff;
+    --input-bg: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --logo-color: #0891b2;
+    color-scheme: light;
+}
+
+/* System preference support */
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8f9fa;
+        --bg-tertiary: #f0f1f3;
+        --text-primary: #1a1a1a;
+        --text-secondary: #4a5568;
+        --text-muted: #718096;
+        --accent: #0891b2;
+        --accent-hover: #0e7490;
+        --accent-dim: #cffafe;
+        --accent-glow: rgba(8, 145, 178, 0.2);
+        --success: #16a34a;
+        --warning: #d97706;
+        --error: #dc2626;
+        --border: #e2e8f0;
+        --card-bg: #ffffff;
+        --card-border: #e2e8f0;
+        --modal-bg: #ffffff;
+        --input-bg: #ffffff;
+        --shadow: rgba(0, 0, 0, 0.1);
+        --logo-color: #0891b2;
+        color-scheme: light;
+    }
+}
+
+/* ============================================
+   THEME TOGGLE BUTTON
+   ============================================ */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.theme-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+}
+
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover svg {
+    transform: rotate(15deg);
+}
+
+/* Sun icon (shown in dark mode) */
+.theme-toggle .sun-icon {
+    display: block;
+}
+
+.theme-toggle .moon-icon {
+    display: none;
+}
+
+/* Moon icon (shown in light mode) */
+[data-theme="light"] .theme-toggle .sun-icon {
+    display: none;
+}
+
+[data-theme="light"] .theme-toggle .moon-icon {
+    display: block;
+}
+
+/* System preference detection */
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .theme-toggle .sun-icon {
+        display: none;
+    }
+    :root:not([data-theme="dark"]) .theme-toggle .moon-icon {
+        display: block;
+    }
+}
+
+/* ============================================
+   LIGHT MODE SPECIFIC OVERRIDES
+   ============================================ */
+[data-theme="light"] .nav {
+    background: var(--bg-primary);
+    border-bottom-color: var(--border);
+    box-shadow: 0 1px 3px var(--shadow);
+}
+
+[data-theme="light"] .nav-logo {
+    color: var(--accent);
+    text-shadow: none;
+}
+
+[data-theme="light"] .btn {
+    background: var(--accent);
+    color: #ffffff;
+}
+
+[data-theme="light"] .btn:hover {
+    background: var(--accent-hover);
+}
+
+[data-theme="light"] .btn-outline {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+}
+
+[data-theme="light"] .btn.connected {
+    background: var(--accent-dim);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+[data-theme="light"] .modal-overlay {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="light"] .modal {
+    background: var(--modal-bg);
+    box-shadow: 0 25px 50px -12px var(--shadow);
+}
+
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+    background: var(--input-bg);
+    border-color: var(--border);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] input:focus,
+[data-theme="light"] textarea:focus,
+[data-theme="light"] select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+[data-theme="light"] .token-card,
+[data-theme="light"] .bridge-card,
+[data-theme="light"] .capsule-card,
+[data-theme="light"] .holding-card {
+    background: var(--card-bg);
+    border-color: var(--card-border);
+    box-shadow: 0 1px 3px var(--shadow);
+}
+
+[data-theme="light"] .token-card:hover,
+[data-theme="light"] .bridge-card:hover,
+[data-theme="light"] .capsule-card:hover {
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+[data-theme="light"] .nox-sidebar {
+    background: var(--bg-secondary);
+    border-color: var(--border);
+}
+
+[data-theme="light"] .nox-sidebar-item.active {
+    background: var(--accent-dim);
+    color: var(--accent);
+}
+
+[data-theme="light"] .trading-header {
+    background: var(--bg-secondary);
+    border-color: var(--border);
+}
+
+[data-theme="light"] .chart-area,
+[data-theme="light"] .trading-panel,
+[data-theme="light"] .token-sidebar {
+    background: var(--bg-primary);
+}
+
+[data-theme="light"] .chart-controls {
+    background: var(--bg-secondary);
+}
+
+[data-theme="light"] .trade-btn.buy {
+    background: var(--success);
+    color: #ffffff;
+}
+
+[data-theme="light"] .trade-btn.sell {
+    background: var(--error);
+    color: #ffffff;
+}
+
+[data-theme="light"] .status-badge.pending {
+    background: rgba(217, 119, 6, 0.15);
+    color: var(--warning);
+}
+
+[data-theme="light"] .status-badge.completed {
+    background: rgba(22, 163, 74, 0.15);
+    color: var(--success);
+}
+
+[data-theme="light"] .king-card {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(8, 145, 178, 0.05) 100%);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+[data-theme="light"] .toast {
+    background: var(--bg-primary);
+    border-color: var(--border);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+[data-theme="light"] ::selection {
+    background: var(--accent);
+    color: #ffffff;
+}
+
+/* Scrollbar styling for light mode */
+[data-theme="light"] ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+    background: var(--border);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* ============================================
+   LOGO STYLING
+   ============================================ */
+.nav-logo-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 8px;
+    color: var(--logo-color);
+    flex-shrink: 0;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-shadow: 0 0 20px var(--accent-glow);
+    letter-spacing: 1px;
+}
+
+[data-theme="light"] .nav-logo {
+    text-shadow: none;
+}
+
+/* ============================================
+   TRANSITION ANIMATIONS
+   ============================================ */
+body,
+.nav,
+.btn,
+.modal,
+.token-card,
+.bridge-card,
+input,
+textarea,
+select {
+    transition: background-color 0.2s ease,
+                border-color 0.2s ease,
+                color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+/* Disable transitions during theme change to prevent flash */
+.theme-transitioning,
+.theme-transitioning * {
+    transition: none !important;
+}

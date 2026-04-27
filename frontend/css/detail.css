@@ -1,0 +1,87 @@
+.detail-section { padding: var(--space-xl) 0; }
+.detail-inner { max-width: 900px; margin: 0 auto; padding: 0 var(--space-lg); }
+.back-btn { margin-bottom: var(--space-lg); }
+.detail-header { display: flex; align-items: flex-start; gap: var(--space-lg); margin-bottom: var(--space-xl); padding-bottom: var(--space-xl); border-bottom: 1px solid var(--border); }
+.detail-icon { width: 80px; height: 80px; background: linear-gradient(135deg, var(--accent-dim), var(--bg-tertiary)); display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; color: var(--accent); font-family: var(--font-mono); }
+.detail-info { flex: 1; }
+.detail-name { font-size: 1.75rem; font-weight: 600; margin-bottom: var(--space-xs); }
+.detail-symbol { font-size: 1rem; color: var(--accent); font-weight: 600; }
+.detail-creator { font-size: 0.8rem; color: var(--text-muted); margin-top: var(--space-sm); font-family: var(--font-mono); }
+.detail-actions { display: flex; gap: var(--space-sm); }
+.detail-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); margin-bottom: var(--space-xl); }
+.detail-stat { background: var(--bg-secondary); border: 1px solid var(--border); padding: var(--space-lg); text-align: center; }
+.detail-stat label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: var(--space-sm); }
+.detail-stat span { font-size: 1.25rem; font-weight: 600; font-family: var(--font-mono); }
+.graduation-section { margin-bottom: var(--space-xl); }
+.graduation-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm); }
+.graduation-header h3 { font-size: 0.9rem; color: var(--text-secondary); }
+.graduation-percent { font-size: 0.9rem; color: var(--accent); font-family: var(--font-mono); }
+.graduation-bar { height: 8px; background: var(--bg-tertiary); overflow: hidden; margin-bottom: var(--space-xs); }
+.graduation-progress { height: 100%; background: linear-gradient(90deg, var(--accent-dim), var(--accent)); }
+.graduation-labels { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); }
+.trade-section { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
+.trade-card { background: var(--bg-secondary); border: 1px solid var(--border); padding: var(--space-lg); }
+.trade-card h3 { font-size: 0.9rem; color: var(--accent); margin-bottom: var(--space-lg); }
+.trade-card .form-group { margin-bottom: var(--space-md); }
+.trade-balance { font-size: 0.8rem; color: var(--text-muted); margin-top: var(--space-sm); font-family: var(--font-mono); }
+@media (max-width: 900px) { .detail-stats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .detail-header { flex-direction: column; } .detail-stats { grid-template-columns: 1fr; } .trade-section { grid-template-columns: 1fr; } }
+
+/* Price Chart */
+.chart-section { margin-bottom: var(--space-xl); }
+.chart-container { background: var(--bg-secondary); border: 1px solid var(--border); padding: var(--space-md); }
+.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md); }
+.chart-header h3 { font-size: 0.9rem; color: var(--text-secondary); margin: 0; }
+.chart-timeframes { display: flex; gap: var(--space-xs); }
+.chart-timeframe { background: transparent; border: 1px solid var(--border); color: var(--text-muted); padding: var(--space-xs) var(--space-sm); font-size: 0.7rem; cursor: pointer; transition: all 0.15s; }
+.chart-timeframe:hover, .chart-timeframe.active { border-color: var(--accent); color: var(--accent); }
+.price-chart-canvas { width: 100%; height: 200px; }
+
+/* Token Social Links */
+.detail-social { display: flex; gap: var(--space-sm); margin-top: var(--space-md); }
+.detail-social a { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: var(--bg-tertiary); border: 1px solid var(--border); color: var(--text-muted); transition: all 0.15s; }
+.detail-social a:hover { border-color: var(--accent); color: var(--accent); }
+.detail-social a svg { width: 16px; height: 16px; }
+
+/* Token Description */
+.detail-description { background: var(--bg-secondary); border: 1px solid var(--border); padding: var(--space-lg); margin-bottom: var(--space-xl); }
+.detail-description h3 { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: var(--space-md); }
+.detail-description p { font-size: 0.9rem; color: var(--text-primary); line-height: 1.7; margin: 0; }
+
+/* Enhanced Trade Card */
+.trade-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-md); }
+.trade-card-header h3 { margin: 0; }
+.slippage-toggle { font-size: 0.75rem; color: var(--text-muted); background: transparent; border: none; cursor: pointer; display: flex; align-items: center; gap: var(--space-xs); }
+.slippage-toggle:hover { color: var(--accent); }
+.slippage-settings { background: var(--bg-tertiary); padding: var(--space-sm); margin-bottom: var(--space-md); display: none; }
+.slippage-settings.show { display: block; }
+.slippage-options { display: flex; gap: var(--space-xs); }
+.slippage-option { flex: 1; padding: var(--space-xs); background: var(--bg-primary); border: 1px solid var(--border); color: var(--text-muted); font-size: 0.75rem; cursor: pointer; text-align: center; }
+.slippage-option:hover, .slippage-option.active { border-color: var(--accent); color: var(--accent); }
+.slippage-custom { flex: 1.5; }
+.slippage-custom input { width: 100%; padding: var(--space-xs); background: var(--bg-primary); border: 1px solid var(--border); color: var(--text-primary); font-size: 0.75rem; text-align: center; }
+
+/* Trade History */
+.trade-history { margin-top: var(--space-xl); }
+.trade-history h3 { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: var(--space-md); }
+.trade-history-list { background: var(--bg-secondary); border: 1px solid var(--border); max-height: 300px; overflow-y: auto; }
+.trade-history-item { display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); border-bottom: 1px solid var(--border); }
+.trade-history-item:last-child { border-bottom: none; }
+.trade-type-badge { padding: 2px 8px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; }
+.trade-type-badge.buy { background: rgba(34, 197, 94, 0.2); color: var(--success); }
+.trade-type-badge.sell { background: rgba(239, 68, 68, 0.2); color: var(--error); }
+.trade-history-info { flex: 1; }
+.trade-history-amount { font-size: 0.85rem; font-weight: 500; }
+.trade-history-price { font-size: 0.75rem; color: var(--text-muted); }
+.trade-history-time { font-size: 0.75rem; color: var(--text-muted); text-align: right; }
+
+/* Holders List */
+.holders-section { margin-top: var(--space-xl); }
+.holders-section h3 { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: var(--space-md); }
+.holders-list { background: var(--bg-secondary); border: 1px solid var(--border); }
+.holder-item { display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); border-bottom: 1px solid var(--border); }
+.holder-item:last-child { border-bottom: none; }
+.holder-rank { width: 24px; font-size: 0.8rem; color: var(--text-muted); }
+.holder-address { flex: 1; font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); }
+.holder-amount { font-size: 0.85rem; font-weight: 500; }
+.holder-percent { font-size: 0.75rem; color: var(--text-muted); }

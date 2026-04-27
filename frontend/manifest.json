@@ -1,0 +1,72 @@
+{
+  "name": "0xNOX - NONOS Token Infrastructure",
+  "short_name": "0xNOX",
+  "description": "Token launchpad and Capsule marketplace for NONOS. Deploy tokens with bonding curve liquidity.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00ff88",
+  "orientation": "portrait-primary",
+  "categories": ["finance", "crypto", "utilities"],
+  "screenshots": [
+    {
+      "src": "img/screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "img/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "icons": [
+    {"src": "img/icon-72.png", "sizes": "72x72", "type": "image/png"},
+    {"src": "img/icon-96.png", "sizes": "96x96", "type": "image/png"},
+    {"src": "img/icon-128.png", "sizes": "128x128", "type": "image/png"},
+    {"src": "img/icon-144.png", "sizes": "144x144", "type": "image/png"},
+    {"src": "img/icon-152.png", "sizes": "152x152", "type": "image/png"},
+    {"src": "img/icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "img/icon-384.png", "sizes": "384x384", "type": "image/png"},
+    {"src": "img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "img/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ],
+  "shortcuts": [
+    {
+      "name": "Launch Token",
+      "short_name": "Launch",
+      "description": "Create a new token",
+      "url": "/?page=launch&source=pwa",
+      "icons": [{"src": "img/icon-launch.png", "sizes": "96x96"}]
+    },
+    {
+      "name": "Bridge",
+      "short_name": "Bridge",
+      "description": "Bridge NOX tokens",
+      "url": "/?page=bridge&source=pwa",
+      "icons": [{"src": "img/icon-bridge.png", "sizes": "96x96"}]
+    },
+    {
+      "name": "Portfolio",
+      "short_name": "Portfolio",
+      "description": "View your holdings",
+      "url": "/?page=portfolio&source=pwa",
+      "icons": [{"src": "img/icon-portfolio.png", "sizes": "96x96"}]
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.noxplatform.app",
+      "id": "com.noxplatform.app"
+    },
+    {
+      "platform": "itunes",
+      "url": "https://apps.apple.com/app/0xnox/id0000000000"
+    }
+  ],
+  "prefer_related_applications": false
+}

@@ -1,0 +1,180 @@
+/* Docs Mobile Fix */
+
+/* Force single column on mobile */
+@media (max-width: 900px) {
+    .docs-content {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+    
+    .docs-sidebar {
+        position: static !important;
+        width: 100% !important;
+        order: -1;
+    }
+    
+    .docs-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        padding: 12px !important;
+        background: var(--bg-secondary);
+        border-radius: 8px;
+        overflow-x: auto;
+    }
+    
+    .docs-nav-item {
+        flex-shrink: 0;
+        padding: 8px 12px !important;
+        font-size: 0.85rem !important;
+        white-space: nowrap;
+    }
+    
+    .docs-main {
+        width: 100% !important;
+    }
+    
+    .docs-article {
+        padding: 16px !important;
+    }
+    
+    .docs-article h2 {
+        font-size: 1.25rem !important;
+    }
+    
+    .docs-hero h1 {
+        font-size: 1.5rem !important;
+    }
+    
+    .docs-hero p {
+        font-size: 0.95rem !important;
+    }
+    
+    /* Token info grid */
+    .token-info-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
+    
+    .token-info-card {
+        padding: 12px !important;
+    }
+    
+    /* Tables scroll horizontally */
+    .docs-table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Staking tiers */
+    .staking-tiers {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Steps grid */
+    .steps-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Distribution chart */
+    .distribution-chart {
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+    
+    .chart-visual {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .chart-segment {
+        width: 50px;
+    }
+    
+    /* Graduation flow */
+    .graduation-flow {
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+    
+    .flow-arrow {
+        transform: rotate(90deg);
+    }
+    
+    /* Code blocks */
+    .code-block {
+        font-size: 0.9rem !important;
+        padding: 12px !important;
+        overflow-x: auto;
+    }
+    
+    /* Capsule types */
+    .capsule-types {
+        flex-wrap: wrap !important;
+    }
+    
+    .capsule-type {
+        min-width: calc(33% - 8px);
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .docs-nav {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .docs-nav::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .token-info-grid {
+        grid-template-columns: 1fr 1fr !important;
+    }
+    
+    .token-info-value {
+        font-size: 0.9rem !important;
+    }
+    
+    .capsule-type {
+        min-width: calc(50% - 8px);
+    }
+}
+
+/* Dev Portal Docs Mobile Fix */
+@media (max-width: 900px) {
+    #docsTab .docs-container {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+    }
+    
+    #docsTab .docs-nav {
+        position: static !important;
+        width: 100% !important;
+    }
+    
+    #docsTab .docs-links {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+    }
+    
+    #docsTab .docs-links li {
+        margin: 0 !important;
+    }
+    
+    #docsTab .docs-links a {
+        white-space: nowrap;
+        padding: 8px 12px !important;
+    }
+    
+    #docsTab .docs-content {
+        padding: 16px !important;
+    }
+}

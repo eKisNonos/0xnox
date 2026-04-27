@@ -1,0 +1,312 @@
+/* NFT Dashboard Styles */
+.nft-section {
+    min-height: 100vh;
+    padding: var(--space-2xl) var(--space-md);
+    padding-top: 80px;
+}
+
+.nft-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.nft-hero {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+}
+
+.nft-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-sm);
+}
+
+.nft-hero p {
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* NFT Status Card */
+.nft-status-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: var(--space-2xl);
+    margin-bottom: var(--space-2xl);
+    text-align: center;
+}
+
+.nft-status-card.holder {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, var(--bg-secondary), rgba(0, 255, 136, 0.05));
+}
+
+.nft-status-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.nft-status-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nft-status-info h2 {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-xs);
+}
+
+.nft-status-info p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+}
+
+/* NFT Stats */
+.nft-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-2xl);
+}
+
+.nft-stat {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: var(--space-lg);
+    text-align: center;
+}
+
+.nft-stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.nft-stat-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Benefits Grid */
+.nft-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-2xl);
+}
+
+.nft-benefit-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: var(--space-lg);
+    transition: all 0.2s;
+}
+
+.nft-benefit-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.benefit-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-md);
+}
+
+.benefit-icon.free { background: rgba(0, 255, 136, 0.15); color: var(--accent); }
+.benefit-icon.fees { background: rgba(102, 255, 255, 0.15); color: #66ffff; }
+.benefit-icon.boost { background: rgba(255, 200, 0, 0.15); color: #ffc800; }
+.benefit-icon.revenue { background: rgba(138, 43, 226, 0.15); color: #8a2be2; }
+.benefit-icon.daily { background: rgba(255, 100, 100, 0.15); color: #ff6464; }
+.benefit-icon.governance { background: rgba(100, 149, 237, 0.15); color: #6495ed; }
+
+.nft-benefit-card h3 {
+    font-size: 1rem;
+    margin-bottom: var(--space-sm);
+}
+
+.nft-benefit-card p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+    line-height: 1.5;
+}
+
+.benefit-value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--accent);
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--accent-dim);
+    border-radius: 6px;
+    display: inline-block;
+}
+
+/* NFT Dashboard Grid */
+.nft-dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+}
+
+.nft-earnings-card,
+.nft-tokens-card,
+.nft-activity-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: var(--space-xl);
+}
+
+.nft-earnings-card h3,
+.nft-tokens-card h3,
+.nft-activity-card h3 {
+    margin-bottom: var(--space-lg);
+    font-size: 1.125rem;
+}
+
+.earnings-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.earning-stat {
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    padding: var(--space-md);
+}
+
+.earning-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: var(--space-xs);
+    text-transform: uppercase;
+}
+
+.earning-value {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.earning-value.accent {
+    color: var(--accent);
+}
+
+/* NFT Token List */
+.nft-tokens-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.nft-token-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    background: var(--bg-tertiary);
+    border-radius: 12px;
+    padding: var(--space-md);
+}
+
+.nft-token-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), #00ccaa);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #000;
+}
+
+.nft-token-info {
+    flex: 1;
+}
+
+.nft-token-name {
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.nft-token-id {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+}
+
+/* CTA Section */
+.nft-cta-section {
+    margin-bottom: var(--space-2xl);
+}
+
+.nft-cta-card {
+    background: linear-gradient(135deg, var(--bg-secondary), rgba(0, 255, 136, 0.1));
+    border: 1px solid var(--accent-dim);
+    border-radius: 16px;
+    padding: var(--space-2xl);
+    text-align: center;
+}
+
+.nft-cta-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-sm);
+}
+
+.nft-cta-card p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+}
+
+.nft-cta-buttons {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .nft-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .nft-benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .nft-dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .nft-stats {
+        grid-template-columns: 1fr;
+    }
+    .nft-benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    .nft-hero h1 {
+        font-size: 1.75rem;
+    }
+    .nft-cta-buttons {
+        flex-direction: column;
+    }
+}

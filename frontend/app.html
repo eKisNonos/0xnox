@@ -1,0 +1,2831 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta http-equiv=31"Content-Security-Policy" content="default-src 'self'; script-src 'self' https: 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; connect-src 'self' https: wss:; font-src 'self' https: data:; frame-src 'self' https:;">
+<meta http-equiv=31"X-Content-Type-Options" content="nosniff">
+<meta http-equiv=31"X-Frame-Options" content="DENY">
+<meta http-equiv=31"Referrer-Policy" content="strict-origin-when-cross-origin">
+<title>0xNOX - NONOS Token Infrastructure</title>
+<meta name="description" content="Token launchpad and Capsule marketplace for NONOS. Deploy tokens with bonding curve liquidity. Build and monetize apps for NONOS OS.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="css/theme.css?v=31">
+<link rel="stylesheet" href="css/style.css?v=31">
+<link rel="stylesheet" href="css/components.css?v=31">
+<link rel="stylesheet" href="css/hero.css?v=31">
+<link rel="stylesheet" href="css/stats.css?v=31">
+<link rel="stylesheet" href="css/create.css?v=31">
+<link rel="stylesheet" href="css/king.css?v=31">
+<link rel="stylesheet" href="css/tokens.css?v=31">
+<link rel="stylesheet" href="css/detail.css?v=31">
+<link rel="stylesheet" href="css/dashboard.css?v=31">
+<link rel="stylesheet" href="css/wallet-modal.css?v=31">
+<link rel="stylesheet" href="css/toast.css?v=31">
+<link rel="stylesheet" href="css/capsules.css?v=31">
+<link rel="stylesheet" href="css/dev-portal.css?v=31">
+<link rel="stylesheet" href="css/activity.css?v=31">
+<link rel="stylesheet" href="css/leaderboard.css?v=31">
+<link rel="stylesheet" href="css/trading.css?v=31">
+<link rel="stylesheet" href="css/launchpad.css?v=31">
+<link rel="stylesheet" href="css/bridge.css?v=31">
+<link rel="stylesheet" href="css/nft-dashboard.css?v=31">
+<link rel="stylesheet" href="css/wallet-sidebar.css?v=31">
+<link rel="stylesheet" href="css/docs.css?v=31">
+<link rel="stylesheet" href="css/docs-mobile.css?v=31">
+<link rel="stylesheet" href="css/cellframe-wallet.css?v=31">
+<link rel="stylesheet" href="css/mobile.css?v=31">
+<link rel="stylesheet" href="css/gate.css?v=31">
+<script src="https://unpkg.com/lightweight-charts@4.1.0/dist/lightweight-charts.standalone.production.js?v=31" integrity="sha384-rcCMiCptH4kTlEbg0euOTUKWe72TESbrjElatnG+9BfbmUIV268UK/Pro5biJdGm" crossorigin="anonymous"></script>
+<script src="js/theme.js?v=31"></script>
+<script src="js/mobile-init.js?v=31"></script>
+<link rel="stylesheet" href="css/mobile-production.css?v=31">
+<link rel="stylesheet" href="css/nox-markets.css?v=31">
+<link rel="stylesheet" href="css/nav-fix.css?v=31">
+<link rel="stylesheet" href="css/onboarding.css?v=31">
+<link rel="stylesheet" href="css/scroll-fix.css?v=31">
+<script src="js/router.js?v=31"></script>
+</head>
+<body>
+<!-- Token Gate -->
+<div id="tokenGate" style="display:none">
+<div class="gate-container">
+<svg class="gate-logo" viewBox="0 0 450 500" fill="currentColor"><path d="M370 0C414.183 0 450 35.8172 450 80V420C450 464.183 414.183 500 370 500H80C35.8172 500 0 464.183 0 420V80C2.3583e-05 35.8173 35.8173 2.57867e-05 80 0H370ZM223.15 147C203.516 147 186.849 151.338 173.15 160.014C159.452 168.689 148.996 180.744 141.781 196.178C134.658 211.611 131.096 229.465 131.096 249.739C131.096 270.013 134.658 287.868 141.781 303.302C143.839 307.704 146.162 311.83 148.747 315.683L130 336.315L147.397 351.932L164.499 333.18C167.223 335.441 170.106 337.538 173.15 339.466C186.849 348.142 203.516 352.479 223.15 352.479C242.876 352.479 259.589 348.142 273.288 339.466C286.986 330.79 297.397 318.735 304.521 303.302C311.644 287.868 315.205 270.013 315.205 249.739C315.205 229.465 311.644 211.611 304.521 196.178C302.836 192.528 300.965 189.068 298.912 185.796L319.041 163.575L301.644 147.959L283.659 167.779C280.441 164.945 276.985 162.355 273.288 160.014C259.589 151.338 242.876 147 223.15 147ZM280.574 205.148C281.041 206.156 281.49 207.184 281.918 208.232C286.849 220.104 289.315 233.94 289.315 249.739C289.315 265.447 286.849 279.283 281.918 291.246C277.078 303.21 269.726 312.571 259.863 319.329C250.092 325.996 237.854 329.283 223.15 329.191C208.447 329.1 196.165 325.721 186.302 319.055C184.37 317.719 182.534 316.281 180.791 314.745L280.574 205.148ZM223.15 170.288C237.854 170.379 250.092 173.758 259.863 180.425C262.495 182.203 264.945 184.169 267.219 186.318L166.722 296.461C165.838 294.739 165.013 292.955 164.246 291.109C159.315 279.237 156.895 265.447 156.986 249.739C157.078 233.94 159.589 220.059 164.521 208.096C169.452 196.132 176.758 186.817 186.438 180.15C196.21 173.484 208.447 170.197 223.15 170.288Z"/></svg>
+<h1 class="gate-title">0xNOX</h1>
+<p class="gate-subtitle">Token-gated access. Connect your wallet to verify holdings.</p>
+<div class="gate-requirements">
+<h4>Access Requirements</h4>
+<div class="gate-requirement">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+<span>Hold any amount of <strong>NOX tokens</strong></span>
+</div>
+<div class="gate-or">- OR -</div>
+<div class="gate-requirement">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+<span>Own a <strong>0xNOX NFT Pass</strong></span>
+</div>
+</div>
+<div class="gate-buttons">
+<button class="btn" id="gateConnectBtn" onclick="TokenGate.connectAndVerify()">Connect Wallet</button>
+<button class="btn btn-outline" id="gateWCBtn" onclick="TokenGate.tryWalletConnect()">WalletConnect</button>
+</div>
+<div id="gateStatus" class="gate-status" style="display:none"></div>
+<div class="gate-footer">
+<a href="https://nonos.software" target="_blank">Learn more about NONOS</a>
+</div>
+</div>
+</div>
+<!-- App Content -->
+<div id="appContent">
+<nav class="nav">
+<a href="#" class="nav-logo" onclick="App.showPage('home')">
+<svg class="nav-logo-icon" viewBox="0 0 450 500" fill="currentColor"><path d="M370 0C414.183 0 450 35.8172 450 80V420C450 464.183 414.183 500 370 500H80C35.8172 500 0 464.183 0 420V80C2.3583e-05 35.8173 35.8173 2.57867e-05 80 0H370ZM223.15 147C203.516 147 186.849 151.338 173.15 160.014C159.452 168.689 148.996 180.744 141.781 196.178C134.658 211.611 131.096 229.465 131.096 249.739C131.096 270.013 134.658 287.868 141.781 303.302C143.839 307.704 146.162 311.83 148.747 315.683L130 336.315L147.397 351.932L164.499 333.18C167.223 335.441 170.106 337.538 173.15 339.466C186.849 348.142 203.516 352.479 223.15 352.479C242.876 352.479 259.589 348.142 273.288 339.466C286.986 330.79 297.397 318.735 304.521 303.302C311.644 287.868 315.205 270.013 315.205 249.739C315.205 229.465 311.644 211.611 304.521 196.178C302.836 192.528 300.965 189.068 298.912 185.796L319.041 163.575L301.644 147.959L283.659 167.779C280.441 164.945 276.985 162.355 273.288 160.014C259.589 151.338 242.876 147 223.15 147ZM280.574 205.148C281.041 206.156 281.49 207.184 281.918 208.232C286.849 220.104 289.315 233.94 289.315 249.739C289.315 265.447 286.849 279.283 281.918 291.246C277.078 303.21 269.726 312.571 259.863 319.329C250.092 325.996 237.854 329.283 223.15 329.191C208.447 329.1 196.165 325.721 186.302 319.055C184.37 317.719 182.534 316.281 180.791 314.745L280.574 205.148ZM223.15 170.288C237.854 170.379 250.092 173.758 259.863 180.425C262.495 182.203 264.945 184.169 267.219 186.318L166.722 296.461C165.838 294.739 165.013 292.955 164.246 291.109C159.315 279.237 156.895 265.447 156.986 249.739C157.078 233.94 159.589 220.059 164.521 208.096C169.452 196.132 176.758 186.817 186.438 180.15C196.21 173.484 208.447 170.197 223.15 170.288Z"/></svg>
+0xNOX
+</a>
+<button class="nav-toggle" id="navToggle" onclick="App.toggleMobileMenu()">
+<span></span><span></span><span></span>
+</button>
+<div class="nav-links" id="navLinks">
+<a href="#" data-page="home" class="active">Tokens</a>
+<a href="#" data-page="launch">Launch</a>
+<a href="#" data-page="capsules">Capsules</a>
+<a href="#" data-page="capsule-dev">Dev Portal</a>
+<a href="#" data-page="bridge">Bridge</a>
+<a href="#" data-page="portfolio">Portfolio</a>
+<a href="docs/nox-tokenomics-whitepaper.html" target="_blank">Docs</a>
+<a href="https://nonos.software" target="_blank" class="nav-external">NONOS <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+</div>
+<div class="nav-right">
+<button class="theme-toggle" onclick="Theme.toggle()" title="Toggle theme">
+<svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+</button>
+<span class="wallet-address" id="walletAddress"></span>
+<button class="btn" id="connectBtn">Connect</button>
+</div>
+</nav>
+
+<div id="homePage" style="display:block">
+<!-- Markets Discovery Page -->
+<div class="nox-home" id="discoveryPage">
+<aside class="nox-sidebar">
+<a href="#" class="nox-sidebar-item active" data-view="discover">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 0 0 20"/><path d="M2 12h20"/></svg>
+<span>Markets</span>
+</a>
+<a href="#" class="nox-sidebar-item" onclick="Trading.showTerminal(); return false;">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+<span>Terminal</span>
+</a>
+<a href="#" class="nox-sidebar-item" data-page="launch" onclick="App.showPage('launch')">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+<span>Deploy</span>
+</a>
+<a href="#" class="nox-sidebar-item" data-page="portfolio" onclick="App.showPage('portfolio')">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+<span>Portfolio</span>
+</a>
+<button class="nox-create-btn" onclick="App.showPage('launch')">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+<span>Deploy Token</span>
+</button>
+</aside>
+
+<main class="nox-main">
+<div class="nox-search-wrapper" style="position:relative;">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+<input type="text" id="tokenSearch" class="nox-search-input" placeholder="Search tokens by name, symbol, or address...">
+</div>
+
+<div class="nox-stats-grid" id="platformStats">
+<div class="nox-stat-card">
+<div class="nox-stat-value" id="statTotalTokens">0</div>
+<div class="nox-stat-label">Total Tokens</div>
+</div>
+<div class="nox-stat-card">
+<div class="nox-stat-value" id="statTotalVolume">0 ETH</div>
+<div class="nox-stat-label">Total Volume</div>
+</div>
+<div class="nox-stat-card">
+<div class="nox-stat-value" id="statGraduated">0</div>
+<div class="nox-stat-label">Graduated</div>
+</div>
+<div class="nox-stat-card">
+<div class="nox-stat-value" id="statActiveUsers">0</div>
+<div class="nox-stat-label">Active Wallets</div>
+</div>
+</div>
+
+<section class="trending-section">
+<div class="nox-section-title">Active Markets</div>
+<div class="nox-token-grid" id="trendingCarousel">
+<div class="loading-state"><div class="spinner"></div></div>
+</div>
+</section>
+
+<div class="nox-filters">
+<button class="nox-filter-btn active" data-filter="trending">Trending</button>
+<button class="nox-filter-btn" data-filter="new">Latest</button>
+<button class="nox-filter-btn" data-filter="graduating">Graduating</button>
+<button class="nox-filter-btn" data-filter="graduated">Graduated</button>
+<button class="nox-filter-btn" data-filter="mcap">By Market Cap</button>
+</div>
+
+<div class="nox-token-grid" id="tokenGrid">
+<div class="loading-state"><div class="spinner"></div></div>
+</div>
+</main>
+</div>
+
+<!-- DEX Trading Terminal (Hidden by default) -->
+<div class="trading-page" id="tradingTerminal" style="display: none;">
+<!-- Trading Header -->
+<div class="trading-header" id="tradingHeader">
+<button class="btn btn-outline" onclick="Trading.showDiscovery()" style="margin-right: 12px; padding: 8px 12px;">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+Back
+</button>
+<div class="trading-pair" id="tradingPair">
+<div class="pair-icon" id="selectedTokenIcon">?</div>
+<div class="pair-info">
+<h1 id="selectedTokenName">Select Token <span class="symbol" id="selectedTokenSymbol"></span></h1>
+<span class="pair-creator" id="selectedTokenCreator">--</span>
+</div>
+</div>
+<div class="pair-stats" id="pairStats">
+<div class="pair-stat">
+<div class="pair-stat-value" id="headerPrice">--</div>
+<div class="pair-stat-label">Price</div>
+</div>
+<div class="pair-stat">
+<div class="pair-stat-value" id="headerMcap">--</div>
+<div class="pair-stat-label">Market Cap</div>
+</div>
+<div class="pair-stat">
+<div class="pair-stat-value" id="headerVolume">--</div>
+<div class="pair-stat-label">Volume 24h</div>
+</div>
+<div class="pair-stat">
+<div class="pair-stat-value" id="headerHolders">--</div>
+<div class="pair-stat-label">Holders</div>
+</div>
+</div>
+<div class="trading-actions">
+<button class="btn btn-outline" id="tokenEtherscan" onclick="Trading.openEtherscan()">Etherscan</button>
+<button class="btn btn-outline" onclick="Trading.shareToken()">Share</button>
+</div>
+</div>
+
+<!-- Token Sidebar -->
+<div class="token-sidebar">
+<div class="sidebar-header">
+<div class="sidebar-search">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+<input type="text" id="tokenSearch" placeholder="Search tokens...">
+</div>
+</div>
+<div class="sidebar-filters">
+<button class="sidebar-filter active" data-filter="trending">Hot</button>
+<button class="sidebar-filter" data-filter="new">New</button>
+<button class="sidebar-filter" data-filter="graduating">Graduating</button>
+<button class="sidebar-filter" data-filter="graduated">Graduated</button>
+</div>
+<div class="token-list-scroll" id="tokenListScroll">
+<div class="loading-state"><div class="spinner"></div></div>
+</div>
+</div>
+
+<!-- Chart Area -->
+<div class="chart-area">
+<div class="chart-controls">
+<div class="chart-timeframes">
+<button class="chart-tf active" data-tf="1m">1m</button>
+<button class="chart-tf" data-tf="5m">5m</button>
+<button class="chart-tf" data-tf="15m">15m</button>
+<button class="chart-tf" data-tf="1h">1H</button>
+<button class="chart-tf" data-tf="4h">4H</button>
+<button class="chart-tf" data-tf="1d">1D</button>
+</div>
+<div class="chart-type-btns">
+<button class="chart-type-btn active" data-type="candle" title="Candlestick">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 4v4M9 16v4M15 4v4M15 16v4"/><rect x="7" y="8" width="4" height="8" rx="1"/><rect x="13" y="8" width="4" height="8" rx="1"/></svg>
+</button>
+<button class="chart-type-btn" data-type="line" title="Line">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+</button>
+</div>
+</div>
+<div class="chart-container">
+<div id="tradingChart">
+<div class="no-token-selected">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-4 4"/></svg>
+<h3>Select a Token</h3>
+<p>Choose a token from the list to view its chart and trade</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Trading Panel -->
+<div class="trading-panel">
+<div class="trade-tabs">
+<button class="trade-tab buy active" data-action="buy">Buy</button>
+<button class="trade-tab sell" data-action="sell">Sell</button>
+</div>
+<div class="trade-form" id="tradeForm">
+<div class="trade-input-group">
+<div class="trade-input-label">
+<span>Amount</span>
+<span class="trade-input-balance">Balance: <span id="tradeBalance">0.00</span></span>
+</div>
+<div class="trade-input-wrapper">
+<input type="number" id="tradeAmount" placeholder="0.0" step="0.001">
+<div class="trade-input-suffix">
+<span id="tradeSuffix">ETH</span>
+<button class="trade-max-btn" onclick="Trading.setMax()">MAX</button>
+</div>
+</div>
+</div>
+<div class="trade-quick-amounts">
+<button class="trade-quick-btn" onclick="Trading.setQuickAmount(0.01)">0.01</button>
+<button class="trade-quick-btn" onclick="Trading.setQuickAmount(0.05)">0.05</button>
+<button class="trade-quick-btn" onclick="Trading.setQuickAmount(0.1)">0.1</button>
+<button class="trade-quick-btn" onclick="Trading.setQuickAmount(0.5)">0.5</button>
+</div>
+<div class="trade-estimate">
+<div class="trade-estimate-row">
+<span class="trade-estimate-label">Price</span>
+<span class="trade-estimate-value" id="tradePrice">--</span>
+</div>
+<div class="trade-estimate-row">
+<span class="trade-estimate-label">Fee (1%)</span>
+<span class="trade-estimate-value" id="tradeFee">--</span>
+</div>
+<div class="trade-estimate-row">
+<span class="trade-estimate-label">You Receive</span>
+<span class="trade-estimate-value green" id="tradeReceive">--</span>
+</div>
+</div>
+<button class="trade-btn buy" id="tradeSubmitBtn" onclick="Trading.executeTrade()" disabled>Connect Wallet</button>
+
+<div class="graduation-mini" id="graduationMini">
+<div class="graduation-mini-header">
+<span class="graduation-mini-label">Graduation Progress</span>
+<span class="graduation-mini-percent" id="gradPercent">0%</span>
+</div>
+<div class="graduation-mini-bar">
+<div class="graduation-mini-progress" id="gradProgress" style="width: 0%"></div>
+</div>
+<div class="graduation-mini-labels">
+<span>$0</span>
+<span>$69,420</span>
+</div>
+</div>
+</div>
+
+<div class="recent-trades" id="recentTrades">
+<h4>Recent Trades</h4>
+<div id="recentTradesList">
+<div class="empty-state" style="padding: 20px; text-align: center; color: var(--text-muted);">No trades yet</div>
+</div>
+</div>
+
+<div class="token-comments" id="tokenComments">
+<div class="comments-header">
+<h4>Comments</h4>
+<span class="comments-count" id="commentsCount">0</span>
+</div>
+<div class="comment-form" id="commentForm">
+<textarea id="commentInput" placeholder="Share your thoughts..." maxlength="500"></textarea>
+<div class="comment-form-actions">
+<span class="char-count"><span id="commentCharCount">0</span>/500</span>
+<button class="btn btn-sm" onclick="Trading.postComment()" id="postCommentBtn" disabled>Post</button>
+</div>
+</div>
+<div class="comments-list" id="commentsList">
+<div class="empty-state">No comments yet. Be the first!</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="launchPage" style="display:none">
+<section class="launchpad-section">
+<div class="launchpad-inner">
+<div class="launchpad-hero">
+<h1>Launch Your Token</h1>
+<p>Deploy an ERC-20 token with instant liquidity via bonding curves. Automatic graduation to Uniswap V2 at $69,420 market cap.</p>
+</div>
+
+<div class="launch-card-premium">
+<div class="launch-card-header">
+<div class="launch-steps">
+<div class="launch-step active" data-step="1">
+<span class="step-number">1</span>
+<span>Media</span>
+</div>
+<div class="step-connector"></div>
+<div class="launch-step" data-step="2">
+<span class="step-number">2</span>
+<span>Details</span>
+</div>
+<div class="step-connector"></div>
+<div class="launch-step" data-step="3">
+<span class="step-number">3</span>
+<span>Social</span>
+</div>
+<div class="step-connector"></div>
+<div class="launch-step" data-step="4">
+<span class="step-number">4</span>
+<span>Launch</span>
+</div>
+</div>
+</div>
+
+<form id="launchForm">
+<!-- Media Section -->
+<div class="media-section">
+<div class="section-title">Token Branding <span class="badge">Recommended</span></div>
+<div class="media-grid">
+<div class="media-upload">
+<label>Token Icon</label>
+<div class="upload-zone" id="iconUploadZone">
+<input type="file" id="tokenIconInput" accept="image/*">
+<div class="upload-zone-icon">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+<span>Upload Icon</span>
+<span class="hint">256x256 PNG/JPG</span>
+</div>
+</div>
+</div>
+<div class="media-upload">
+<label>Banner Image</label>
+<div class="upload-zone" id="bannerUploadZone">
+<input type="file" id="tokenBannerInput" accept="image/*">
+<div class="upload-zone-banner">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+<span>Upload Banner</span>
+<span class="hint">1200x400 recommended</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Token Details Section -->
+<div class="details-section">
+<div class="section-title">Token Details</div>
+<div class="form-row">
+<div class="form-group">
+<label>Token Name <span class="required">*</span></label>
+<input type="text" id="launchTokenName" placeholder="e.g. Doge Killer" required maxlength="50">
+</div>
+<div class="form-group">
+<label>Symbol <span class="required">*</span></label>
+<input type="text" id="launchTokenSymbol" placeholder="e.g. DOGEK" required maxlength="8" style="text-transform: uppercase;">
+</div>
+</div>
+<div class="form-group full">
+<label>Description <span class="optional">(optional)</span></label>
+<textarea id="launchTokenDesc" placeholder="Tell the community about your token. What's the vision? What makes it unique?" maxlength="500"></textarea>
+<div class="char-count"><span id="descCharCount">0</span>/500</div>
+</div>
+</div>
+
+<!-- Social Links Section -->
+<div class="social-section">
+<div class="section-title">Social Links <span class="badge">Optional</span></div>
+<div class="social-grid">
+<div class="social-input">
+<div class="social-input-icon">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+</div>
+<input type="text" id="socialTwitter" placeholder="twitter.com/yourtoken">
+</div>
+<div class="social-input">
+<div class="social-input-icon">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+</div>
+<input type="text" id="socialTelegram" placeholder="t.me/yourtoken">
+</div>
+<div class="social-input">
+<div class="social-input-icon">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
+</div>
+<input type="text" id="socialDiscord" placeholder="discord.gg/yourtoken">
+</div>
+<div class="social-input">
+<div class="social-input-icon">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+</div>
+<input type="text" id="socialWebsite" placeholder="yourtoken.com">
+</div>
+</div>
+</div>
+
+<!-- Summary Section -->
+<div class="summary-section">
+<div class="nft-pass-badge" id="nftPassBadge" style="display: none;">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+<span><strong>ZeroState Pass Detected!</strong> Your creation fee is waived.</span>
+</div>
+
+<div class="launch-summary">
+<div class="summary-row">
+<span class="summary-label">Creation Fee</span>
+<span class="summary-value" id="creationFee">10,000 NOX</span>
+</div>
+<div class="summary-row">
+<span class="summary-label">Initial Supply</span>
+<span class="summary-value">0 (minted on demand)</span>
+</div>
+<div class="summary-row">
+<span class="summary-label">Max Supply</span>
+<span class="summary-value">800,000,000</span>
+</div>
+<div class="summary-row">
+<span class="summary-label">Trading Fee</span>
+<span class="summary-value">1%</span>
+</div>
+<div class="summary-row">
+<span class="summary-label">Graduation Target</span>
+<span class="summary-value accent">$69,420 Market Cap</span>
+</div>
+</div>
+
+<button type="submit" class="launch-btn" id="launchSubmitBtn">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+Launch Token
+</button>
+</div>
+</form>
+</div>
+
+<div class="how-it-works">
+<h3>How It Works</h3>
+<div class="works-grid">
+<div class="works-item">
+<div class="works-icon">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+</div>
+<h4>Deploy</h4>
+<p>Token launches instantly with bonding curve</p>
+</div>
+<div class="works-item">
+<div class="works-icon">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+</div>
+<h4>Trade</h4>
+<p>Buy & sell with instant liquidity, 1% fee</p>
+</div>
+<div class="works-item">
+<div class="works-icon">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+</div>
+<h4>Graduate</h4>
+<p>Auto-migrates to Uniswap at $69,420</p>
+</div>
+<div class="works-item">
+<div class="works-icon">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+</div>
+<h4>Secure</h4>
+<p>LP tokens burned, liquidity locked forever</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<div id="portfolioPage" style="display:none">
+<section class="dashboard-section">
+<div class="dashboard-inner">
+<div class="dashboard-header"><h1 class="dashboard-title">Portfolio</h1></div>
+<div class="portfolio-stats">
+<div class="portfolio-stat"><span class="portfolio-stat-label">Total Value</span><span class="portfolio-stat-value accent" id="portfolioValue">$0</span></div>
+<div class="portfolio-stat"><span class="portfolio-stat-label">Holdings</span><span class="portfolio-stat-value" id="holdingsCount">0</span></div>
+<div class="portfolio-stat"><span class="portfolio-stat-label">Total Trades</span><span class="portfolio-stat-value" id="tradesCount">0</span></div>
+</div>
+<div class="dashboard-tabs">
+<button class="dashboard-tab active" data-tab="holdings">Holdings</button>
+<button class="dashboard-tab" data-tab="trades">Trade History</button>
+</div>
+<div id="holdingsTab"><div class="holdings-grid" id="holdingsList"></div></div>
+<div id="tradesTab" style="display:none"><div class="trades-list" id="tradesList"></div></div>
+</div>
+</section>
+</div>
+
+<div id="capsulesPage" style="display:none">
+<section class="capsules-section">
+<div class="capsules-inner">
+<div class="capsules-hero">
+<h1>Capsule <span class="accent">Marketplace</span></h1>
+<p>Token-embedded applications for NONOS. Install apps powered by your favorite tokens.</p>
+</div>
+<div class="capsules-stats">
+<div class="capsule-stat"><span class="capsule-stat-value" id="totalCapsules">0</span><span class="capsule-stat-label">Capsules</span></div>
+<div class="capsule-stat"><span class="capsule-stat-value" id="totalDownloads">0</span><span class="capsule-stat-label">Downloads</span></div>
+<div class="capsule-stat"><span class="capsule-stat-value" id="totalCreators">0</span><span class="capsule-stat-label">Creators</span></div>
+</div>
+<div class="capsules-header">
+<h2>Featured Capsules</h2>
+<div class="capsule-filters">
+<button class="capsule-filter active" data-type="all">All</button>
+<button class="capsule-filter" data-type="wallet">Wallets</button>
+<button class="capsule-filter" data-type="defi">DeFi</button>
+<button class="capsule-filter" data-type="utility">Utility</button>
+<button class="capsule-filter" data-type="game">Games</button>
+</div>
+</div>
+<div class="capsules-grid" id="capsulesList"></div>
+</div>
+</section>
+</div>
+
+<div id="capsule-devPage" style="display:none">
+<section class="dev-portal-section">
+<div class="dev-portal-inner">
+<div class="dev-portal-hero">
+<h1>NONOS <span class="accent">Developer Portal</span></h1>
+<p>Build, sign, and publish NOXC capsules for the NONOS marketplace. Complete toolkit for creating sandboxed applications with blockchain licensing.</p>
+</div>
+
+<!-- Dev Portal Tabs -->
+<div class="dev-portal-tabs">
+<button class="dev-tab active" data-tab="dashboard">Dashboard</button>
+<button class="dev-tab" data-tab="builder">Capsule Builder</button>
+<button class="dev-tab" data-tab="keys">Key Management</button>
+<button class="dev-tab" data-tab="docs">Documentation</button>
+</div>
+
+<!-- Dashboard Tab -->
+<div class="dev-tab-content active" id="dashboardTab">
+<div class="dev-portal-stats">
+<div class="dev-stat"><span class="dev-stat-value" id="devCapsules">0</span><span class="dev-stat-label">Your Capsules</span></div>
+<div class="dev-stat"><span class="dev-stat-value" id="devDownloads">0</span><span class="dev-stat-label">Total Downloads</span></div>
+<div class="dev-stat"><span class="dev-stat-value" id="devRevenue">0 NOX</span><span class="dev-stat-label">Total Revenue</span></div>
+<div class="dev-stat"><span class="dev-stat-value" id="devUnlocks">0</span><span class="dev-stat-label">Total Unlocks</span></div>
+</div>
+<div class="dev-portal-container">
+<div class="dev-portal-main">
+<div class="dev-section-header">
+<h3>Your Published Capsules</h3>
+<button class="btn" onclick="CapsuleDev.showPublishModal()">+ Publish New</button>
+</div>
+<div class="dev-capsules-list" id="devCapsulesList">
+<div class="empty-state">Connect wallet to view your capsules</div>
+</div>
+</div>
+<div class="dev-portal-sidebar">
+<div class="dev-info-card">
+<h4>Quick Actions</h4>
+<div class="quick-actions">
+<button class="btn btn-outline btn-full" onclick="CapsuleDev.switchTab('builder')">Build New Capsule</button>
+<button class="btn btn-outline btn-full" onclick="CapsuleDev.switchTab('keys')">Manage Keys</button>
+<button class="btn btn-outline btn-full" onclick="CapsuleDev.showPublishModal()">Publish to Registry</button>
+</div>
+</div>
+<div class="dev-info-card">
+<h4>Revenue Split (Per Unlock)</h4>
+<div class="revenue-breakdown">
+<div class="revenue-row"><span>Developer</span><span class="accent">68%</span></div>
+<div class="revenue-row"><span>NFT Holders</span><span>30%</span></div>
+<div class="revenue-row"><span>Protocol</span><span>2%</span></div>
+</div>
+</div>
+<div class="dev-info-card">
+<h4>Network Info</h4>
+<div class="network-info">
+<div class="network-row"><span>Chain</span><span>Ethereum Mainnet</span></div>
+<div class="network-row"><span>Chain ID</span><span>1</span></div>
+<div class="network-row"><span>Registry</span><code style="font-size:0.65rem">0xB47F...78D7</code></div>
+<div class="network-row"><span>NOX Token</span><code style="font-size:0.65rem">0x0a26...9eCA</code></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Capsule Builder Tab -->
+<div class="dev-tab-content" id="builderTab">
+<div class="builder-container">
+<div class="builder-main">
+<div class="builder-card">
+<div class="builder-card-header">
+<h3>NOXC Capsule Builder</h3>
+<span class="badge">Magic: 0x43584F4E</span>
+</div>
+<p class="builder-desc">Build a complete .noxc capsule binary with manifest, executable, assets, and Ed25519 signature.</p>
+
+<!-- Binary Format Diagram -->
+<div class="binary-format-diagram">
+<div class="format-section header-section">
+<span class="format-label">Header</span>
+<span class="format-size">64 bytes</span>
+</div>
+<div class="format-section manifest-section">
+<span class="format-label">Manifest JSON</span>
+<span class="format-size">Variable</span>
+</div>
+<div class="format-section binary-section">
+<span class="format-label">ELF Binary</span>
+<span class="format-size">Variable</span>
+</div>
+<div class="format-section assets-section">
+<span class="format-label">Assets</span>
+<span class="format-size">Optional</span>
+</div>
+<div class="format-section sig-section">
+<span class="format-label">Ed25519 Sig</span>
+<span class="format-size">64 bytes</span>
+</div>
+</div>
+
+<!-- Step 1: Manifest -->
+<div class="builder-step">
+<div class="step-header">
+<span class="step-number">1</span>
+<h4>Capsule Manifest</h4>
+</div>
+<div class="manifest-editor">
+<div class="form-row">
+<div class="form-group">
+<label>Capsule ID <span class="required">*</span></label>
+<input type="text" id="manifestId" placeholder="Auto-generated from name+version" readonly>
+<div class="helper-text">Keccak256 hash identifier (auto-generated)</div>
+</div>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label>Name <span class="required">*</span></label>
+<input type="text" id="manifestName" placeholder="com.yourname.appname" oninput="CapsuleDev.updateManifestId()">
+</div>
+<div class="form-group">
+<label>Version <span class="required">*</span></label>
+<input type="text" id="manifestVersion" placeholder="1.0.0" value="1.0.0" oninput="CapsuleDev.updateManifestId()">
+</div>
+</div>
+<div class="form-group">
+<label>Description</label>
+<textarea id="manifestDesc" rows="2" placeholder="Brief description of your capsule"></textarea>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label>Developer Address <span class="required">*</span></label>
+<input type="text" id="manifestDevAddr" placeholder="0x..." readonly>
+<div class="helper-text">Your connected wallet (20 bytes)</div>
+</div>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label>Min Memory (MB)</label>
+<input type="number" id="manifestMemMin" value="16" min="1" max="4096">
+</div>
+<div class="form-group">
+<label>Max Memory (MB)</label>
+<input type="number" id="manifestMemMax" value="256" min="1" max="4096">
+</div>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label>Price (NOX)</label>
+<input type="number" id="manifestPrice" placeholder="100" min="0" step="0.01">
+</div>
+<div class="form-group">
+<label>Category</label>
+<select id="manifestCategory">
+<option value="utility">Utility</option>
+<option value="wallet">Wallet</option>
+<option value="defi">DeFi</option>
+<option value="game">Game</option>
+<option value="social">Social</option>
+<option value="browser">Browser</option>
+<option value="productivity">Productivity</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Step 2: Capabilities -->
+<div class="builder-step">
+<div class="step-header">
+<span class="step-number">2</span>
+<h4>Capabilities (Permission Bits)</h4>
+</div>
+<p class="step-desc">Select the capabilities your capsule requires. These are enforced by the sandbox at runtime.</p>
+<div class="capabilities-grid">
+<div class="cap-category">
+<h5>Network</h5>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="0"> <code>0</code> CAP_NET_TCP_OUT</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="1"> <code>1</code> CAP_NET_TCP_LISTEN</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="2"> <code>2</code> CAP_NET_UDP</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="3"> <code>3</code> CAP_NET_RAW</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="4"> <code>4</code> CAP_NET_DNS</label>
+</div>
+<div class="cap-category">
+<h5>Filesystem</h5>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="5"> <code>5</code> CAP_FS_READ_HOME</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="6"> <code>6</code> CAP_FS_WRITE_HOME</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="7"> <code>7</code> CAP_FS_READ_TMP</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="8"> <code>8</code> CAP_FS_WRITE_TMP</label>
+</div>
+<div class="cap-category">
+<h5>Storage</h5>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="9"> <code>9</code> CAP_STORAGE_IPFS_READ</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="10"> <code>10</code> CAP_STORAGE_IPFS_WRITE</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="11"> <code>11</code> CAP_STORAGE_ARWEAVE</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="12"> <code>12</code> CAP_STORAGE_LOCAL_DB</label>
+</div>
+<div class="cap-category">
+<h5>System</h5>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="16"> <code>16</code> CAP_SYS_CLOCK</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="17"> <code>17</code> CAP_SYS_RANDOM</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="18"> <code>18</code> CAP_SYS_ENV</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="19"> <code>19</code> CAP_SYS_SPAWN</label>
+</div>
+<div class="cap-category">
+<h5>Graphics</h5>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="24"> <code>24</code> CAP_GPU_RENDER</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="25"> <code>25</code> CAP_GPU_COMPUTE</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="26"> <code>26</code> CAP_AUDIO_PLAY</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="27"> <code>27</code> CAP_AUDIO_RECORD</label>
+</div>
+<div class="cap-category">
+<h5>Wallet / Crypto</h5>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="32"> <code>32</code> CAP_WALLET_SIGN</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="33"> <code>33</code> CAP_WALLET_ENCRYPT</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="34"> <code>34</code> CAP_WALLET_BALANCE</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="35"> <code>35</code> CAP_WALLET_SEND</label>
+</div>
+<div class="cap-category">
+<h5>IPC / Advanced</h5>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="40"> <code>40</code> CAP_IPC_PUBSUB</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="41"> <code>41</code> CAP_IPC_RPC</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="48"> <code>48</code> CAP_CAMERA</label>
+<label class="cap-checkbox"><input type="checkbox" name="cap" value="49"> <code>49</code> CAP_CLIPBOARD</label>
+</div>
+</div>
+<div class="caps-bitmap-display">
+<span>Capability Bitmap (u64):</span>
+<code id="capsBitmap">0x0000000000000000</code>
+</div>
+</div>
+
+<!-- Step 3: Binary Upload -->
+<div class="builder-step">
+<div class="step-header">
+<span class="step-number">3</span>
+<h4>Upload ELF Binary</h4>
+</div>
+<div class="upload-area" id="elfUploadArea">
+<input type="file" id="elfFileInput" accept=".elf,.so,.bin" style="display:none">
+<div class="upload-content" onclick="document.getElementById('elfFileInput').click()">
+<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+<span class="upload-title">Drop ELF binary here or click to upload</span>
+<span class="upload-hint">Supports .elf, .so, .bin files (max 50MB)</span>
+</div>
+</div>
+<div class="file-info" id="elfFileInfo" style="display:none">
+<div class="file-info-row"><span>Filename:</span><span id="elfFileName">-</span></div>
+<div class="file-info-row"><span>Size:</span><span id="elfFileSize">-</span></div>
+<div class="file-info-row"><span>SHA256:</span><code id="elfFileSha" style="font-size:0.7rem">-</code></div>
+<button class="btn btn-outline btn-sm" onclick="CapsuleDev.clearElf()">Remove</button>
+</div>
+</div>
+
+<!-- Step 4: Assets (Optional) -->
+<div class="builder-step">
+<div class="step-header">
+<span class="step-number">4</span>
+<h4>Assets Bundle (Optional)</h4>
+</div>
+<div class="upload-area small" id="assetsUploadArea">
+<input type="file" id="assetsFileInput" accept=".zip,.tar,.tar.gz" style="display:none">
+<div class="upload-content" onclick="document.getElementById('assetsFileInput').click()">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+<span class="upload-title">Upload assets archive (optional)</span>
+<span class="upload-hint">.zip, .tar, .tar.gz</span>
+</div>
+</div>
+<div class="file-info" id="assetsFileInfo" style="display:none">
+<div class="file-info-row"><span>Filename:</span><span id="assetsFileName">-</span></div>
+<div class="file-info-row"><span>Size:</span><span id="assetsFileSize">-</span></div>
+<button class="btn btn-outline btn-sm" onclick="CapsuleDev.clearAssets()">Remove</button>
+</div>
+</div>
+
+<!-- Step 5: Sign & Build -->
+<div class="builder-step">
+<div class="step-header">
+<span class="step-number">5</span>
+<h4>Sign &amp; Build NOXC</h4>
+</div>
+<div class="signing-options">
+<div class="form-group">
+<label>Signing Key</label>
+<select id="signingKeySelect">
+<option value="">Select Ed25519 key...</option>
+</select>
+<div class="helper-text">Generate keys in the Key Management tab</div>
+</div>
+</div>
+<div class="build-actions">
+<button class="btn btn-outline" onclick="CapsuleDev.previewManifest()">Preview Manifest JSON</button>
+<button class="btn" onclick="CapsuleDev.buildNoxc()" id="buildNoxcBtn" disabled>Build &amp; Sign .noxc</button>
+</div>
+<div class="build-output" id="buildOutput" style="display:none">
+<div class="build-success">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+<span>Capsule built successfully!</span>
+</div>
+<div class="build-details">
+<div class="build-row"><span>File:</span><span id="builtFileName">capsule.noxc</span></div>
+<div class="build-row"><span>Size:</span><span id="builtFileSize">-</span></div>
+<div class="build-row"><span>Manifest Hash:</span><code id="builtManifestHash">-</code></div>
+<div class="build-row"><span>Signature:</span><code id="builtSignature" style="font-size:0.65rem">-</code></div>
+</div>
+<button class="btn btn-full" onclick="CapsuleDev.downloadNoxc()">Download .noxc File</button>
+</div>
+</div>
+
+<!-- Step 6: Upload to IPFS -->
+<div class="builder-step">
+<div class="step-header">
+<span class="step-number">6</span>
+<h4>Upload to IPFS</h4>
+</div>
+<div class="ipfs-options">
+<div class="form-group">
+<label>IPFS Gateway / Pinning Service</label>
+<select id="ipfsGateway">
+<option value="pinata">Pinata (pinata.cloud)</option>
+<option value="infura">Infura IPFS</option>
+<option value="web3storage">Web3.Storage</option>
+<option value="manual">Manual (paste CID)</option>
+</select>
+</div>
+<div class="form-group" id="pinataApiGroup">
+<label>Pinata API Key</label>
+<input type="password" id="pinataApiKey" placeholder="Your Pinata API Key">
+</div>
+<div class="form-group" id="pinataSecretGroup">
+<label>Pinata Secret</label>
+<input type="password" id="pinataSecret" placeholder="Your Pinata Secret Key">
+</div>
+<div class="form-group" id="manualCidGroup" style="display:none">
+<label>IPFS CID</label>
+<input type="text" id="manualCid" placeholder="Qm... or bafy...">
+</div>
+</div>
+<button class="btn btn-outline" onclick="CapsuleDev.uploadToIpfs()" id="uploadIpfsBtn" disabled>Upload to IPFS</button>
+<div class="ipfs-result" id="ipfsResult" style="display:none">
+<div class="ipfs-success">
+<span>Uploaded successfully!</span>
+</div>
+<div class="ipfs-details">
+<div class="ipfs-row"><span>IPFS CID:</span><code id="ipfsCid">-</code></div>
+<div class="ipfs-row"><span>Gateway URL:</span><a id="ipfsUrl" href="#" target="_blank">-</a></div>
+</div>
+</div>
+</div>
+
+<!-- Step 7: Publish to Registry -->
+<div class="builder-step">
+<div class="step-header">
+<span class="step-number">7</span>
+<h4>Publish to Marketplace Registry</h4>
+</div>
+<div class="publish-info">
+<p>Register your capsule on the Ethereum mainnet CapsuleRegistry contract. Users can then purchase unlock tokens with NOX.</p>
+<div class="contract-info">
+<div class="contract-row"><span>Contract:</span><code>0xB47FBd4E668faD29C374523B1f7F82EA8ba178D7</code></div>
+<div class="contract-row"><span>Network:</span><span>Ethereum Mainnet (Chain ID: 1)</span></div>
+</div>
+</div>
+<div class="publish-summary">
+<div class="summary-row"><span>Gas Cost</span><span>~200,000 gas</span></div>
+<div class="summary-row"><span>Your Revenue</span><span class="accent">68% per unlock</span></div>
+</div>
+<button class="btn btn-full" onclick="CapsuleDev.publishToRegistry()" id="publishRegistryBtn" disabled>Publish to Registry</button>
+</div>
+</div>
+</div>
+
+<!-- Builder Sidebar -->
+<div class="builder-sidebar">
+<div class="dev-info-card">
+<h4>NOXC Binary Format</h4>
+<div class="format-spec">
+<div class="spec-row"><span>Magic Number</span><code>0x43584F4E</code></div>
+<div class="spec-row"><span>Version</span><code>0x0001</code></div>
+<div class="spec-row"><span>Header Size</span><code>64 bytes</code></div>
+<div class="spec-row"><span>Signature</span><code>Ed25519 (64B)</code></div>
+</div>
+<pre class="format-structure">
+[Header 64B]
+ Magic: 4B
+ Version: 2B
+ Manifest Offset: 4B
+ Manifest Size: 4B
+ Binary Offset: 4B
+ Binary Size: 4B
+ Assets Offset: 4B
+ Assets Size: 4B
+ Sig Offset: 4B
+ Reserved: 30B
+[Manifest JSON]
+[ELF Binary]
+[Assets (opt)]
+[Ed25519 Sig 64B]</pre>
+</div>
+<div class="dev-info-card">
+<h4>Manifest Schema</h4>
+<pre class="manifest-schema">
+{
+  "id": "bytes32",
+  "name": "string",
+  "version": "string",
+  "description": "string",
+  "dev_addr": "0x...",
+  "dev_pubkey": "base64",
+  "caps": "u64",
+  "mem_min": "u64",
+  "mem_max": "u64",
+  "price": "u256 (wei)",
+  "category": "string"
+}</pre>
+</div>
+<div class="dev-info-card">
+<h4>Unlock Token</h4>
+<div class="unlock-info">
+<p style="font-size:0.8rem;color:var(--text-secondary)">When users purchase a capsule, they receive an UnlockToken valid for 24 hours:</p>
+<pre class="unlock-schema">
+UnlockRecord {
+  token: bytes32
+  timestamp: u64
+  expiresAt: u64
+  approvedCaps: bytes32
+}
+
+Duration: 24 hours
+Token = keccak256(
+  capsuleId,
+  user,
+  blockhash,
+  timestamp,
+  nonce
+)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Key Management Tab -->
+<div class="dev-tab-content" id="keysTab">
+<div class="keys-container">
+<div class="keys-main">
+<div class="builder-card">
+<div class="builder-card-header">
+<h3>Ed25519 Key Management</h3>
+<button class="btn" onclick="CapsuleDev.generateKeyPair()">Generate New Keypair</button>
+</div>
+<p class="builder-desc">Ed25519 keys are used to cryptographically sign your capsules. The public key is embedded in the manifest, and the signature covers the entire capsule (minus signature itself).</p>
+
+<div class="keys-list" id="keysList">
+<div class="empty-state">No keys generated yet. Click "Generate New Keypair" to create one.</div>
+</div>
+
+<div class="key-import">
+<h4>Import Existing Key</h4>
+<div class="form-group">
+<label>Private Key (Base64 or Hex)</label>
+<input type="password" id="importKeyInput" placeholder="Enter private key...">
+</div>
+<div class="form-group">
+<label>Key Name</label>
+<input type="text" id="importKeyName" placeholder="e.g., production-key">
+</div>
+<button class="btn btn-outline" onclick="CapsuleDev.importKey()">Import Key</button>
+</div>
+</div>
+
+<div class="builder-card">
+<h3>Key Security</h3>
+<div class="security-warnings">
+<div class="warning-item">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+<div>
+<strong>Keys are stored in browser localStorage</strong>
+<p>For production use, export keys and store them securely offline. Never share your private keys.</p>
+</div>
+</div>
+<div class="warning-item">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+<div>
+<strong>Backup your keys</strong>
+<p>Lost keys cannot be recovered. Export and store backups in multiple secure locations.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="keys-sidebar">
+<div class="dev-info-card">
+<h4>Ed25519 Overview</h4>
+<ul class="dev-resources" style="font-size:0.85rem">
+<li>Public Key: 32 bytes</li>
+<li>Private Key: 64 bytes (seed + pubkey)</li>
+<li>Signature: 64 bytes</li>
+<li>Fast verification</li>
+<li>Deterministic signatures</li>
+</ul>
+</div>
+<div class="dev-info-card">
+<h4>Signing Process</h4>
+<ol class="dev-steps">
+<li>Build capsule without signature</li>
+<li>Hash content with SHA-512</li>
+<li>Sign hash with Ed25519 private key</li>
+<li>Append 64-byte signature</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Documentation Tab -->
+<div class="dev-tab-content" id="docsTab">
+<div class="docs-container">
+<div class="docs-nav">
+<h4>Documentation</h4>
+<ul class="docs-links">
+<li><a href="#doc-quickstart" class="active">Quick Start</a></li>
+<li><a href="#doc-manifest">Manifest Schema</a></li>
+<li><a href="#doc-capabilities">Capabilities Reference</a></li>
+<li><a href="#doc-binary">Binary Format</a></li>
+<li><a href="#doc-signing">Signing &amp; Verification</a></li>
+<li><a href="#doc-sandbox">Sandbox Security</a></li>
+<li><a href="#doc-marketplace">Marketplace Integration</a></li>
+<li><a href="#doc-unlock">Unlock Token System</a></li>
+</ul>
+</div>
+<div class="docs-content">
+<section id="doc-quickstart">
+<h2>Quick Start Guide</h2>
+<p>Build and publish your first NONOS capsule in 6 steps.</p>
+
+<h3>Prerequisites</h3>
+<ul>
+<li>Ethereum wallet with ETH for gas fees</li>
+<li>NOX tokens for marketplace pricing</li>
+<li>Compiled ELF binary (x86_64 or ARM64)</li>
+<li>Ed25519 keypair for cryptographic signing</li>
+</ul>
+
+<h3>Step 1: Generate Ed25519 Keys</h3>
+<p>Go to <strong>Key Management</strong> tab and click "Generate New Keypair". Your keys are stored locally in browser storage.</p>
+<pre class="code-block">// Ed25519 Key Structure
+Private Key (Seed): 32 bytes - KEEP SECRET
+Public Key: 32 bytes - Embedded in manifest as dev_pubkey</pre>
+
+<h3>Step 2: Configure Manifest</h3>
+<p>Fill out the manifest in <strong>Capsule Builder</strong>. The manifest defines your capsule's identity and permissions.</p>
+
+<h3>Step 3: Upload ELF Binary</h3>
+<p>Drag and drop your compiled binary. Supported: x86_64-elf, aarch64-elf. Max size: 50MB.</p>
+
+<h3>Step 4: Select Capabilities</h3>
+<p>Choose only the permissions your app needs. Users see these before unlocking.</p>
+
+<h3>Step 5: Build &amp; Sign</h3>
+<p>Click "Build &amp; Sign .noxc" to create the capsule binary with Ed25519 signature.</p>
+
+<h3>Step 6: Publish</h3>
+<p>Upload to IPFS, then register on CapsuleRegistry contract. Your capsule is now live!</p>
+</section>
+
+<section id="doc-manifest">
+<h2>Manifest Schema</h2>
+<p>The manifest is a JSON object embedded in every .noxc capsule. It defines metadata, permissions, and pricing.</p>
+
+<h3>Required Fields</h3>
+<pre class="code-block">{
+  "id": "0x...",           // keccak256(name:version)
+  "name": "com.dev.myapp", // Unique identifier
+  "version": "1.0.0",      // Semantic version
+  "dev_addr": "0x...",     // Developer ETH address
+  "dev_pubkey": "base64",  // Ed25519 public key (32 bytes)
+  "caps": "0x0000000000000001", // Capabilities bitmap (u64)
+  "mem_min": 16,           // Minimum memory in MB
+  "mem_max": 256,          // Maximum memory in MB
+  "price": "1000000000000000000" // Price in NOX wei
+}</pre>
+
+<h3>Optional Fields</h3>
+<pre class="code-block">{
+  "description": "App description",
+  "category": "utility|game|defi|social|media|dev",
+  "binary_sha256": "0x...",  // SHA256 of ELF binary
+  "assets_sha256": "0x...",  // SHA256 of assets archive
+  "homepage": "https://...", // Developer website
+  "repository": "https://github.com/...",
+  "created_at": 1704067200000 // Unix timestamp ms
+}</pre>
+
+<h3>Capsule ID Generation</h3>
+<pre class="code-block">// ID is deterministic hash of name + version
+capsule_id = keccak256(abi.encodePacked(name, ":", version))
+
+// Example
+name = "com.example.game"
+version = "1.0.0"
+id = keccak256("com.example.game:1.0.0")
+   = 0x7f3a8b2c...</pre>
+
+<h3>Memory Limits</h3>
+<table class="caps-table">
+<thead><tr><th>Field</th><th>Min</th><th>Max</th><th>Default</th></tr></thead>
+<tbody>
+<tr><td>mem_min</td><td>4 MB</td><td>512 MB</td><td>16 MB</td></tr>
+<tr><td>mem_max</td><td>16 MB</td><td>4096 MB</td><td>256 MB</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="doc-capabilities">
+<h2>Capabilities Reference</h2>
+<p>Capsules run in a sandboxed environment with explicit capability-based permissions. Each capability is a single bit in a 64-bit bitmap (u64).</p>
+
+<h3>Network Capabilities (Bits 0-8)</h3>
+<table class="caps-table">
+<thead><tr><th>Bit</th><th>Constant</th><th>Description</th><th>Risk</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>CAP_NET_TCP_OUT</td><td>Outbound TCP connections</td><td>Low</td></tr>
+<tr><td>1</td><td>CAP_NET_TCP_LISTEN</td><td>Listen on TCP ports</td><td>Medium</td></tr>
+<tr><td>2</td><td>CAP_NET_UDP</td><td>UDP socket operations</td><td>Low</td></tr>
+<tr><td>3</td><td>CAP_NET_RAW</td><td>Raw socket access</td><td>High</td></tr>
+<tr><td>4</td><td>CAP_NET_DNS</td><td>DNS resolution</td><td>Low</td></tr>
+<tr><td>5</td><td>CAP_NET_ICMP</td><td>ICMP ping operations</td><td>Low</td></tr>
+<tr><td>6</td><td>CAP_NET_BLUETOOTH</td><td>Bluetooth access</td><td>Medium</td></tr>
+<tr><td>7</td><td>CAP_NET_WIFI_SCAN</td><td>WiFi network scanning</td><td>Medium</td></tr>
+<tr><td>8</td><td>CAP_NET_LOCALHOST</td><td>Localhost-only networking</td><td>Low</td></tr>
+</tbody>
+</table>
+
+<h3>Storage Capabilities (Bits 9-15)</h3>
+<table class="caps-table">
+<thead><tr><th>Bit</th><th>Constant</th><th>Description</th><th>Risk</th></tr></thead>
+<tbody>
+<tr><td>9</td><td>CAP_STORAGE_IPFS_READ</td><td>Read from IPFS gateway</td><td>Low</td></tr>
+<tr><td>10</td><td>CAP_STORAGE_IPFS_WRITE</td><td>Pin/write to IPFS</td><td>Low</td></tr>
+<tr><td>11</td><td>CAP_STORAGE_LOCAL_READ</td><td>Read app-local storage</td><td>Low</td></tr>
+<tr><td>12</td><td>CAP_STORAGE_LOCAL_WRITE</td><td>Write app-local storage</td><td>Low</td></tr>
+<tr><td>13</td><td>CAP_STORAGE_SHARED_READ</td><td>Read shared storage</td><td>Medium</td></tr>
+<tr><td>14</td><td>CAP_STORAGE_SHARED_WRITE</td><td>Write shared storage</td><td>Medium</td></tr>
+<tr><td>15</td><td>CAP_STORAGE_TEMP</td><td>Temporary file access</td><td>Low</td></tr>
+</tbody>
+</table>
+
+<h3>System Capabilities (Bits 16-23)</h3>
+<table class="caps-table">
+<thead><tr><th>Bit</th><th>Constant</th><th>Description</th><th>Risk</th></tr></thead>
+<tbody>
+<tr><td>16</td><td>CAP_SYS_TIME</td><td>System clock access</td><td>Low</td></tr>
+<tr><td>17</td><td>CAP_SYS_RANDOM</td><td>Cryptographic RNG</td><td>Low</td></tr>
+<tr><td>18</td><td>CAP_SYS_ENV</td><td>Environment variables</td><td>Low</td></tr>
+<tr><td>19</td><td>CAP_SYS_ARGV</td><td>Command line arguments</td><td>Low</td></tr>
+<tr><td>20</td><td>CAP_SYS_LOCALE</td><td>Locale/timezone info</td><td>Low</td></tr>
+<tr><td>21</td><td>CAP_SYS_CLIPBOARD</td><td>Clipboard access</td><td>Medium</td></tr>
+<tr><td>22</td><td>CAP_SYS_NOTIFICATIONS</td><td>System notifications</td><td>Low</td></tr>
+<tr><td>23</td><td>CAP_SYS_BACKGROUND</td><td>Background execution</td><td>Medium</td></tr>
+</tbody>
+</table>
+
+<h3>GPU Capabilities (Bits 24-31)</h3>
+<table class="caps-table">
+<thead><tr><th>Bit</th><th>Constant</th><th>Description</th><th>Risk</th></tr></thead>
+<tbody>
+<tr><td>24</td><td>CAP_GPU_RENDER</td><td>GPU rendering (WebGPU)</td><td>Low</td></tr>
+<tr><td>25</td><td>CAP_GPU_COMPUTE</td><td>GPU compute shaders</td><td>Low</td></tr>
+<tr><td>26</td><td>CAP_GPU_VIDEO_DECODE</td><td>Hardware video decode</td><td>Low</td></tr>
+<tr><td>27</td><td>CAP_GPU_VIDEO_ENCODE</td><td>Hardware video encode</td><td>Low</td></tr>
+<tr><td>28</td><td>CAP_GPU_ML</td><td>ML/AI acceleration</td><td>Low</td></tr>
+</tbody>
+</table>
+
+<h3>Wallet Capabilities (Bits 32-39)</h3>
+<table class="caps-table">
+<thead><tr><th>Bit</th><th>Constant</th><th>Description</th><th>Risk</th></tr></thead>
+<tbody>
+<tr><td>32</td><td>CAP_WALLET_SIGN</td><td>Sign messages/transactions</td><td>High</td></tr>
+<tr><td>33</td><td>CAP_WALLET_ENCRYPT</td><td>Encrypt/decrypt with wallet key</td><td>Medium</td></tr>
+<tr><td>34</td><td>CAP_WALLET_BALANCE</td><td>Query wallet balances</td><td>Low</td></tr>
+<tr><td>35</td><td>CAP_WALLET_SEND</td><td>Send transactions</td><td>Critical</td></tr>
+<tr><td>36</td><td>CAP_WALLET_HISTORY</td><td>Transaction history</td><td>Low</td></tr>
+<tr><td>37</td><td>CAP_WALLET_CONTACTS</td><td>Address book access</td><td>Low</td></tr>
+<tr><td>38</td><td>CAP_WALLET_TOKENS</td><td>Token list management</td><td>Low</td></tr>
+<tr><td>39</td><td>CAP_WALLET_NFT</td><td>NFT operations</td><td>Medium</td></tr>
+</tbody>
+</table>
+
+<h3>Media Capabilities (Bits 40-47)</h3>
+<table class="caps-table">
+<thead><tr><th>Bit</th><th>Constant</th><th>Description</th><th>Risk</th></tr></thead>
+<tbody>
+<tr><td>40</td><td>CAP_MEDIA_AUDIO_PLAY</td><td>Audio playback</td><td>Low</td></tr>
+<tr><td>41</td><td>CAP_MEDIA_AUDIO_RECORD</td><td>Microphone access</td><td>High</td></tr>
+<tr><td>42</td><td>CAP_MEDIA_VIDEO_PLAY</td><td>Video playback</td><td>Low</td></tr>
+<tr><td>43</td><td>CAP_MEDIA_CAMERA</td><td>Camera access</td><td>High</td></tr>
+<tr><td>44</td><td>CAP_MEDIA_SCREEN_CAPTURE</td><td>Screen capture</td><td>High</td></tr>
+</tbody>
+</table>
+
+<h3>IPC Capabilities (Bits 48-55)</h3>
+<table class="caps-table">
+<thead><tr><th>Bit</th><th>Constant</th><th>Description</th><th>Risk</th></tr></thead>
+<tbody>
+<tr><td>48</td><td>CAP_IPC_CAPSULE</td><td>Inter-capsule messaging</td><td>Medium</td></tr>
+<tr><td>49</td><td>CAP_IPC_HOST</td><td>Host system messaging</td><td>High</td></tr>
+</tbody>
+</table>
+
+<h3>Bitmap Examples</h3>
+<pre class="code-block">// Basic networking app
+caps = CAP_NET_TCP_OUT | CAP_NET_DNS
+     = (1 &lt;&lt; 0) | (1 &lt;&lt; 4)
+     = 0x0000000000000011
+
+// DeFi wallet app
+caps = CAP_NET_TCP_OUT | CAP_WALLET_SIGN | CAP_WALLET_BALANCE | CAP_WALLET_SEND
+     = (1 &lt;&lt; 0) | (1 &lt;&lt; 32) | (1 &lt;&lt; 34) | (1 &lt;&lt; 35)
+     = 0x0000000D00000001
+
+// Game with GPU rendering
+caps = CAP_GPU_RENDER | CAP_GPU_COMPUTE | CAP_STORAGE_LOCAL_WRITE | CAP_MEDIA_AUDIO_PLAY
+     = (1 &lt;&lt; 24) | (1 &lt;&lt; 25) | (1 &lt;&lt; 12) | (1 &lt;&lt; 40)
+     = 0x0000010003001000</pre>
+</section>
+
+<section id="doc-binary">
+<h2>Binary Format (.noxc)</h2>
+<p>NOXC (NOX Capsule) is the binary container format for NONOS applications. It combines manifest, executable, assets, and cryptographic signature.</p>
+
+<h3>File Structure</h3>
+<pre class="code-block">+------------------+
+| Header (64 bytes)|
++------------------+
+| Manifest (JSON)  |
++------------------+
+| ELF Binary       |
++------------------+
+| Assets (optional)|
++------------------+
+| Signature (64 b) |
++------------------+</pre>
+
+<h3>Header Format (64 bytes)</h3>
+<table class="caps-table">
+<thead><tr><th>Offset</th><th>Size</th><th>Field</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>0x00</td><td>4</td><td>magic</td><td>0x43584F4E ("NOXC" LE)</td></tr>
+<tr><td>0x04</td><td>2</td><td>version</td><td>Format version (0x0001)</td></tr>
+<tr><td>0x06</td><td>2</td><td>flags</td><td>Reserved flags</td></tr>
+<tr><td>0x08</td><td>4</td><td>manifest_offset</td><td>Offset to manifest JSON</td></tr>
+<tr><td>0x0C</td><td>4</td><td>manifest_size</td><td>Manifest size in bytes</td></tr>
+<tr><td>0x10</td><td>4</td><td>binary_offset</td><td>Offset to ELF binary</td></tr>
+<tr><td>0x14</td><td>4</td><td>binary_size</td><td>Binary size in bytes</td></tr>
+<tr><td>0x18</td><td>4</td><td>assets_offset</td><td>Offset to assets (0 if none)</td></tr>
+<tr><td>0x1C</td><td>4</td><td>assets_size</td><td>Assets size (0 if none)</td></tr>
+<tr><td>0x20</td><td>4</td><td>sig_offset</td><td>Offset to Ed25519 signature</td></tr>
+<tr><td>0x24</td><td>28</td><td>reserved</td><td>Reserved for future use</td></tr>
+</tbody>
+</table>
+
+<h3>Magic Number</h3>
+<pre class="code-block">// Little-endian representation
+NOXC_MAGIC = 0x43584F4E
+           = 'N' | ('O' &lt;&lt; 8) | ('X' &lt;&lt; 16) | ('C' &lt;&lt; 24)
+           = [0x4E, 0x4F, 0x58, 0x43] in memory</pre>
+
+<h3>ELF Binary Requirements</h3>
+<ul>
+<li><strong>Architecture:</strong> x86_64 or aarch64</li>
+<li><strong>Format:</strong> Static ELF executable</li>
+<li><strong>Entry point:</strong> Standard _start or custom nonos_main</li>
+<li><strong>Max size:</strong> 50 MB</li>
+<li><strong>Linking:</strong> Static only, no dynamic libraries</li>
+</ul>
+
+<h3>Assets Archive</h3>
+<p>Optional tar.gz archive appended after the ELF binary. Contains static files (images, fonts, data).</p>
+<pre class="code-block">// Assets structure
+assets/
+├── images/
+│   └── logo.png
+├── fonts/
+│   └── main.ttf
+└── data/
+    └── config.json
+
+// Max total size: 100 MB</pre>
+</section>
+
+<section id="doc-signing">
+<h2>Signing &amp; Verification</h2>
+<p>All NONOS capsules must be cryptographically signed using Ed25519. The signature ensures integrity and authenticity.</p>
+
+<h3>Ed25519 Key Generation</h3>
+<pre class="code-block">// Generate 32-byte random seed
+seed = crypto.getRandomValues(new Uint8Array(32))
+
+// Derive keypair using TweetNaCl
+keyPair = nacl.sign.keyPair.fromSeed(seed)
+
+// Result:
+// - privateKey: 64 bytes (seed + public key)
+// - publicKey: 32 bytes (embedded in manifest as dev_pubkey)</pre>
+
+<h3>Signing Process</h3>
+<pre class="code-block">// 1. Build capsule content (everything except signature)
+content = header + manifest + binary + assets
+
+// 2. Sign with Ed25519
+signature = nacl.sign.detached(content, privateKey)
+// Result: 64-byte signature
+
+// 3. Append signature to capsule
+capsule = content + signature</pre>
+
+<h3>Verification Process</h3>
+<pre class="code-block">// Kernel verification steps:
+1. Read header, validate magic (0x43584F4E)
+2. Extract manifest, parse dev_pubkey
+3. Read content (header + manifest + binary + assets)
+4. Read 64-byte signature from end
+5. Verify: nacl.sign.detached.verify(content, signature, publicKey)
+6. If invalid, reject capsule with INVALID_SIGNATURE error</pre>
+
+<h3>Key Storage Best Practices</h3>
+<ul>
+<li><strong>Never share private keys</strong> - They sign on your behalf</li>
+<li><strong>Backup keys securely</strong> - Lost keys cannot be recovered</li>
+<li><strong>Use unique keys per project</strong> - Limits compromise impact</li>
+<li><strong>Export and store offline</strong> - Browser storage can be cleared</li>
+</ul>
+
+<h3>Key Rotation</h3>
+<p>To rotate keys, publish a new capsule version with the new public key. Users must re-unlock to use the new version.</p>
+</section>
+
+<section id="doc-sandbox">
+<h2>Sandbox Security</h2>
+<p>NONOS executes capsules in a strict sandbox environment with multiple isolation layers.</p>
+
+<h3>Isolation Architecture</h3>
+<pre class="code-block">+------------------------+
+|     User Space         |
+|  +------------------+  |
+|  | Capsule Process  |  |
+|  | (sandboxed)      |  |
+|  +------------------+  |
+|          |             |
+|  +------------------+  |
+|  | Capability Guard |  |
+|  +------------------+  |
+|          |             |
++------------------------+
+|   NONOS Kernel         |
+|   - Syscall filtering  |
+|   - Memory isolation   |
+|   - Network policies   |
++------------------------+
+|   Hardware / Host OS   |
++------------------------+</pre>
+
+<h3>Security Boundaries</h3>
+<table class="caps-table">
+<thead><tr><th>Layer</th><th>Protection</th><th>Enforced By</th></tr></thead>
+<tbody>
+<tr><td>Process</td><td>Memory isolation, no shared state</td><td>NONOS Kernel</td></tr>
+<tr><td>Filesystem</td><td>Virtual FS, app-only access</td><td>VFS Layer</td></tr>
+<tr><td>Network</td><td>Capability-gated, filtered</td><td>Netfilter</td></tr>
+<tr><td>Syscalls</td><td>Allowlist only, seccomp-like</td><td>Syscall Handler</td></tr>
+<tr><td>IPC</td><td>Explicit capability required</td><td>IPC Manager</td></tr>
+</tbody>
+</table>
+
+<h3>Memory Limits</h3>
+<p>Each capsule runs within strict memory constraints defined in manifest:</p>
+<pre class="code-block">mem_min: Guaranteed minimum allocation
+mem_max: Hard limit, OOM kill if exceeded
+
+// Kernel enforces:
+- Stack size: 8 MB max
+- Heap: Grows up to mem_max
+- No memory mapping outside sandbox</pre>
+
+<h3>Syscall Filtering</h3>
+<p>Only whitelisted syscalls are allowed. Attempting blocked syscalls results in immediate termination.</p>
+<pre class="code-block">Allowed syscalls:
+- read, write, close, fstat
+- mmap, mprotect, munmap, brk
+- nanosleep, clock_gettime
+- exit, exit_group
+
+Blocked (examples):
+- fork, clone, execve
+- ptrace, process_vm_*
+- mount, umount
+- reboot, init_module</pre>
+
+<h3>Network Isolation</h3>
+<ul>
+<li>No network access without explicit capability</li>
+<li>Outbound connections require CAP_NET_TCP_OUT or CAP_NET_UDP</li>
+<li>Listening requires CAP_NET_TCP_LISTEN</li>
+<li>DNS requires CAP_NET_DNS</li>
+<li>All traffic logged for audit</li>
+</ul>
+
+<h3>Crash Recovery</h3>
+<p>If a capsule crashes or violates policy:</p>
+<ol>
+<li>Process terminated immediately</li>
+<li>Crash report generated (if opted-in)</li>
+<li>Resources cleaned up</li>
+<li>User notified with error code</li>
+</ol>
+</section>
+
+<section id="doc-marketplace">
+<h2>Marketplace Integration</h2>
+<p>The NONOS marketplace runs on Ethereum mainnet with smart contracts managing capsule registration, payments, and revenue distribution.</p>
+
+<h3>Contract Addresses (Ethereum Mainnet)</h3>
+<table class="contract-table">
+<tr><td>CapsuleRegistry</td><td><code>0xB47FBd4E668faD29C374523B1f7F82EA8ba178D7</code></td></tr>
+<tr><td>NOX Token (ERC-20)</td><td><code>0x0a26c80Be4E060e688d7C23aDdB92cBb5D2C9eCA</code></td></tr>
+<tr><td>RevenueSplitter</td><td><code>0x0FbfFdbc658b88Bc741B7a183FbD634deA63C93c</code></td></tr>
+<tr><td>RewardPool</td><td><code>0xF3A4bAc4629Aab574731EDf5A78f4ec4FA142079</code></td></tr>
+<tr><td>ZEROSTATE_PASS (NFT)</td><td><code>0x7b575DD8e8b111c52Ab1e872924d4Efd4DF403df</code></td></tr>
+</table>
+
+<h3>Revenue Distribution</h3>
+<p>When a user pays NOX to unlock a capsule, funds are automatically split:</p>
+<table class="caps-table">
+<thead><tr><th>Recipient</th><th>Share</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>Developer</td><td>68%</td><td>Capsule creator</td></tr>
+<tr><td>NFT Holders</td><td>30%</td><td>ZEROSTATE_PASS holders via RewardPool</td></tr>
+<tr><td>Treasury</td><td>2%</td><td>Protocol development fund</td></tr>
+</tbody>
+</table>
+
+<h3>CapsuleRegistry ABI</h3>
+<pre class="code-block">// Create a new capsule listing
+function createCapsule(
+    address token,      // Payment token (NOX address)
+    string name,        // Capsule display name
+    string ipfsHash,    // IPFS CID of .noxc file
+    uint256 price       // Price in NOX wei (18 decimals)
+) returns (uint256 capsuleId)
+
+// Unlock (purchase) access to a capsule
+function unlockCapsule(uint256 capsuleId) external
+// Requires NOX approval first
+
+// Update capsule metadata
+function updateCapsule(
+    uint256 capsuleId,
+    string ipfsHash,    // New IPFS CID
+    uint256 price       // New price
+) external
+
+// Deactivate capsule (hide from marketplace)
+function deactivateCapsule(uint256 capsuleId) external
+
+// Reactivate capsule
+function activateCapsule(uint256 capsuleId) external
+
+// Check if user has valid unlock
+function hasUnlocked(
+    address user,
+    uint256 capsuleId
+) view returns (bool)
+
+// Get capsule details
+function getCapsule(uint256 capsuleId) view returns (
+    address token,      // Payment token
+    address creator,    // Developer address
+    string name,        // Display name
+    string ipfsHash,    // IPFS CID
+    uint256 price,      // Current price
+    uint256 downloads,  // Total unlocks
+    uint256 revenue,    // Total revenue
+    bool active         // Is active
+)</pre>
+
+<h3>Publishing Workflow</h3>
+<ol>
+<li><strong>Build .noxc</strong> - Create signed capsule binary</li>
+<li><strong>Upload to IPFS</strong> - Pin via Pinata/Infura, get CID</li>
+<li><strong>Approve NOX</strong> - Not required for creation (only unlock)</li>
+<li><strong>Call createCapsule</strong> - Register on blockchain</li>
+<li><strong>Verify listing</strong> - Check on marketplace</li>
+</ol>
+</section>
+
+<section id="doc-unlock">
+<h2>Unlock Token System</h2>
+<p>The unlock system uses on-chain records to grant time-limited access to capsules.</p>
+
+<h3>Unlock Flow</h3>
+<pre class="code-block">User                    Contract                  NONOS Kernel
+  |                         |                          |
+  |-- unlockCapsule(id) --> |                          |
+  |                         |-- transfer NOX --------> |
+  |                         |-- split revenue -------> |
+  |                         |-- create UnlockRecord -> |
+  |<-- emit CapsuleUnlocked-|                          |
+  |                         |                          |
+  |------------------------ getUnlockRecord(id, user) |
+  |                         |<-------------------------|
+  |                         |---- return record ------>|
+  |                         |                          |-- verify
+  |                         |                          |-- download from IPFS
+  |                         |                          |-- execute in sandbox
+</pre>
+
+<h3>UnlockRecord Structure</h3>
+<pre class="code-block">struct UnlockRecord {
+    bytes32 token;         // Unique unlock token
+    uint64 timestamp;      // Block timestamp of unlock
+    uint64 expiresAt;      // timestamp + 86400 (24 hours)
+    bytes32 manifestHash;  // Hash of manifest at unlock time
+    bytes32 approvedCaps;  // Capabilities granted
+}
+
+// Storage mapping
+mapping(uint256 => mapping(address => UnlockRecord)) unlocks;
+// unlocks[capsuleId][userAddress] = UnlockRecord</pre>
+
+<h3>Token Generation</h3>
+<pre class="code-block">// On-chain token generation (Solidity)
+token = keccak256(abi.encodePacked(
+    capsuleId,
+    msg.sender,
+    blockhash(block.number - 1),
+    block.timestamp,
+    nonce++
+));
+
+// Token is unique per unlock, cannot be predicted</pre>
+
+<h3>Expiration &amp; Renewal</h3>
+<ul>
+<li><strong>Duration:</strong> 24 hours from unlock</li>
+<li><strong>Renewal:</strong> Call unlockCapsule again (full price)</li>
+<li><strong>Grace period:</strong> None - expires exactly at expiresAt</li>
+<li><strong>Refunds:</strong> Not supported (blockchain is immutable)</li>
+</ul>
+
+<h3>Kernel Verification</h3>
+<pre class="code-block">// NONOS kernel verification steps:
+1. Query: getUnlockRecord(capsuleId, wallet)
+2. Check: record.token != bytes32(0)           // Has unlocked
+3. Check: block.timestamp < record.expiresAt   // Not expired
+4. Check: hash(manifest) == record.manifestHash // Same version
+5. Grant: capabilities = record.approvedCaps
+6. Execute: run capsule in sandbox with granted caps</pre>
+
+<h3>Error Codes</h3>
+<table class="caps-table">
+<thead><tr><th>Code</th><th>Name</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>0x01</td><td>NOT_UNLOCKED</td><td>User never unlocked this capsule</td></tr>
+<tr><td>0x02</td><td>UNLOCK_EXPIRED</td><td>24-hour window has passed</td></tr>
+<tr><td>0x03</td><td>MANIFEST_MISMATCH</td><td>Capsule was updated after unlock</td></tr>
+<tr><td>0x04</td><td>INVALID_SIGNATURE</td><td>Ed25519 signature verification failed</td></tr>
+<tr><td>0x05</td><td>CAPS_DENIED</td><td>Required capability not approved</td></tr>
+</tbody>
+</table>
+</section>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+</div>
+
+<div id="creatorPage" style="display:none">
+<section class="dashboard-section">
+<div class="dashboard-inner">
+<div class="dashboard-header">
+<div class="dashboard-title-row">
+<h1 class="dashboard-title">Creator Dashboard</h1>
+<div class="dashboard-actions">
+<button class="btn btn-outline" onclick="App.showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> New Token</button>
+</div>
+</div>
+<p class="dashboard-subtitle">Track your token performance and earnings</p>
+</div>
+<div class="creator-stats-grid">
+<div class="creator-stat-card">
+<div class="creator-stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+<div class="creator-stat-info">
+<span class="creator-stat-value" id="createdCount">0</span>
+<span class="creator-stat-label">Tokens Created</span>
+</div>
+</div>
+<div class="creator-stat-card">
+<div class="creator-stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+<div class="creator-stat-info">
+<span class="creator-stat-value" id="creatorVolume">$0</span>
+<span class="creator-stat-label">Total Volume</span>
+</div>
+</div>
+<div class="creator-stat-card">
+<div class="creator-stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+<div class="creator-stat-info">
+<span class="creator-stat-value accent" id="creatorGraduated">0</span>
+<span class="creator-stat-label">Graduated</span>
+</div>
+</div>
+<div class="creator-stat-card">
+<div class="creator-stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+<div class="creator-stat-info">
+<span class="creator-stat-value" id="creatorHolders">0</span>
+<span class="creator-stat-label">Total Holders</span>
+</div>
+</div>
+</div>
+<div class="creator-content">
+<div class="creator-main">
+<div class="section-header">
+<h3>Your Tokens</h3>
+<div class="section-tabs">
+<button class="section-tab active" data-filter="all">All</button>
+<button class="section-tab" data-filter="active">Active</button>
+<button class="section-tab" data-filter="graduated">Graduated</button>
+</div>
+</div>
+<div class="created-tokens-grid" id="createdTokensList"></div>
+</div>
+<div class="creator-sidebar">
+<div class="earnings-card">
+<h4>Earnings Summary</h4>
+<div class="earnings-row">
+<span>Trading Fees (1%)</span>
+<span class="earnings-value" id="creatorFees">0 ETH</span>
+</div>
+<div class="earnings-row">
+<span>LP Rewards</span>
+<span class="earnings-value" id="creatorLpRewards">0 ETH</span>
+</div>
+<div class="earnings-total">
+<span>Total Earned</span>
+<span class="earnings-total-value" id="creatorTotalEarned">0 ETH</span>
+</div>
+</div>
+<div class="quick-tips-card">
+<h4>Creator Tips</h4>
+<ul class="tips-list">
+<li>Tokens graduate to Uniswap at $69,420 market cap</li>
+<li>Add social links to build trust</li>
+<li>Use unique branding for better visibility</li>
+<li>Engage with your community early</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<div id="detailPage" style="display:none">
+<section class="detail-section">
+<div class="detail-inner">
+<button class="btn btn-outline back-btn" id="backBtn">Back</button>
+<div class="detail-header">
+<div class="detail-icon" id="detailIcon"></div>
+<div class="detail-info">
+<h1 class="detail-name" id="tokenName"></h1>
+<span class="detail-symbol" id="tokenSymbol"></span>
+<p class="detail-creator">Created by <span id="tokenCreator"></span></p>
+<div class="detail-social" id="tokenSocial"></div>
+</div>
+<div class="detail-actions">
+<a class="btn btn-outline" id="etherscanBtn" target="_blank">Etherscan</a>
+<button class="btn btn-outline" onclick="App.shareToken()">Share</button>
+</div>
+</div>
+<div class="detail-description" id="tokenDescription" style="display:none">
+<h3>About</h3>
+<p id="tokenDescText"></p>
+</div>
+<div class="detail-stats">
+<div class="detail-stat"><label>Market Cap</label><span id="tokenMcap">$0</span></div>
+<div class="detail-stat"><label>Price</label><span id="tokenPrice">0 ETH</span></div>
+<div class="detail-stat"><label>Supply</label><span id="tokenSupply">0</span></div>
+<div class="detail-stat"><label>Holders</label><span id="tokenHolders">0</span></div>
+</div>
+<div class="chart-section">
+<div class="chart-container">
+<div class="chart-header">
+<h3>Price Chart</h3>
+<div class="chart-timeframes">
+<button class="chart-timeframe active" data-tf="1h">1H</button>
+<button class="chart-timeframe" data-tf="24h">24H</button>
+<button class="chart-timeframe" data-tf="7d">7D</button>
+<button class="chart-timeframe" data-tf="all">All</button>
+</div>
+</div>
+<div id="priceChart"></div>
+</div>
+</div>
+<div class="graduation-section">
+<div class="graduation-header"><h3>Graduation Progress</h3><span class="graduation-percent" id="graduationPercent">0%</span></div>
+<div class="graduation-bar"><div class="graduation-progress" id="graduationProgress" style="width:0%"></div></div>
+<div class="graduation-labels"><span>$0</span><span>$69,420</span></div>
+</div>
+<div class="trade-section">
+<div class="trade-card">
+<div class="trade-card-header">
+<h3>Buy</h3>
+<button class="slippage-toggle" onclick="App.toggleSlippage('buy')">Slippage <span id="buySlippageValue">1%</span></button>
+</div>
+<div class="slippage-settings" id="buySlippageSettings">
+<div class="slippage-options">
+<button class="slippage-option" onclick="App.setSlippage('buy', 0.5)">0.5%</button>
+<button class="slippage-option active" onclick="App.setSlippage('buy', 1)">1%</button>
+<button class="slippage-option" onclick="App.setSlippage('buy', 2)">2%</button>
+<div class="slippage-custom"><input type="number" id="buyCustomSlippage" placeholder="Custom" step="0.1" onchange="App.setSlippage('buy', this.value)"></div>
+</div>
+</div>
+<form id="buyForm">
+<div class="form-group"><label>ETH Amount</label><input type="number" id="buyAmount" placeholder="0.0" step="0.001" required></div>
+<div class="form-group"><label>You Receive (est.)</label><input type="text" id="buyEstimate" placeholder="0 tokens" readonly></div>
+<button type="submit" class="btn btn-full">Buy</button>
+</form>
+</div>
+<div class="trade-card">
+<div class="trade-card-header">
+<h3>Sell</h3>
+<button class="slippage-toggle" onclick="App.toggleSlippage('sell')">Slippage <span id="sellSlippageValue">1%</span></button>
+</div>
+<div class="slippage-settings" id="sellSlippageSettings">
+<div class="slippage-options">
+<button class="slippage-option" onclick="App.setSlippage('sell', 0.5)">0.5%</button>
+<button class="slippage-option active" onclick="App.setSlippage('sell', 1)">1%</button>
+<button class="slippage-option" onclick="App.setSlippage('sell', 2)">2%</button>
+<div class="slippage-custom"><input type="number" id="sellCustomSlippage" placeholder="Custom" step="0.1" onchange="App.setSlippage('sell', this.value)"></div>
+</div>
+</div>
+<form id="sellForm">
+<div class="form-group"><label>Token Amount</label><input type="number" id="sellAmount" placeholder="0" step="1" required></div>
+<div class="form-group"><label>You Receive (est.)</label><input type="text" id="sellEstimate" placeholder="0 ETH" readonly></div>
+<button type="submit" class="btn btn-full">Sell</button>
+<p class="trade-balance">Balance: <span id="userBalance">0</span></p>
+</form>
+</div>
+</div>
+<div class="trade-history" id="tradeHistory">
+<h3>Recent Trades</h3>
+<div class="trade-history-list" id="tradeHistoryList">
+<div class="empty-state">Loading trades...</div>
+</div>
+</div>
+<div class="holders-section" id="holdersSection">
+<h3>Top Holders</h3>
+<div class="holders-list" id="holdersList">
+<div class="empty-state">Loading holders...</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<div id="nft-dashboardPage" style="display:none">
+<section class="nft-section">
+<div class="nft-inner">
+<div class="nft-hero">
+<h1>ZeroState <span class="accent">Pass</span></h1>
+<p>Exclusive NFT pass for 0xNOX ecosystem benefits and revenue sharing.</p>
+</div>
+
+<div class="nft-status-card" id="nftStatusCard">
+<div class="nft-status-content">
+<div class="nft-status-icon" id="nftStatusIcon">
+<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5">
+<rect x="3" y="3" width="18" height="18" rx="2"/>
+<path d="M9 12l2 2 4-4"/>
+</svg>
+</div>
+<div class="nft-status-info">
+<h2 id="nftStatusTitle">Connect Wallet</h2>
+<p id="nftStatusDesc">Connect your wallet to check ZeroState Pass ownership</p>
+<button class="btn" id="nftConnectBtn" onclick="App.openWalletModal()">Connect Wallet</button>
+</div>
+</div>
+</div>
+
+<div class="nft-stats">
+<div class="nft-stat"><span class="nft-stat-value" id="nftTotalSupply">--</span><span class="nft-stat-label">Total Supply</span></div>
+<div class="nft-stat"><span class="nft-stat-value" id="nftHolders">--</span><span class="nft-stat-label">Unique Holders</span></div>
+<div class="nft-stat"><span class="nft-stat-value" id="nftFloorPrice">--</span><span class="nft-stat-label">Floor Price</span></div>
+<div class="nft-stat"><span class="nft-stat-value" id="nftTotalRevenue">--</span><span class="nft-stat-label">Revenue Distributed</span></div>
+</div>
+
+<div class="nft-benefits-grid">
+<div class="nft-benefit-card">
+<div class="benefit-icon free">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M12 2v20M2 12h20"/>
+</svg>
+</div>
+<h3>Free Token Creation</h3>
+<p>Create unlimited tokens without paying the 10,000 NOX creation fee. Save thousands on every launch.</p>
+<div class="benefit-value">Save 10,000 NOX per token</div>
+</div>
+
+<div class="nft-benefit-card">
+<div class="benefit-icon fees">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+</svg>
+</div>
+<h3>50% Reduced Trading Fees</h3>
+<p>Pay only 0.5% trading fee instead of 1% on all bonding curve trades.</p>
+<div class="benefit-value">0.5% vs 1% fee</div>
+</div>
+
+<div class="nft-benefit-card">
+<div class="benefit-icon boost">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+</svg>
+</div>
+<h3>Staking Boost</h3>
+<p>Receive up to 2.5x multiplier on staking rewards when combined with lock periods.</p>
+<div class="benefit-value">Up to 6.25x total boost</div>
+</div>
+
+<div class="nft-benefit-card">
+<div class="benefit-icon revenue">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<circle cx="12" cy="12" r="10"/>
+<path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+<line x1="9" y1="9" x2="9.01" y2="9"/>
+<line x1="15" y1="9" x2="15.01" y2="9"/>
+</svg>
+</div>
+<h3>Revenue Sharing</h3>
+<p>Earn 5% of all protocol fees distributed to NFT holders proportionally.</p>
+<div class="benefit-value">5% of protocol fees</div>
+</div>
+
+<div class="nft-benefit-card">
+<div class="benefit-icon daily">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<rect x="3" y="4" width="18" height="18" rx="2"/>
+<line x1="16" y1="2" x2="16" y2="6"/>
+<line x1="8" y1="2" x2="8" y2="6"/>
+<line x1="3" y1="10" x2="21" y2="10"/>
+</svg>
+</div>
+<h3>Daily Claims</h3>
+<p>NFT holders can claim staking rewards daily instead of weekly.</p>
+<div class="benefit-value">Daily vs Weekly</div>
+</div>
+
+<div class="nft-benefit-card">
+<div class="benefit-icon governance">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+</svg>
+</div>
+<h3>Governance Power</h3>
+<p>Vote on protocol parameters including fees, burn ratios, and feature proposals.</p>
+<div class="benefit-value">1 NFT = 1 Vote</div>
+</div>
+</div>
+
+<div class="nft-dashboard-grid" id="nftDashboard" style="display:none">
+<div class="nft-earnings-card">
+<h3>Your Earnings</h3>
+<div class="earnings-stats">
+<div class="earning-stat">
+<span class="earning-label">Total Earned</span>
+<span class="earning-value" id="nftTotalEarned">0 NOX</span>
+</div>
+<div class="earning-stat">
+<span class="earning-label">Pending Rewards</span>
+<span class="earning-value accent" id="nftPendingRewards">0 NOX</span>
+</div>
+<div class="earning-stat">
+<span class="earning-label">Creation Fees Saved</span>
+<span class="earning-value" id="nftFeesSaved">0 NOX</span>
+</div>
+<div class="earning-stat">
+<span class="earning-label">Trading Fees Saved</span>
+<span class="earning-value" id="nftTradingSaved">0 NOX</span>
+</div>
+</div>
+<button class="btn btn-full" id="claimNftRewardsBtn" onclick="NFTDashboard.claimRewards()">Claim Rewards</button>
+</div>
+
+<div class="nft-tokens-card">
+<h3>Your NFT Passes</h3>
+<div class="nft-tokens-list" id="nftTokensList">
+<div class="empty-state">Loading...</div>
+</div>
+</div>
+
+<div class="nft-activity-card">
+<h3>Recent Activity</h3>
+<div class="nft-activity-list" id="nftActivityList">
+<div class="empty-state">No recent activity</div>
+</div>
+</div>
+</div>
+
+<div class="nft-cta-section" id="nftCtaSection">
+<div class="nft-cta-card">
+<h3>Get Your ZeroState Pass</h3>
+<p>Join the exclusive club of NFT holders and unlock all premium features.</p>
+<div class="nft-cta-buttons">
+<a href="https://opensea.io/collection/zerostate-pass" target="_blank" class="btn">Buy on OpenSea</a>
+<a href="https://nonos.software/nft" target="_blank" class="btn btn-outline">Learn More</a>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+</div>
+
+<div id="bridgePage" style="display:none">
+<section class="bridge-section">
+<div class="bridge-inner">
+<div class="bridge-hero">
+<h1>NOX <span class="accent">Bridge</span></h1>
+<p>Transfer NOX tokens between Ethereum and Cellframe networks securely.</p>
+</div>
+<div class="bridge-stats">
+<div class="bridge-stat"><span class="bridge-stat-value" id="bridgedToCell">0</span><span class="bridge-stat-label">Bridged to Cellframe</span></div>
+<div class="bridge-stat"><span class="bridge-stat-value" id="bridgedToEth">0</span><span class="bridge-stat-label">Bridged to Ethereum</span></div>
+<div class="bridge-stat"><span class="bridge-stat-value" id="bridgeLiquidity">0</span><span class="bridge-stat-label">Bridge Liquidity</span></div>
+<div class="bridge-stat"><span class="bridge-stat-value" id="bridgePending">0</span><span class="bridge-stat-label">Pending</span></div>
+</div>
+<div class="bridge-container">
+<div id="cfWalletSelector" class="cf-wallet-selector"></div>
+<div class="bridge-card">
+<div class="bridge-direction-wrapper"><div class="bridge-direction-toggle"><button type="button" class="direction-btn active" data-direction="eth-to-cf" onclick="Bridge.setDirection('eth-to-cf')">ETH → CF</button><button type="button" class="direction-btn" data-direction="cf-to-eth" onclick="Bridge.setDirection('cf-to-eth')">CF → ETH</button></div><div class="bridge-direction" id="bridgeDirectionVisual">
+<div class="chain-box">
+<div class="chain-icon eth"><img src="https://coin-images.coingecko.com/coins/images/279/small/ethereum.png" alt="ETH" width="32" height="32"></div>
+<span>Ethereum</span>
+</div>
+<div class="bridge-arrow">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M5 12h14" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><path d="M13 6l6 6-6 6" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+<div class="chain-box">
+<div class="chain-icon cf"><img src="https://coin-images.coingecko.com/coins/images/14465/small/cellframe-coingecko.png" alt="Cellframe" width="32" height="32"></div>
+<span>Cellframe</span>
+</div>
+</div>
+<div id="bridgeConnectPrompt" class="bridge-connect-prompt" style="display:none">
+<div class="connect-prompt-icon">
+<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z"/></svg>
+</div>
+<p>Connect your Ethereum wallet to bridge NOX tokens</p>
+<button class="btn" onclick="App.openWalletModal()">Connect Wallet</button>
+</div>
+<form id="bridgeForm" class="bridge-form">
+<div class="form-group">
+<label>Your Ethereum Wallet</label>
+<div class="eth-wallet-display">
+<div class="eth-wallet-icon">
+<img src="https://coin-images.coingecko.com/coins/images/279/small/ethereum.png" alt="ETH" width="20" height="20">
+</div>
+<span id="bridgeEthAddress" class="eth-address">Not connected</span>
+<button type="button" class="btn btn-sm" onclick="App.openWalletModal()" id="bridgeConnectBtn">Connect</button>
+</div>
+</div>
+<div class="form-group">
+<label>Amount (NOX)</label>
+<div class="input-with-max">
+<input type="number" id="bridgeAmount" placeholder="0.0" step="0.01" min="100" required>
+<button type="button" class="max-btn" onclick="Bridge.setMaxAmount()">MAX</button>
+</div>
+<div class="balance-row">
+<span class="balance-label">Balance:</span>
+<span class="balance-value" id="noxBalance">0 NOX</span>
+</div>
+</div>
+<div class="form-group">
+<label>Cellframe Address</label>
+<div class="cf-address-input">
+<input type="text" id="cfAddress" placeholder="Select from your wallets or paste address" required>
+<button type="button" class="gen-btn" onclick="Bridge.useActiveWallet()">Use Wallet</button>
+</div>
+<div class="helper-text">Use your Cellframe wallet from the panel below, or paste an existing address</div>
+</div>
+<div class="bridge-summary">
+<div class="summary-row"><span>Bridge Fee (0.5%)</span><span id="bridgeFee">0 NOX</span></div>
+<div class="summary-row"><span>You Receive</span><span id="bridgeReceive" class="accent">0 NOX</span></div>
+</div>
+<div class="bridge-limits">
+<span>Min: 100 NOX</span>
+<span>Max: 10,000,000 NOX</span>
+</div>
+<button type="submit" class="btn btn-full bridge-btn">
+<span class="btn-text">Bridge to Cellframe</span>
+<span class="btn-loading" style="display:none"><span class="spinner"></span></span>
+</button>
+</form>
+<form id="bridgeFormReverse" class="bridge-form" style="display:none" onsubmit="Bridge.bridgeToEth(event);return false">
+<div class="form-group">
+<label>Your Cellframe Wallet</label>
+<div class="cf-address-input">
+<select id="reverseCfWalletSelect" style="flex:1;padding:12px;background:var(--bg-tertiary);border:1px solid var(--border);border-radius:8px;color:var(--text-primary)" onchange="Bridge.onCFWalletSelect(this.value)">
+<option value="">Select wallet...</option>
+</select>
+<button type="button" class="gen-btn" onclick="Bridge.loadCFWalletsToSelect()">Refresh</button>
+</div>
+<div class="balance-row">
+<span class="balance-label">CF Balance:</span>
+<span class="balance-value" id="cfNoxBalanceReverse">0 NOX</span>
+</div>
+</div>
+<div class="form-group">
+<label>Amount (NOX)</label>
+<div class="input-with-max">
+<input type="number" id="bridgeAmountReverse" placeholder="0.0" step="0.01" min="100" required oninput="Bridge.updateEstimateReverse()">
+<button type="button" class="max-btn" onclick="Bridge.setMaxAmountReverse()">MAX</button>
+</div>
+</div>
+<div class="form-group">
+<label>Destination Ethereum Address</label>
+<div class="eth-wallet-display">
+<div class="eth-wallet-icon">
+<img src="https://coin-images.coingecko.com/coins/images/279/small/ethereum.png" alt="ETH" width="20" height="20">
+</div>
+<input type="text" id="reverseEthAddrInput" placeholder="0x..." style="flex:1;background:transparent;border:none;color:var(--text-primary);font-size:14px" required>
+</div>
+<button type="button" class="btn btn-sm" onclick="if(Wallet.address){document.getElementById(reverseEthAddrInput).value=Wallet.address}" style="margin-top:8px">Use Connected Wallet</button>
+</div>
+<div class="bridge-summary">
+<div class="summary-row"><span>Bridge Fee (0.5%)</span><span id="bridgeFeeReverse">0 NOX</span></div>
+<div class="summary-row"><span>You Receive</span><span id="bridgeReceiveReverse" class="accent">0 NOX</span></div>
+</div>
+<div class="bridge-limits">
+<span>Min: 100 NOX</span>
+<span>Max: 10,000,000 NOX</span>
+</div>
+<button type="submit" class="btn btn-full bridge-btn">
+<span class="btn-text">Bridge to Ethereum</span>
+<span class="btn-loading" style="display:none"><span class="spinner"></span></span>
+</button>
+</form>
+<div class="bridge-info">
+<div class="info-item"><span class="info-icon">i</span><span>Requires 3 validator confirmations</span></div>
+<div class="info-item"><span class="info-icon">i</span><span>Processing time: ~5-10 minutes</span></div>
+</div>
+</div>
+<div class="bridge-history-card">
+<h3>Transaction History</h3>
+<div class="bridge-tabs">
+<button class="bridge-tab active" data-type="all">All</button>
+<button class="bridge-tab" data-type="pending">Pending</button>
+<button class="bridge-tab" data-type="completed">Completed</button>
+</div>
+<div class="bridge-history" id="bridgeHistory">
+<div class="empty-state">Connect wallet to see bridge history</div>
+</div>
+</div>
+<div id="cfWalletManager" class="bridge-history-card"></div>
+</div>
+<div class="bridge-networks">
+<div class="network-card">
+<div class="network-header"><div class="network-dot online"></div><span>Ethereum Mainnet</span></div>
+<div class="network-status">
+<span class="status-label">Status</span>
+<span class="status-value online">Online</span>
+</div>
+<div class="network-status">
+<span class="status-label">Confirmations</span>
+<span class="status-value">12 blocks</span>
+</div>
+</div>
+<div class="network-card">
+<div class="network-header"><div class="network-dot online"></div><span>Cellframe Network</span></div>
+<div class="network-status">
+<span class="status-label">Status</span>
+<span class="status-value online">Online</span>
+</div>
+<div class="network-status">
+<span class="status-label">Token</span>
+<span class="status-value">CF-20 NOX</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<div id="tokenomicsPage" style="display:none">
+<section class="docs-section">
+<div class="docs-inner">
+<div class="docs-hero">
+<h1>NOX <span class="accent">Tokenomics</span></h1>
+<p>Understanding the economic model behind the NOX ecosystem</p>
+</div>
+<div class="docs-content">
+<div class="docs-sidebar">
+<nav class="docs-nav">
+<a href="#overview" class="docs-nav-item active">Overview</a>
+<a href="#supply" class="docs-nav-item">Supply Distribution</a>
+<a href="#bonding" class="docs-nav-item">Bonding Curve</a>
+<a href="#graduation" class="docs-nav-item">Graduation Mechanism</a>
+<a href="#fees" class="docs-nav-item">Fee Structure</a>
+<a href="#staking" class="docs-nav-item">Staking Rewards</a>
+<a href="#bridge" class="docs-nav-item">Cross-Chain Bridge</a>
+</nav>
+</div>
+<div class="docs-main">
+<article class="docs-article" id="overview">
+<h2>Token Overview</h2>
+<div class="token-info-grid">
+<div class="token-info-card">
+<span class="token-info-label">Token Name</span>
+<span class="token-info-value">NOX Token</span>
+</div>
+<div class="token-info-card">
+<span class="token-info-label">Symbol</span>
+<span class="token-info-value">NOX</span>
+</div>
+<div class="token-info-card">
+<span class="token-info-label">Network</span>
+<span class="token-info-value">Ethereum + Cellframe</span>
+</div>
+<div class="token-info-card">
+<span class="token-info-label">Max Supply</span>
+<span class="token-info-value">800,000,000 NOX</span>
+</div>
+</div>
+<p>NOX is the native utility token powering the 0xNOX launchpad ecosystem. It serves as the primary currency for token creation fees, staking rewards, and cross-chain bridging between Ethereum and Cellframe networks.</p>
+</article>
+<article class="docs-article" id="supply">
+<h2>Supply Distribution</h2>
+<div class="distribution-chart">
+<div class="chart-visual">
+<div class="chart-segment" style="--segment-color: var(--accent); --segment-size: 75%">
+<span class="segment-label">75%</span>
+</div>
+<div class="chart-segment" style="--segment-color: #22c55e; --segment-size: 11%">
+<span class="segment-label">11%</span>
+</div>
+<div class="chart-segment" style="--segment-color: #f59e0b; --segment-size: 10%">
+<span class="segment-label">10%</span>
+</div>
+<div class="chart-segment" style="--segment-color: #ef4444; --segment-size: 4%">
+<span class="segment-label">4%</span>
+</div>
+</div>
+<div class="chart-legend">
+<div class="legend-item"><span class="legend-dot" style="background: var(--accent)"></span><span>Fair Launch (75%)</span></div>
+<div class="legend-item"><span class="legend-dot" style="background: #22c55e"></span><span>Liquidity & CEX (11%)</span></div>
+<div class="legend-item"><span class="legend-dot" style="background: #f59e0b"></span><span>Development & DAO (10%)</span></div>
+<div class="legend-item"><span class="legend-dot" style="background: #ef4444"></span><span>Staking & NFT (4%)</span></div>
+</div>
+</div>
+<table class="docs-table">
+<thead><tr><th>Allocation</th><th>Amount</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td>Fair Launch</td><td>600,000,000 NOX (75%)</td><td>Public distribution</td></tr>
+<tr><td>Liquidity</td><td>32,000,000 NOX (4%)</td><td>DEX liquidity provision</td></tr>
+<tr><td>Staking Rewards</td><td>32,000,000 NOX (4%)</td><td>Staking vault emissions</td></tr>
+<tr><td>CEX Listings</td><td>32,000,000 NOX (4%)</td><td>Exchange listings</td></tr>
+<tr><td>DAO Treasury</td><td>24,000,000 NOX (3%)</td><td>Governance treasury</td></tr>
+<tr><td>Development</td><td>24,000,000 NOX (3%)</td><td>Protocol development</td></tr>
+<tr><td>Contributors</td><td>24,000,000 NOX (3%)</td><td>Team & advisors</td></tr>
+<tr><td>Marketing</td><td>20,000,000 NOX (2.5%)</td><td>Growth initiatives</td></tr>
+<tr><td>NFT Holders</td><td>12,000,000 NOX (1.5%)</td><td>ZeroState Pass rewards</td></tr>
+</tbody>
+</table>
+</article>
+<article class="docs-article" id="bonding">
+<h2>Bonding Curve Mechanics</h2>
+<p>Every token launched on 0xNOX uses an exponential bonding curve that determines price based on supply:</p>
+<div class="code-block">
+<code>Price = BasePrice * e^(k * Supply)</code>
+</div>
+<div class="formula-explanation">
+<div class="formula-item"><span class="formula-var">BasePrice</span><span>Initial token price (0.0000001 ETH)</span></div>
+<div class="formula-item"><span class="formula-var">k</span><span>Curve steepness constant</span></div>
+<div class="formula-item"><span class="formula-var">Supply</span><span>Current circulating supply</span></div>
+</div>
+<h3>Key Properties</h3>
+<ul class="feature-list">
+<li><strong>Instant Liquidity:</strong> Buy and sell anytime against the curve</li>
+<li><strong>Price Discovery:</strong> Fair, transparent pricing mechanism</li>
+<li><strong>No Rug Pulls:</strong> Liquidity locked in contract until graduation</li>
+<li><strong>Predictable:</strong> Price changes are deterministic</li>
+</ul>
+</article>
+<article class="docs-article" id="graduation">
+<h2>Graduation Mechanism</h2>
+<p>When a token reaches a market cap of <span class="highlight">$69,420</span>, it automatically graduates to Uniswap V3:</p>
+<div class="graduation-flow">
+<div class="flow-step"><span class="step-num">1</span><span class="step-text">Token reaches $69,420 market cap</span></div>
+<div class="flow-arrow">→</div>
+<div class="flow-step"><span class="step-num">2</span><span class="step-text">Bonding curve locks</span></div>
+<div class="flow-arrow">→</div>
+<div class="flow-step"><span class="step-num">3</span><span class="step-text">ETH + Tokens sent to Uniswap</span></div>
+<div class="flow-arrow">→</div>
+<div class="flow-step"><span class="step-num">4</span><span class="step-text">LP tokens burned forever</span></div>
+</div>
+<div class="info-box">
+<span class="info-icon">i</span>
+<span>After graduation, tokens trade on Uniswap with permanent liquidity. The LP tokens are burned, making liquidity irrevocable.</span>
+</div>
+</article>
+<article class="docs-article" id="fees">
+<h2>Fee Structure</h2>
+<table class="docs-table">
+<thead><tr><th>Action</th><th>Fee</th><th>Distribution</th></tr></thead>
+<tbody>
+<tr><td>NOX Buy/Sell</td><td>2%</td><td>10% burn, 40% liquidity, 20% DAO, 30% dev</td></tr>
+<tr><td>Token Creation</td><td>10,000 NOX</td><td>Protocol treasury</td></tr>
+<tr><td>Launchpad Trading</td><td>1%</td><td>Protocol treasury</td></tr>
+<tr><td>Bridge Transfer</td><td>0.5%</td><td>Bridge liquidity pool</td></tr>
+<tr><td>Capsule Unlock</td><td>Variable</td><td>68% dev, 30% NFT holders, 2% protocol</td></tr>
+</tbody>
+</table>
+<p class="note">ZeroState Pass holders enjoy FREE token creation - no NOX fee required.</p>
+</article>
+<article class="docs-article" id="staking">
+<h2>Staking Rewards</h2>
+<p>Stake your NOX tokens to earn a share of protocol fees and emissions:</p>
+<div class="staking-tiers">
+<div class="tier-card">
+<h4>Flexible Staking</h4>
+<span class="tier-apy">5-10% APY</span>
+<ul><li>No lock period</li><li>Withdraw anytime</li><li>Base rewards only</li></ul>
+</div>
+<div class="tier-card featured">
+<h4>Locked Staking</h4>
+<span class="tier-apy">20-50% APY</span>
+<ul><li>30-365 day lock</li><li>Boosted rewards</li><li>NFT pass multipliers</li></ul>
+</div>
+<div class="tier-card">
+<h4>LP Staking</h4>
+<span class="tier-apy">30-80% APY</span>
+<ul><li>Provide NOX/ETH LP</li><li>Highest rewards</li><li>Protocol fee share</li></ul>
+</div>
+</div>
+</article>
+<article class="docs-article" id="bridge">
+<h2>Cross-Chain Bridge</h2>
+<p>The NOX Bridge enables seamless transfers between Ethereum and Cellframe networks:</p>
+<div class="bridge-spec">
+<div class="spec-row"><span class="spec-label">Bridge Fee</span><span class="spec-value">0.5%</span></div>
+<div class="spec-row"><span class="spec-label">Minimum Transfer</span><span class="spec-value">100 NOX</span></div>
+<div class="spec-row"><span class="spec-label">Maximum Transfer</span><span class="spec-value">10,000,000 NOX</span></div>
+<div class="spec-row"><span class="spec-label">Required Confirmations</span><span class="spec-value">3 validators</span></div>
+<div class="spec-row"><span class="spec-label">Processing Time</span><span class="spec-value">5-10 minutes</span></div>
+</div>
+<h3>Security Model</h3>
+<ul class="feature-list">
+<li><strong>Multi-Signature:</strong> 3-of-5 validator consensus required</li>
+<li><strong>Rate Limiting:</strong> Daily limits prevent large-scale attacks</li>
+<li><strong>Audited Contracts:</strong> Verified by security firms</li>
+<li><strong>Open Source:</strong> Fully transparent code</li>
+</ul>
+</article>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<div id="docsPage" style="display:none">
+<section class="docs-section">
+<div class="docs-inner">
+<div class="docs-hero">
+<h1>How It <span class="accent">Works</span></h1>
+<p>Complete guide to launching and trading tokens on 0xNOX</p>
+</div>
+<div class="docs-content">
+<div class="docs-sidebar">
+<nav class="docs-nav">
+<a href="#getting-started" class="docs-nav-item active">Getting Started</a>
+<a href="#create-token" class="docs-nav-item">Create a Token</a>
+<a href="#trading" class="docs-nav-item">Trading</a>
+<a href="#wallet-setup" class="docs-nav-item">Wallet Setup</a>
+<a href="#bridging" class="docs-nav-item">Bridging</a>
+<a href="#capsules" class="docs-nav-item">Capsules</a>
+<a href="#faq" class="docs-nav-item">FAQ</a>
+</nav>
+</div>
+<div class="docs-main">
+<article class="docs-article" id="getting-started">
+<h2>Getting Started</h2>
+<p>0xNOX is an anonymous token launchpad on Ethereum. Launch your own token in seconds with automatic bonding curves and Uniswap graduation.</p>
+<div class="steps-grid">
+<div class="step-card">
+<span class="step-number">1</span>
+<h4>Connect Wallet</h4>
+<p>Use MetaMask, WalletConnect, or generate a new wallet instantly</p>
+</div>
+<div class="step-card">
+<span class="step-number">2</span>
+<h4>Create or Trade</h4>
+<p>Launch your own token or trade existing tokens on bonding curves</p>
+</div>
+<div class="step-card">
+<span class="step-number">3</span>
+<h4>Watch It Grow</h4>
+<p>Tokens graduate to Uniswap when they reach $69,420 market cap</p>
+</div>
+</div>
+</article>
+<article class="docs-article" id="create-token">
+<h2>Creating a Token</h2>
+<h3>Requirements</h3>
+<ul class="feature-list">
+<li>Connected wallet with ETH for gas</li>
+<li>10,000 NOX creation fee (free with ZeroState Pass)</li>
+<li>Token name, symbol, and optional metadata</li>
+</ul>
+<h3>Token Creation Process</h3>
+<ol class="numbered-list">
+<li><strong>Fill in token details</strong> - Name, symbol, description</li>
+<li><strong>Upload branding</strong> - Logo (256x256) and banner (1200x400)</li>
+<li><strong>Add social links</strong> - Twitter, Discord, Telegram, website</li>
+<li><strong>Submit transaction</strong> - Approve NOX (if needed) and create</li>
+<li><strong>Token is live</strong> - Instantly tradeable on bonding curve</li>
+</ol>
+<div class="tip-box">
+<span class="tip-icon">💡</span>
+<span>The creation fee is split: 50% is burned forever, 50% goes to NOX stakers. This creates deflationary pressure while rewarding the community.</span>
+</div>
+</article>
+<article class="docs-article" id="trading">
+<h2>Trading on Bonding Curves</h2>
+<p>Every token has a bonding curve that provides instant liquidity:</p>
+<h3>Buying Tokens</h3>
+<ol class="numbered-list">
+<li>Select a token from the live list</li>
+<li>Enter ETH amount to spend</li>
+<li>Review estimated tokens received</li>
+<li>Click "Buy" and confirm transaction</li>
+</ol>
+<h3>Selling Tokens</h3>
+<ol class="numbered-list">
+<li>Go to the token page</li>
+<li>Enter token amount to sell</li>
+<li>Review ETH you'll receive</li>
+<li>Click "Sell" and confirm transaction</li>
+</ol>
+<div class="warning-box">
+<span class="warning-icon">⚠️</span>
+<span>Slippage can occur on large trades. The bonding curve price changes with each trade. Always check estimated amounts before confirming.</span>
+</div>
+</article>
+<article class="docs-article" id="wallet-setup">
+<h2>Wallet Setup</h2>
+<h3>Option 1: Browser Wallet (Recommended)</h3>
+<p>Use MetaMask, Rabby, or any Web3 wallet:</p>
+<ol class="numbered-list">
+<li>Install MetaMask extension</li>
+<li>Create or import a wallet</li>
+<li>Click "Connect" on 0xNOX</li>
+<li>Approve the connection</li>
+</ol>
+<h3>Option 2: WalletConnect</h3>
+<p>Connect mobile wallets via QR code:</p>
+<ol class="numbered-list">
+<li>Click "Connect" then "WalletConnect"</li>
+<li>Scan QR code with mobile wallet</li>
+<li>Approve connection in your app</li>
+</ol>
+<h3>Option 3: Generate Wallet</h3>
+<p>Create a wallet instantly, no extensions needed:</p>
+<ol class="numbered-list">
+<li>Click "Connect" then "Generate Wallet"</li>
+<li>Save your recovery phrase securely</li>
+<li>Click "Use This Wallet"</li>
+<li>Fund with ETH via deposit address</li>
+</ol>
+</article>
+<article class="docs-article" id="bridging">
+<h2>Bridging NOX</h2>
+<p>Transfer NOX between Ethereum and Cellframe networks:</p>
+<h3>Bridge to Cellframe</h3>
+<ol class="numbered-list">
+<li>Go to Bridge page</li>
+<li>Enter NOX amount (min 100)</li>
+<li>Enter or generate Cellframe address</li>
+<li>Click "Bridge to Cellframe"</li>
+<li>Approve NOX spend (first time only)</li>
+<li>Confirm bridge transaction</li>
+<li>Wait for 3 validator confirmations</li>
+</ol>
+<h3>Cellframe Wallet</h3>
+<p>Generate a Cellframe wallet directly from the bridge:</p>
+<ul class="feature-list">
+<li>Click "Generate" next to address field</li>
+<li>Save your private key immediately</li>
+<li>Address auto-fills for bridging</li>
+<li>Use address to receive CF-20 NOX</li>
+</ul>
+</article>
+<article class="docs-article" id="capsules">
+<h2>Capsules Marketplace</h2>
+<p>Capsules are token-embedded applications for the NONOS operating system:</p>
+<h3>What are Capsules?</h3>
+<ul class="feature-list">
+<li><strong>Token-Gated Apps:</strong> Applications tied to specific tokens</li>
+<li><strong>NONOS Integration:</strong> Run directly on NONOS OS</li>
+<li><strong>Developer Revenue:</strong> Creators earn from downloads</li>
+<li><strong>Instant Deployment:</strong> Upload and publish in minutes</li>
+</ul>
+<h3>Capsule Types</h3>
+<div class="capsule-types">
+<div class="capsule-type"><span class="type-icon">💳</span><span>Wallets</span></div>
+<div class="capsule-type"><span class="type-icon">📈</span><span>DeFi</span></div>
+<div class="capsule-type"><span class="type-icon">🛠️</span><span>Utility</span></div>
+<div class="capsule-type"><span class="type-icon">🎮</span><span>Games</span></div>
+</div>
+</article>
+<article class="docs-article" id="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-list">
+<div class="faq-item">
+<h4>Is this on mainnet?</h4>
+<p>Yes, 0xNOX is deployed on Ethereum mainnet. All transactions use real ETH and real tokens.</p>
+</div>
+<div class="faq-item">
+<h4>What happens at graduation?</h4>
+<p>At $69,420 market cap, the token automatically graduates. ETH and tokens are sent to Uniswap, LP tokens are burned, and the token becomes freely tradeable on DEXes.</p>
+</div>
+<div class="faq-item">
+<h4>Can creators rug pull?</h4>
+<p>No. All liquidity is locked in the bonding curve contract until graduation. There are no admin keys or special permissions that allow draining funds.</p>
+</div>
+<div class="faq-item">
+<h4>How do I get NOX tokens?</h4>
+<p>NOX is available on Uniswap. You can also earn NOX through staking rewards or by creating popular tokens on the platform.</p>
+</div>
+<div class="faq-item">
+<h4>What is ZeroState Pass?</h4>
+<p>ZeroState Pass is an NFT that grants free token creation on 0xNOX, plus boosted staking rewards and exclusive features.</p>
+</div>
+</div>
+</article>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<div class="modal-overlay" id="walletModal">
+<div class="modal">
+<div class="modal-header"><h2>Connect Wallet</h2><button class="modal-close" onclick="App.closeWalletModal()">&times;</button></div>
+<div class="modal-body">
+<div class="wallet-options">
+<div class="wallet-option" onclick="App.connectExternal()"><div class="wallet-option-icon">W</div><div class="wallet-option-info"><h3>Browser Wallet</h3><p>MetaMask, Rabby, etc.</p></div></div>
+<div class="wallet-option" onclick="App.connectWalletConnect()"><div class="wallet-option-icon">C</div><div class="wallet-option-info"><h3>WalletConnect</h3><p>Mobile wallets</p></div></div>
+</div>
+<div class="wallet-divider">or</div>
+<div class="generate-wallet-section">
+<p>Generate a new wallet instantly. No extensions needed.</p>
+<button class="btn btn-full" onclick="App.generateWallet()">Generate Wallet</button>
+<div class="generated-wallet" id="generatedWallet" style="display:none">
+<label>Address</label><div class="address" id="genAddress"></div>
+<label>Recovery Phrase (save this!)</label><div class="seed-phrase" id="genSeed"></div>
+<div class="warning">Save your recovery phrase! It cannot be recovered.</div>
+<button class="btn btn-full" style="margin-top:var(--space-md)" onclick="App.useGeneratedWallet()">Use This Wallet</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="wallet-sidebar-overlay" id="sidebarOverlay" onclick="WalletSidebar.close()"></div>
+<div class="wallet-sidebar" id="walletSidebar">
+<div class="sidebar-header">
+<h2>Wallet</h2>
+<button class="sidebar-close" onclick="WalletSidebar.close()">&times;</button>
+</div>
+<div class="sidebar-wallet-info">
+<div class="wallet-info-row">
+<span class="wallet-info-label">Address</span>
+<div class="wallet-address-display">
+<span class="wallet-info-value" id="sidebarAddress">Not connected</span>
+<button class="copy-btn" onclick="WalletSidebar.copyAddress()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+</div>
+</div>
+<div class="wallet-info-row">
+<span class="wallet-info-label">ETH Balance</span>
+<span class="wallet-info-value" id="sidebarEthBalance">0.00 ETH</span>
+</div>
+<div class="wallet-info-row">
+<span class="wallet-info-label">NOX Balance</span>
+<span class="wallet-info-value accent" id="sidebarNoxBalance">0 NOX</span>
+</div>
+<button class="btn btn-disconnect" onclick="WalletSidebar.disconnect()">Disconnect Wallet</button>
+</div>
+<div class="sidebar-tabs">
+<button class="sidebar-tab active" data-tab="holdings" onclick="WalletSidebar.switchTab('holdings')">Holdings</button>
+<button class="sidebar-tab" data-tab="activity" onclick="WalletSidebar.switchTab('activity')">Activity</button>
+</div>
+<div class="sidebar-content">
+<div id="sidebarHoldings" class="holdings-list">
+<div class="empty-holdings">Connect wallet to see holdings</div>
+</div>
+<div id="sidebarActivity" style="display:none">
+<div class="empty-holdings">No recent activity</div>
+</div>
+</div>
+<div class="quick-trade-panel" id="quickTradePanel" style="display:none">
+<div class="quick-trade-header">
+<div class="quick-trade-token">
+<div class="holding-icon" id="qtIcon">?</div>
+<span id="qtTokenName">Select Token</span>
+</div>
+<button class="quick-trade-close" onclick="WalletSidebar.closeQuickTrade()">&times;</button>
+</div>
+<div class="quick-trade-tabs">
+<button class="quick-trade-tab buy active" onclick="WalletSidebar.setTradeType('buy')">Buy</button>
+<button class="quick-trade-tab sell" onclick="WalletSidebar.setTradeType('sell')">Sell</button>
+</div>
+<form class="quick-trade-form" id="quickTradeForm" onsubmit="WalletSidebar.executeTrade(event)">
+<div class="quick-trade-input">
+<input type="number" id="qtAmount" placeholder="0.0" step="0.001" required>
+<span class="input-suffix" id="qtSuffix">ETH</span>
+</div>
+<div class="quick-amounts">
+<button type="button" class="quick-amount-btn" onclick="WalletSidebar.setQuickAmount(0.01)">0.01</button>
+<button type="button" class="quick-amount-btn" onclick="WalletSidebar.setQuickAmount(0.05)">0.05</button>
+<button type="button" class="quick-amount-btn" onclick="WalletSidebar.setQuickAmount(0.1)">0.1</button>
+<button type="button" class="quick-amount-btn" onclick="WalletSidebar.setQuickAmount('max')">MAX</button>
+</div>
+<div class="quick-trade-estimate">
+<span>You receive</span>
+<span id="qtEstimate">0 tokens</span>
+</div>
+<button type="submit" class="btn quick-trade-btn buy" id="qtSubmitBtn">Buy</button>
+</form>
+</div>
+</div>
+
+<div class="modal-overlay" id="publishCapsuleModal">
+<div class="modal publish-modal">
+<div class="modal-header">
+<h2>Publish Capsule</h2>
+<button class="modal-close" onclick="CapsuleDev.closePublishModal()">&times;</button>
+</div>
+<div class="modal-body">
+<form id="publishCapsuleForm" onsubmit="CapsuleDev.publishCapsule(event)">
+<div class="form-group">
+<label>Capsule Name <span class="required">*</span></label>
+<input type="text" id="capsuleName" placeholder="com.example.myapp" required>
+<div class="helper-text">Unique identifier (e.g., com.yourname.appname)</div>
+</div>
+<div class="form-group">
+<label>Description <span class="required">*</span></label>
+<textarea id="capsuleDesc" rows="3" placeholder="What does your capsule do?" required></textarea>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label>Category <span class="required">*</span></label>
+<select id="capsuleType" required>
+<option value="utility">Utility</option>
+<option value="wallet">Wallet</option>
+<option value="defi">DeFi</option>
+<option value="game">Game</option>
+<option value="social">Social</option>
+<option value="productivity">Productivity</option>
+</select>
+</div>
+<div class="form-group">
+<label>Pricing Model</label>
+<select id="capsulePricingModel">
+<option value="per_session">Per Session</option>
+<option value="per_day">Per Day (24h)</option>
+<option value="per_week">Per Week</option>
+<option value="lifetime">Lifetime</option>
+<option value="free">Free</option>
+</select>
+</div>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label>Price (NOX) <span class="required">*</span></label>
+<input type="number" id="capsulePrice" placeholder="100" min="0" step="1" required>
+</div>
+<div class="form-group">
+<label>Version</label>
+<input type="text" id="capsuleVersion" placeholder="1.0.0" value="1.0.0">
+</div>
+</div>
+<div class="form-group">
+<label>IPFS CID (.noxcap file) <span class="required">*</span></label>
+<input type="text" id="capsuleCid" placeholder="Qm... or bafy..." required>
+<div class="helper-text">Upload your signed .noxcap bundle to IPFS first</div>
+</div>
+<div class="form-group">
+<label>Token Address <span class="required">*</span></label>
+<input type="text" id="capsuleToken" placeholder="0x..." required>
+<div class="helper-text">Token that unlocks this capsule (NOX or custom token)</div>
+</div>
+<div class="form-group">
+<label>Required Capabilities</label>
+<div class="capability-checkboxes" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px;">
+<label class="checkbox-label"><input type="checkbox" name="caps" value="net.tcp.outbound"> Network (TCP)</label>
+<label class="checkbox-label"><input type="checkbox" name="caps" value="storage.ipfs.read"> IPFS Read</label>
+<label class="checkbox-label"><input type="checkbox" name="caps" value="wallet.sign"> Wallet Sign</label>
+<label class="checkbox-label"><input type="checkbox" name="caps" value="gpu.render"> GPU Render</label>
+</div>
+</div>
+<div class="publish-summary">
+<div class="summary-row"><span>Publishing Fee</span><span>Free (gas only)</span></div>
+<div class="summary-row"><span>You Receive</span><span class="accent">68% of each unlock</span></div>
+<div class="summary-row"><span>NFT Holders</span><span>30%</span></div>
+<div class="summary-row"><span>Protocol</span><span>2%</span></div>
+</div>
+<button type="submit" class="btn btn-full" id="publishCapsuleBtn">Publish to Registry</button>
+</form>
+</div>
+</div>
+</div>
+</div><!-- End appContent -->
+
+<div class="toast" id="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.11.1/ethers.umd.min.js?v=31" integrity="sha384-POWgdAoUVoSKkKYCBiE8vhaiaawRSqMLmzJK50pZmRICRfkn2pYEHFRmn7Bogvej" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tweetnacl/1.0.3/nacl-fast.min.js?v=31" integrity="sha384-05+sicyRJQ56XpL4U9HJ8YbtSzFDvAg7apPKOGV6A0JsAJKFM68jp5oLnUjG5mEp" crossorigin="anonymous"></script>
+<script src="js/walletconnect/config.js?v=31"></script>
+<script src="js/walletconnect/modal.js?v=31"></script>
+<script src="js/walletconnect/provider-core.js?v=32"></script>
+<script src="js/walletconnect/provider-connect.js?v=32"></script>
+<script src="js/walletconnect/provider-tx.js?v=32"></script>
+<script src="js/walletconnect/provider-session.js?v=32"></script>
+<script src="js/walletconnect/init.js?v=31"></script>
+<script src="js/config.js?v=31"></script>
+<script src="js/abi.js?v=31"></script>
+<script src="js/wallet-core.js?v=32"></script>
+<script src="js/wallet-balance.js?v=31"></script>
+<script src="js/wallet-tx.js?v=31"></script>
+<script src="js/contracts.js?v=31"></script>
+<script src="js/contracts-create.js?v=32"></script>
+<script src="js/contracts-trade.js?v=32"></script>
+<script src="js/contracts-graduation.js?v=32"></script>
+<script src="js/ui/core.js?v=31"></script>
+<script src="js/ui/wallet.js?v=31"></script>
+<script src="js/ui/render.js?v=31"></script>
+<script src="js/ui/render-portfolio.js?v=31"></script>
+<script src="js/ui/capsules.js?v=31"></script>
+<script src="js/bridge/core.js?v=31"></script>
+<script src="js/bridge/core-display.js?v=31"></script>
+<script src="js/bridge/utils.js?v=31"></script>
+<script src="js/bridge/data.js?v=31"></script>
+<script src="js/bridge/data-render.js?v=31"></script>
+<script src="js/bridge/transfer.js"></script><script src="js/bridge/reverse.js?v=31"></script>
+<script src="js/bridge/transfer-execute.js?v=31"></script>
+<script src="js/nft/core.js?v=31"></script>
+<script src="js/nft/status.js?v=31"></script>
+<script src="js/nft/status-render.js?v=31"></script>
+<script src="js/nft/stats.js?v=31"></script>
+<script src="js/nft/rewards.js?v=31"></script>
+<script src="js/nft/rewards-claim.js?v=31"></script>
+<script src="js/chart.js?v=31"></script>
+<script src="js/chart-draw.js?v=31"></script>
+<script src="js/capsule/core.js?v=31"></script>
+<script src="js/capsule/utils.js?v=31"></script>
+<script src="js/capsule/setup.js?v=31"></script>
+<script src="js/capsule/assets.js?v=31"></script>
+<script src="js/capsule/keys.js?v=31"></script>
+<script src="js/capsule/keys-actions.js?v=31"></script>
+<script src="js/capsule/manifest.js?v=31"></script>
+<script src="js/capsule/manifest-preview.js?v=31"></script>
+<script src="js/capsule/builder.js?v=31"></script>
+<script src="js/capsule/builder-output.js?v=31"></script>
+<script src="js/capsule/ipfs.js?v=31"></script>
+<script src="js/capsule/registry.js?v=31"></script>
+<script src="js/capsule/registry-manage.js?v=31"></script>
+<script src="js/capsule/data-loader.js?v=31"></script>
+<script src="js/capsule/data-render.js?v=31"></script>
+<script src="js/capsule/events.js?v=31"></script>
+<script src="js/wallet-sidebar/core.js?v=31"></script>
+<script src="js/wallet-sidebar/wallet-info.js?v=31"></script>
+<script src="js/wallet-sidebar/holdings.js?v=31"></script>
+<script src="js/wallet-sidebar/trade.js?v=31"></script>
+<script src="js/wallet-sidebar/trade-execute.js?v=31"></script>
+<script src="js/cellframe/core.js?v=31"></script>
+<script src="js/cellframe/wallet.js?v=31"></script>
+<script src="js/cellframe/ui.js?v=31"></script>
+<script src="js/cellframe/modals-utils.js?v=32"></script>
+<script src="js/cellframe/modals-switch.js?v=32"></script>
+<script src="js/cellframe/modals-menu.js?v=32"></script>
+<script src="js/cellframe/modals-download.js?v=32"></script>
+<script src="js/trading/core.js?v=31"></script>
+<script src="js/trading/core-views.js?v=31"></script>
+<script src="js/trading/utils.js?v=31"></script>
+<script src="js/trading/discovery-cards.js?v=31"></script>
+<script src="js/trading/discovery-grid.js?v=31"></script>
+<script src="js/trading/discovery.js?v=31"></script>
+<script src="js/trading/terminal.js?v=31"></script>
+<script src="js/trading/terminal-render.js?v=31"></script>
+<script src="js/trading/trade.js?v=31"></script>
+<script src="js/trading/trade-estimate.js?v=31"></script>
+<script src="js/trading/trade-execute.js?v=31"></script>
+<script src="js/trading/chart.js?v=31"></script>
+<script src="js/trading/chart-data.js?v=31"></script>
+<script src="js/trading/comments.js?v=31"></script>
+<script src="js/trading/comments-post.js?v=31"></script>
+<script src="js/app/core.js?v=31"></script>
+<script src="js/app/navigation.js?v=31"></script>
+<script src="js/app/wallet-modal.js?v=31"></script>
+<script src="js/app/data-loader.js?v=31"></script>
+<script src="js/app/data-loader-extra.js?v=31"></script>
+<script src="js/app/leaderboard.js?v=31"></script>
+<script src="js/app/leaderboard-loaders.js?v=31"></script>
+<script src="js/app/leaderboard-render.js?v=31"></script>
+<script src="js/app/token-view.js?v=31"></script>
+<script src="js/app/token-view-data.js?v=31"></script>
+<script src="js/app/trading.js?v=31"></script>
+<script src="js/app/token-create.js?v=31"></script>
+<script src="js/app/token-quick-create.js?v=31"></script>
+<script src="js/app/token-launch.js?v=31"></script>
+<script src="js/app/capsules.js?v=31"></script>
+<script src="js/app/capsules-view.js?v=31"></script>
+<script src="js/app/search.js?v=31"></script>
+<script src="js/app/wc-events.js?v=31"></script>
+<script src="js/app/events.js?v=31"></script>
+<script src="js/app/events-images.js?v=31"></script>
+<script src="js/platform-stats.js?v=31"></script>
+<script src="js/gate.js?v=31"></script>
+<script src="js/pwa.js?v=31"></script>
+<script src="js/native-core.js?v=32"></script>
+<script src="js/native-push.js?v=32"></script>
+<script src="js/native-utils.js?v=32"></script>
+<script src="js/onboarding-data.js?v=32"></script>
+<script src="js/onboarding-render.js?v=32"></script>
+<script src="js/onboarding-nav.js?v=32"></script>
+</body>
+</html>
+

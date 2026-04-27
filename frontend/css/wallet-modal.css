@@ -1,0 +1,56 @@
+.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s; }
+.modal-overlay.show { opacity: 1; visibility: visible; }
+.modal { background: var(--bg-secondary); border: 1px solid var(--border); max-width: 400px; width: 90%; max-height: 90vh; overflow-y: auto; transform: translateY(20px); transition: transform 0.3s; }
+.modal-overlay.show .modal { transform: translateY(0); }
+.modal-header { display: flex; justify-content: space-between; align-items: center; padding: var(--space-lg); border-bottom: 1px solid var(--border); }
+.modal-header h2 { font-size: 1rem; color: var(--accent); margin: 0; }
+.modal-close { background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; padding: 0; line-height: 1; }
+.modal-close:hover { color: var(--text-primary); }
+.modal-body { padding: var(--space-lg); }
+.wallet-options { display: flex; flex-direction: column; gap: var(--space-sm); }
+.wallet-option { display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: var(--bg-primary); border: 1px solid var(--border); cursor: pointer; transition: all 0.15s; }
+.wallet-option:hover { border-color: var(--accent-dim); }
+.wallet-option-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+.wallet-option-info h3 { font-size: 0.9rem; margin: 0 0 2px; }
+.wallet-option-info p { font-size: 0.75rem; color: var(--text-muted); margin: 0; }
+.wallet-divider { display: flex; align-items: center; gap: var(--space-md); margin: var(--space-lg) 0; color: var(--text-muted); font-size: 0.8rem; }
+.wallet-divider::before, .wallet-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.generate-wallet-section { text-align: center; }
+.generate-wallet-section p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: var(--space-md); }
+.generated-wallet { background: var(--bg-primary); border: 1px solid var(--border); padding: var(--space-lg); margin-top: var(--space-md); text-align: left; }
+.generated-wallet label { display: block; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: var(--space-xs); }
+.generated-wallet .address { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); word-break: break-all; margin-bottom: var(--space-md); }
+.generated-wallet .warning { font-size: 0.75rem; color: var(--warning); margin-top: var(--space-md); padding: var(--space-sm); background: rgba(245, 158, 11, 0.1); }
+.seed-phrase { font-family: var(--font-mono); font-size: 0.8rem; background: var(--bg-tertiary); padding: var(--space-md); word-break: break-word; line-height: 1.8; color: var(--text-primary); }
+
+/* WalletConnect/AppKit Modal Fixes */
+w3m-modal, appkit-modal, [class*="w3m-"], [class*="wui-"] {
+    font-family: var(--font-sans) !important;
+}
+w3m-modal *, appkit-modal * {
+    box-sizing: border-box !important;
+}
+/* Ensure QR code canvas renders */
+w3m-modal canvas, appkit-modal canvas, [class*="w3m-"] canvas, [class*="wui-"] canvas {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+/* Fix WalletConnect modal z-index */
+w3m-modal, appkit-modal {
+    z-index: 10000 !important;
+}
+/* Reown AppKit specific fixes */
+.w3m-overlay, [class*="w3m-overlay"] {
+    z-index: 9999 !important;
+}
+.wui-qr-code, [class*="wui-qr"] {
+    background: #fff !important;
+    padding: 16px !important;
+    border-radius: 12px !important;
+}
+.wui-qr-code canvas, .wui-qr-code svg {
+    display: block !important;
+    max-width: 100% !important;
+    height: auto !important;
+}

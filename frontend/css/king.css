@@ -1,0 +1,14 @@
+.king-section { padding: var(--space-xl) 0; border-bottom: 1px solid var(--border); }
+.king-inner { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-lg); }
+.king-header { display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md); }
+.king-header h2 { font-size: 0.9rem; color: var(--accent); }
+.king-card { background: linear-gradient(135deg, rgba(102, 255, 255, 0.08) 0%, rgba(102, 255, 255, 0.02) 100%); border: 1px solid var(--accent-dim); padding: var(--space-lg); display: flex; align-items: center; gap: var(--space-lg); }
+.king-icon { width: 64px; height: 64px; background: linear-gradient(135deg, var(--accent-dim), var(--bg-tertiary)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; color: var(--accent); font-family: var(--font-mono); }
+.king-info { flex: 1; }
+.king-name { font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-xs); }
+.king-meta { font-size: 0.8rem; color: var(--text-muted); }
+.king-meta span { color: var(--accent); }
+.king-stats { text-align: right; }
+.king-mcap { font-size: 1.5rem; font-weight: 600; color: var(--accent); font-family: var(--font-mono); }
+.king-holders { font-size: 0.8rem; color: var(--text-muted); margin-top: var(--space-xs); }
+@media (max-width: 600px) { .king-card { flex-direction: column; text-align: center; } .king-stats { text-align: center; } }

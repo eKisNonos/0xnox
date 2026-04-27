@@ -1,0 +1,348 @@
+.wallet-sidebar {
+    position: fixed;
+    top: 0;
+    right: -380px;
+    width: 380px;
+    height: 100vh;
+    background: var(--bg-secondary);
+    border-left: 1px solid var(--border);
+    z-index: 1000;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+.wallet-sidebar.open {
+    right: 0;
+}
+.wallet-sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.wallet-sidebar-overlay.show {
+    opacity: 1;
+    pointer-events: all;
+}
+.sidebar-header {
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sidebar-header h2 {
+    font-size: 1.25rem;
+    margin: 0;
+}
+.sidebar-close {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+.sidebar-close:hover {
+    color: var(--text-primary);
+}
+.sidebar-wallet-info {
+    padding: var(--space-md) var(--space-lg);
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border);
+}
+.btn-disconnect {
+    width: 100%;
+    margin-top: var(--space-md);
+    background: transparent;
+    border: 1px solid var(--error);
+    color: var(--error);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.15s;
+}
+.btn-disconnect:hover {
+    background: rgba(239, 68, 68, 0.1);
+}
+.wallet-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+}
+.wallet-info-row:last-child {
+    margin-bottom: 0;
+}
+.wallet-info-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.wallet-info-value {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--text-primary);
+}
+.wallet-info-value.accent {
+    color: var(--accent);
+}
+.wallet-address-display {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+.copy-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 2px;
+}
+.copy-btn:hover {
+    color: var(--accent);
+}
+.sidebar-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+}
+.sidebar-tab {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: var(--space-md);
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.15s;
+}
+.sidebar-tab:hover {
+    color: var(--text-primary);
+}
+.sidebar-tab.active {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+}
+.sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-md);
+}
+.holdings-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+.holding-item {
+    background: var(--bg-tertiary);
+    border-radius: 12px;
+    padding: var(--space-md);
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1px solid transparent;
+}
+.holding-item:hover {
+    border-color: var(--accent-dim);
+}
+.holding-item.selected {
+    border-color: var(--accent);
+    background: var(--bg-primary);
+}
+.holding-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+}
+.holding-token {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+.holding-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--accent);
+}
+.holding-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.holding-symbol {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+.holding-value {
+    text-align: right;
+}
+.holding-amount {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.holding-usd {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+.holding-progress {
+    height: 4px;
+    background: var(--bg-primary);
+    border-radius: 2px;
+    overflow: hidden;
+}
+.holding-progress-bar {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+.quick-trade-panel {
+    padding: var(--space-md);
+    background: var(--bg-tertiary);
+    border-top: 1px solid var(--border);
+}
+.quick-trade-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-md);
+}
+.quick-trade-token {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-weight: 600;
+}
+.quick-trade-close {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+.quick-trade-tabs {
+    display: flex;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-md);
+}
+.quick-trade-tab {
+    flex: 1;
+    padding: var(--space-sm);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.15s;
+}
+.quick-trade-tab.buy {
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+}
+.quick-trade-tab.buy.active {
+    background: var(--success);
+    color: #000;
+}
+.quick-trade-tab.sell {
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+}
+.quick-trade-tab.sell.active {
+    background: var(--error);
+    color: #fff;
+}
+.quick-trade-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+.quick-trade-input {
+    position: relative;
+}
+.quick-trade-input input {
+    width: 100%;
+    padding-right: 60px;
+}
+.quick-trade-input .input-suffix {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+.quick-amounts {
+    display: flex;
+    gap: var(--space-xs);
+}
+.quick-amount-btn {
+    flex: 1;
+    padding: var(--space-xs);
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.7rem;
+    transition: all 0.15s;
+}
+.quick-amount-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+.quick-trade-estimate {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-sm);
+    background: var(--bg-primary);
+    border-radius: 8px;
+    font-size: 0.8rem;
+}
+.quick-trade-estimate span:first-child {
+    color: var(--text-muted);
+}
+.quick-trade-estimate span:last-child {
+    color: var(--accent);
+    font-weight: 600;
+}
+.quick-trade-btn {
+    width: 100%;
+    padding: var(--space-md);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.quick-trade-btn.buy {
+    background: var(--success);
+    color: #000;
+}
+.quick-trade-btn.sell {
+    background: var(--error);
+    color: #fff;
+}
+.empty-holdings {
+    text-align: center;
+    padding: var(--space-2xl);
+    color: var(--text-muted);
+}
+@media (max-width: 480px) {
+    .wallet-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+}

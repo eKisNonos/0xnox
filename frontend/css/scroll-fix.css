@@ -1,0 +1,35 @@
+html {
+    height: auto !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+}
+
+body {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow-y: visible !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: auto !important;
+}
+
+#appContent,
+#homePage,
+.nox-home,
+#discoveryPage {
+    height: auto !important;
+    overflow: visible !important;
+}
+
+.nox-main {
+    height: auto !important;
+    overflow: visible !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+.nox-home::before,
+.nox-home::after,
+.nox-main::before,
+.nox-main::after {
+    display: none !important;
+}

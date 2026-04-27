@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOX Tokenomics | Complete Technical Specification</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--fg:#111;--gray:#666;--light:#f8f8f8;--border:#e0e0e0;--accent:#000;--cyan:#66FFFF}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font:17px/1.8 'Inter',system-ui,sans-serif;color:var(--fg);background:var(--bg)}
+.cover{min-height:100vh;background:#000;color:#fff;padding:80px;display:flex;flex-direction:column;justify-content:space-between}
+.cover h1{font:400 64px/1.1 'Playfair Display',serif;margin-bottom:32px;max-width:700px}
+.cover .subtitle{font:300 20px/1.6 'Inter',sans-serif;color:#999;max-width:560px}
+.cover-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;padding-top:48px;border-top:1px solid #333;margin-top:auto}
+.cover-grid dt{font:500 10px/1 'Inter',sans-serif;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:8px}
+.cover-grid dd{font:400 14px/1.4 'JetBrains Mono',monospace}
+nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);z-index:100}
+nav ul{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;list-style:none;flex-wrap:wrap}
+nav a{display:block;padding:18px 0;margin-right:24px;font:500 11px/1 'Inter',sans-serif;letter-spacing:1px;text-transform:uppercase;color:var(--gray);text-decoration:none;border-bottom:2px solid transparent;cursor:pointer}
+nav a:hover,nav a.active{color:var(--fg);border-color:var(--fg)}
+nav .sep{color:var(--cyan);padding:18px 8px 18px 0;font:600 11px/1 'Inter',sans-serif}
+main{max-width:1100px;margin:0 auto;padding:80px 60px}
+.panel{display:none}
+.panel.active{display:block}
+article{margin-bottom:80px}
+article>header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--border)}
+article>header h2{font:400 42px/1.2 'Playfair Display',serif}
+article>header p{font:300 16px/1.6 'Inter',sans-serif;color:var(--gray);margin-top:16px;max-width:600px}
+h3{font:500 24px/1.3 'Inter',sans-serif;margin:48px 0 20px}
+h4{font:600 11px/1 'Inter',sans-serif;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin:40px 0 16px}
+p{margin-bottom:20px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin:32px 0}
+pre{background:#0d0d0d;color:#e0e0e0;padding:24px 28px;font:400 13px/1.7 'JetBrains Mono',monospace;overflow-x:auto;margin:20px 0}
+.path{font:400 11px/1 'JetBrains Mono',monospace;color:var(--gray);margin-bottom:6px}
+table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+th{background:#111;color:#fff;font:600 10px/1 'Inter',sans-serif;letter-spacing:1px;text-transform:uppercase;text-align:left;padding:12px 16px}
+td{padding:12px 16px;border-bottom:1px solid var(--border)}
+tr:nth-child(even){background:var(--light)}
+.diagram-container{background:var(--light);border:1px solid var(--border);padding:40px;margin:32px 0;display:flex;justify-content:center}
+.diagram-container svg{max-width:100%;height:auto}
+.data-block{background:#000;color:#fff;padding:28px;margin:20px 0}
+.data-block .label{display:block;font:600 9px/1 'Inter',sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:#666;margin-bottom:10px}
+.data-block code{font:400 13px/1.6 'JetBrains Mono',monospace;word-break:break-all}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--border);gap:1px;margin:32px 0}
+.stats>div{background:#fff;padding:28px;text-align:center}
+.stats>div strong{display:block;font:500 28px/1 'JetBrains Mono',monospace;margin-bottom:8px}
+.stats>div span{font:600 9px/1 'Inter',sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray)}
+.equation{background:#f4f4f4;padding:20px 28px;margin:20px 0;font:400 16px/1.6 'JetBrains Mono',monospace;text-align:center}
+.highlight{color:#66FFFF}
+footer{text-align:center;padding:60px;border-top:1px solid var(--border)}
+footer p{font:500 10px/1 'Inter',sans-serif;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
+@media(max-width:900px){.cover{padding:40px}.cover h1{font-size:36px}main{padding:40px 24px}.cols{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.cover-grid{grid-template-columns:1fr 1fr}nav ul{padding:0 16px}nav a{margin-right:16px;padding:12px 0;font-size:10px}}
+</style>
+</head>
+<body>
+
+<div class="cover">
+<div>
+<h1>NOX Tokenomics</h1>
+<p class="subtitle">Complete technical specification for the NOX multi-chain ecosystem: permissionless token launchpad with autonomous bonding curves across Ethereum and Cellframe, decentralized application marketplace for NONOS, cross-chain bridge infrastructure, and proof-of-stake protocol with privacy-preserving rewards distribution.</p>
+</div>
+<dl class="cover-grid">
+<div><dt>Networks</dt><dd>Ethereum + Cellframe</dd></div>
+<div><dt>Token</dt><dd>NOX / CF20_NOX</dd></div>
+<div><dt>Platform</dt><dd>NONOS</dd></div>
+<div><dt>Version</dt><dd>2.0.0 / April 2026</dd></div>
+</dl>
+</div>
+
+<nav>
+<ul>
+<li><a class="active" onclick="show('overview')">Overview</a></li>
+<li><a onclick="show('token')">Token</a></li>
+<li><span class="sep">|</span></li>
+<li><a onclick="show('launchpad')">Launchpad</a></li>
+<li><a onclick="show('curves')">Curves</a></li>
+<li><a onclick="show('multichain')">Multi-Chain</a></li>
+<li><a onclick="show('bridge')">Bridge</a></li>
+<li><a onclick="show('economics')">Economics</a></li>
+<li><span class="sep">|</span></li>
+<li><a onclick="show('capsules')">Capsules</a></li>
+<li><a onclick="show('apps')">Apps</a></li>
+<li><span class="sep">|</span></li>
+<li><a onclick="show('staking')">Staking</a></li>
+<li><a onclick="show('rewards')">Rewards</a></li>
+<li><span class="sep">|</span></li>
+<li><a onclick="show('security')">Security</a></li>
+<li><a onclick="show('contracts')">Contracts</a></li>
+</ul>
+</nav>
+
+<main>
+
+<!-- OVERVIEW -->
+<div id="overview" class="panel active">
+
+<article>
+<header>
+<h2>The NOX Ecosystem</h2>
+<p>A unified token economy spanning anonymous token launches, decentralized app distribution, and privacy-preserving staking.</p>
+</header>
+
+<p>NOX serves as the native token of the NONOS ecosystem, a privacy-first operating system with integrated cryptocurrency infrastructure. The token captures value from three interconnected protocols: the Launchpad for permissionless token creation, the Capsule Marketplace for decentralized application distribution, and the Staking Protocol for securing the network and distributing rewards.</p>
+
+<p>Each protocol generates demand for NOX while providing distinct utility. The Launchpad requires NOX for token creation and extracts trading fees that convert to NOX buybacks. The Capsule Marketplace enables token-embedded applications that integrate with the broader NOX economy. The Staking Protocol locks NOX supply while distributing rewards from protocol fees to committed holders.</p>
+
+<p>This interconnection creates flywheel effects. Successful tokens on the Launchpad generate trading volume that increases staker rewards. Popular capsules with embedded tokens drive additional Launchpad activity. Higher staking rewards attract more NOX to be locked, reducing circulating supply and supporting price stability. ZeroState Pass NFT holders receive enhanced benefits across all protocols, creating unified identity within the ecosystem.</p>
+
+<div class="diagram-container">
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+</marker>
+</defs>
+<circle cx="400" cy="175" r="60" fill="#111" stroke="#111"/>
+<text x="400" y="165" text-anchor="middle" font-family="Inter" font-size="16" font-weight="600" fill="#fff">NOX</text>
+<text x="400" y="185" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#888">ERC-20 + CF20</text>
+<rect x="80" y="40" width="160" height="70" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="160" y="65" text-anchor="middle" font-family="Inter" font-size="13" font-weight="600">Launchpad</text>
+<text x="160" y="85" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#666">multi-chain tokens</text>
+<rect x="560" y="40" width="160" height="70" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="640" y="65" text-anchor="middle" font-family="Inter" font-size="13" font-weight="600">Capsule Market</text>
+<text x="640" y="85" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#666">app distribution</text>
+<rect x="80" y="240" width="160" height="70" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="160" y="265" text-anchor="middle" font-family="Inter" font-size="13" font-weight="600">Staking</text>
+<text x="160" y="285" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#666">rewards + security</text>
+<rect x="560" y="240" width="160" height="70" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="640" y="265" text-anchor="middle" font-family="Inter" font-size="13" font-weight="600">Treasury</text>
+<text x="640" y="285" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#666">fee aggregation</text>
+<line x1="240" y1="75" x2="340" y2="145" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="560" y1="75" x2="460" y2="145" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="240" y1="275" x2="340" y2="205" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="560" y1="275" x2="460" y2="205" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="270" y="100" font-family="JetBrains Mono" font-size="8" fill="#666">fees</text>
+<text x="520" y="100" font-family="JetBrains Mono" font-size="8" fill="#666">tokens</text>
+<text x="270" y="250" font-family="JetBrains Mono" font-size="8" fill="#666">rewards</text>
+<text x="520" y="250" font-family="JetBrains Mono" font-size="8" fill="#666">buybacks</text>
+<rect x="310" y="340" width="180" height="55" fill="#66FFFF" stroke="#333" stroke-width="2"/>
+<text x="400" y="365" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600">Cross-Chain Bridge</text>
+<text x="400" y="382" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#333">ETH ↔ Cellframe</text>
+<line x1="400" y1="235" x2="400" y2="338" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="420" y="290" font-family="JetBrains Mono" font-size="8" fill="#666">bridge</text>
+</svg>
+</div>
+
+<h3>Value Accrual Mechanisms</h3>
+
+<p>NOX captures value through multiple mechanisms that compound as ecosystem activity grows. Every token launch on the Launchpad requires 10,000 NOX for non-NFT holders, creating consistent demand independent of speculation. Every trade on bonding curves generates a 1% fee that accumulates in the Treasury for weekly conversion.</p>
+
+<p>Two distinct fee systems operate within the ecosystem: the NOX token transaction tax (2% buy/sell) and the Launchpad protocol fees. Each serves different purposes with separate distribution mechanics.</p>
+
+<div class="stats">
+<div><strong>2%</strong><span>NOX Token Tax</span></div>
+<div><strong>1%</strong><span>Launchpad Fee</span></div>
+<div><strong>800M</strong><span>Max Supply</span></div>
+<div><strong>10K NOX</strong><span>Creation Fee</span></div>
+</div>
+
+<p>NOX token transaction taxes distribute as: 40% liquidity, 30% development, 20% DAO treasury, and 10% permanent burn. Launchpad protocol fees follow a separate distribution: 40% burned, 40% paired with ETH for liquidity, and 20% distributed to stakers. Both mechanisms create deflationary pressure while funding ecosystem growth.</p>
+
+<h3>Design Philosophy</h3>
+
+<p>The NOX ecosystem operates on principles that prioritize user sovereignty above all else. Privacy comes first: no registration, no KYC, no email verification. The protocol cannot collect information it never requests. Identity exists only as wallet addresses.</p>
+
+<p>Permissionless access ensures censorship resistance. Anyone can launch tokens, publish applications, or stake NOX. No approval process, no whitelist, no geographic restrictions. The protocol serves as infrastructure, not gatekeeper.</p>
+
+<p>Fair distribution eliminates insider advantages. Bonding curves provide identical mechanics for all participants. No presales, no team allocations, no preferential pricing. Early participants benefit from timing, not connections.</p>
+
+<table>
+<thead><tr><th>Principle</th><th>Implementation</th><th>Rationale</th></tr></thead>
+<tbody>
+<tr><td>Privacy First</td><td>No KYC, no tracking, wallet-only identity</td><td>User sovereignty</td></tr>
+<tr><td>Permissionless</td><td>Anyone can launch, publish, stake</td><td>Censorship resistance</td></tr>
+<tr><td>Fair Distribution</td><td>Bonding curves, no presales</td><td>Eliminate insider advantage</td></tr>
+<tr><td>Sustainable Economics</td><td>Fee-based value capture</td><td>Protocol longevity</td></tr>
+<tr><td>NFT Utility</td><td>Real benefits for ZeroState holders</td><td>Reward early supporters</td></tr>
+<tr><td>Mainnet Security</td><td>Ethereum L1 deployment</td><td>Maximum security guarantees</td></tr>
+</tbody>
+</table>
+
+</article>
+
+</div>
+
+<!-- TOKEN -->
+<div id="token" class="panel">
+
+<article>
+<header>
+<h2>NOX Token</h2>
+<p>The native currency of the NONOS ecosystem.</p>
+</header>
+
+<p>NOX is an ERC-20 token on Ethereum mainnet with a fixed maximum supply of 800 million tokens. The token implements a deflationary mechanism through transaction taxes with automatic burning. A 2% tax applies to both buy and sell transactions, with a portion permanently burned on each trade.</p>
+
+<p>The fixed supply creates scarcity that compounds with burn mechanics. 10% of all collected transaction fees burn permanently, reducing total supply over time. Additional burns occur through protocol fee operations. The burn mechanism creates persistent deflation that accelerates as trading volume increases.</p>
+
+<div class="stats">
+<div><strong>800M</strong><span>Max Supply</span></div>
+<div><strong>2%</strong><span>Buy/Sell Tax</span></div>
+<div><strong>ERC-20</strong><span>Token Standard</span></div>
+<div><strong>Deflationary</strong><span>Via Burns</span></div>
+</div>
+
+<h3>Supply Distribution</h3>
+
+<p>NOX launched as a fair launch token from day one with no presale, no private rounds, and no VC allocations. The majority of supply entered circulation through public trading, ensuring equitable access for all participants. Reserved allocations support long-term ecosystem sustainability.</p>
+
+<table>
+<thead><tr><th>Allocation</th><th>Percentage</th><th>Tokens</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td>Fair Launch</td><td>78.5%</td><td>628,000,000</td><td>Public distribution from day 1</td></tr>
+<tr><td>TBD Reserve</td><td>10%</td><td>80,000,000</td><td>Development growth initiatives</td></tr>
+<tr><td>Staking Pools</td><td>5%</td><td>40,000,000</td><td>Staking rewards emissions</td></tr>
+<tr><td>Dev Wallet</td><td>3.5%</td><td>28,000,000</td><td>Development funding</td></tr>
+<tr><td>DAO Treasury</td><td>3%</td><td>24,000,000</td><td>Governance-controlled funds</td></tr>
+</tbody>
+</table>
+
+<p>The TBD Reserve supports further ecosystem growth during development phases. These tokens unlock progressively based on milestone achievements and community governance decisions. No hidden allocations exist beyond those listed above.</p>
+
+<h3>Token Utility</h3>
+
+<p>NOX derives value from genuine utility across multiple protocols rather than pure speculation. Each use case creates organic demand that persists regardless of market sentiment.</p>
+
+<div class="cols">
+<div>
+<h4>Launchpad</h4>
+<p>Token creation requires 10,000 NOX fee payment. Trading fees convert to NOX through Treasury operations. Featured listing slots cost NOX. All fee revenue flows back to ecosystem through burns, LP, and staker rewards.</p>
+</div>
+<div>
+<h4>Staking</h4>
+<p>Stake NOX to earn protocol fee distributions. Longer lock periods earn higher multipliers up to 4x. Staked NOX contributes to governance weight. Compound rewards by restaking distributions automatically.</p>
+</div>
+</div>
+
+<div class="cols">
+<div>
+<h4>Governance</h4>
+<p>NOX holders vote on protocol parameters including fee percentages, Treasury allocations, and protocol upgrades. Voting power scales with staked amount and lock duration. Changes require quorum and supermajority approval.</p>
+</div>
+<div>
+<h4>Capsule Integration</h4>
+<p>Capsule tokens launched through the marketplace integrate with NOX economy. Cross-token incentives and shared liquidity pools create network effects. NOX serves as reserve currency for capsule token pairs.</p>
+</div>
+</div>
+
+<h3>Transaction Tax Structure</h3>
+
+<p>NOX implements a 2% tax on both buy and sell transactions. Transfer between wallets incurs no tax. The collected fees distribute automatically through the smart contract to support ecosystem sustainability.</p>
+
+<table>
+<thead><tr><th>Transaction</th><th>Tax Rate</th><th>Application</th></tr></thead>
+<tbody>
+<tr><td>Buy</td><td>2%</td><td>Purchases on DEX</td></tr>
+<tr><td>Sell</td><td>2%</td><td>Sales on DEX</td></tr>
+<tr><td>Transfer</td><td>0%</td><td>Wallet to wallet</td></tr>
+</tbody>
+</table>
+
+<h3>Fee Distribution</h3>
+
+<p>Collected transaction fees distribute automatically across four destinations, ensuring sustainable ecosystem growth while maintaining deflationary pressure.</p>
+
+<table>
+<thead><tr><th>Destination</th><th>Share</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td>Liquidity Collector</td><td>40%</td><td>Protocol-owned liquidity depth</td></tr>
+<tr><td>Dev Wallet</td><td>30%</td><td>Ongoing development funding</td></tr>
+<tr><td>DAO Treasury</td><td>20%</td><td>Governance-controlled funds</td></tr>
+<tr><td>Burn</td><td>10%</td><td>Permanent supply reduction</td></tr>
+</tbody>
+</table>
+
+<h3>Deflationary Mechanics</h3>
+
+<p>NOX supply decreases over time through systematic burns. 10% of all transaction fees burn permanently, removing tokens from circulation forever. This creates persistent deflation that compounds as trading activity increases.</p>
+
+<div class="equation">Circulating Supply = Max Supply - Burned - Locked - Staked</div>
+
+<p>Additional trading limits protect against manipulation: maximum buy/sell capped at 0.5% of supply per transaction, maximum wallet holding at 4% of supply, and a 20-second cooldown between sells. These parameters ensure orderly markets while allowing organic price discovery.</p>
+
+<p>The burn mechanism creates asymmetric outcomes. In bear markets, reduced activity means slower burns but also less sell pressure. In bull markets, increased activity accelerates burns while organic demand absorbs supply. Both scenarios trend toward reduced circulating supply over time.</p>
+
+</article>
+
+</div>
+
+<!-- LAUNCHPAD -->
+<div id="launchpad" class="panel">
+
+<article>
+<header>
+<h2>The Problem With Token Launches</h2>
+<p>Current launch mechanisms fail both creators and participants. We propose a protocol-native solution.</p>
+</header>
+
+<p>Token launches today suffer from structural deficiencies that benefit insiders at the expense of genuine participants. Presales create information asymmetry. Whitelists concentrate early access among connected parties. Stealth launches favor bot operators with faster execution. The fundamental problem is that launch mechanisms were designed for issuers, not communities.</p>
+
+<p>Fair launch rhetoric masks unfair realities. Teams retain allocations. Advisors receive tokens at zero cost. Early investors get preferential pricing unavailable to retail participants. By the time public trading begins, the price discovery period has already occurred privately. Public participants buy tokens that insiders acquired at fractions of the listing price.</p>
+
+<div class="cols">
+<div>
+<h4>Information Asymmetry</h4>
+<p>Presale participants know launch timing, initial liquidity, and token distribution before the public. This information advantage translates directly into economic advantage. Early buyers can position before announcements. They can exit during the initial volatility that retail participants mistake for organic price discovery.</p>
+</div>
+<div>
+<h4>Execution Advantage</h4>
+<p>Stealth launches favor technical operators. Bot networks monitor mempool transactions, factory contract deployments, and social signals. Sub-second execution advantages compound into significant profit. Manual participants cannot compete on speed. They serve as exit liquidity for faster actors.</p>
+</div>
+</div>
+
+<h3>The Bonding Curve Solution</h3>
+
+<p>Bonding curves eliminate information asymmetry by making the pricing function public and deterministic. The price at any moment depends solely on the current supply. There are no hidden allocations, no preferential access, no timing advantages. Everyone faces the same curve.</p>
+
+<p>When a token launches through a bonding curve, the first buyer and the hundredth buyer interact with identical mechanics. Price increases monotonically with supply. Early participants pay less because fewer tokens exist, not because they received special access. This is fair by construction, not by promise.</p>
+
+<p>The curve also provides continuous liquidity. Traditional launches create liquidity discontinuities: the presale period, the launch moment, the DEX listing. Each transition creates arbitrage opportunities and execution advantages. A bonding curve provides uninterrupted trading from first mint to graduation, eliminating these structural inefficiencies.</p>
+
+<h3>Privacy as a Feature</h3>
+
+<p>Anonymous launches serve legitimate purposes beyond regulatory arbitrage. Creators may wish to evaluate market reception without personal exposure. Teams building experimental protocols may prefer pseudonymous development during early stages. The association between identity and token can create legal ambiguity in jurisdictions with unclear regulatory frameworks.</p>
+
+<p>NOX Launchpad requires only a wallet connection. No registration, no email, no identity verification. The protocol cannot collect information it never requests. Creator privacy is guaranteed by architecture, not policy. This privacy extends to participants: trading history remains on-chain but unlinkable to off-chain identity.</p>
+
+</article>
+
+<article>
+<header>
+<h2>System Architecture</h2>
+<p>Smart contract structure and interaction patterns.</p>
+</header>
+
+<p>The protocol comprises three core contracts: the Factory, the Token implementation, and the Treasury. The Factory deploys new tokens using a minimal proxy pattern for gas efficiency. Each Token manages its own bonding curve and tracks progression toward graduation. The Treasury aggregates fees and executes the NOX buyback and LP provisioning logic.</p>
+
+<div class="diagram-container">
+<svg viewBox="0 0 800 350" xmlns="http://www.w3.org/2000/svg">
+<rect x="300" y="20" width="200" height="70" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="400" y="50" text-anchor="middle" font-family="Inter" font-size="14" font-weight="600">LaunchpadFactory</text>
+<text x="400" y="72" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#666">createToken()</text>
+<rect x="80" y="150" width="180" height="90" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="170" y="180" text-anchor="middle" font-family="Inter" font-size="13" font-weight="600">BondingToken A</text>
+<text x="170" y="200" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#666">buy() / sell()</text>
+<text x="170" y="218" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#666">graduate()</text>
+<rect x="310" y="150" width="180" height="90" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="400" y="180" text-anchor="middle" font-family="Inter" font-size="13" font-weight="600">BondingToken B</text>
+<text x="400" y="200" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#666">buy() / sell()</text>
+<text x="400" y="218" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#666">graduate()</text>
+<rect x="540" y="150" width="180" height="90" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="630" y="180" text-anchor="middle" font-family="Inter" font-size="13" font-weight="600">BondingToken N</text>
+<text x="630" y="200" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#666">buy() / sell()</text>
+<text x="630" y="218" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#666">graduate()</text>
+<line x1="340" y1="90" x2="200" y2="148" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="400" y1="90" x2="400" y2="148" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="460" y1="90" x2="600" y2="148" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="300" y="280" width="200" height="60" fill="#111" stroke="#111"/>
+<text x="400" y="305" text-anchor="middle" font-family="Inter" font-size="13" font-weight="600" fill="#fff">Treasury</text>
+<text x="400" y="325" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#888">fees → NOX → LP</text>
+<line x1="170" y1="240" x2="170" y2="260" stroke="#333" stroke-width="1.5"/>
+<line x1="400" y1="240" x2="400" y2="278" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="630" y1="240" x2="630" y2="260" stroke="#333" stroke-width="1.5"/>
+<line x1="170" y1="260" x2="630" y2="260" stroke="#333" stroke-width="1.5"/>
+</svg>
+</div>
+
+<h3>Factory Contract</h3>
+
+<p>The Factory serves as the entry point for token creation. It maintains a registry of all deployed tokens and enforces creation fee collection. Using the EIP-1167 minimal proxy pattern, each token deployment costs approximately 100,000 gas rather than the 2,000,000+ gas required for full contract deployment.</p>
+
+<p>Creation parameters include token name, symbol, and metadata URI. The Factory validates parameter constraints, collects the creation fee in NOX tokens, and deploys a new proxy pointing to the canonical Token implementation. The implementation address is immutable after Factory deployment, preventing upgrade attacks.</p>
+
+<p class="path">LaunchpadFactory.sol</p>
+<pre>function createToken(
+    string calldata name,
+    string calldata symbol,
+    string calldata metadataURI
+) external returns (address token) {
+    // Collect creation fee (waived for NFT holders)
+    if (!isNFTHolder(msg.sender)) {
+        require(
+            noxToken.transferFrom(msg.sender, address(treasury), CREATION_FEE),
+            "Fee transfer failed"
+        );
+    }
+
+    // Deploy minimal proxy
+    token = Clones.clone(tokenImplementation);
+
+    // Initialize token state
+    IBondingToken(token).initialize(
+        name,
+        symbol,
+        metadataURI,
+        msg.sender
+    );
+
+    // Register in factory
+    tokens.push(token);
+    isToken[token] = true;
+
+    emit TokenCreated(token, msg.sender, name, symbol);
+}</pre>
+
+<h3>Token Contract</h3>
+
+<p>Each Token contract manages its bonding curve independently. The contract holds ETH reserves collected from purchases and releases them on sales. The price calculation follows the quadratic bonding curve formula, ensuring smooth price discovery as supply changes.</p>
+
+<p>Tokens exist in one of two states: bonding or graduated. In the bonding state, trading occurs through the curve. Upon reaching the graduation threshold, the token transitions to graduated state, curve trading halts, and liquidity migrates to Uniswap V3.</p>
+
+<h3>Treasury Contract</h3>
+
+<p>The Treasury aggregates fees from all protocol activity. It executes periodic conversions of collected ETH to NOX through Uniswap, then allocates the NOX according to protocol parameters: a portion burned permanently, a portion paired with ETH and added to liquidity, and a portion distributed to stakers.</p>
+
+</article>
+
+</div>
+
+<!-- CURVES -->
+<div id="curves" class="panel">
+
+<article>
+<header>
+<h2>Bonding Curve Mathematics</h2>
+<p>The pricing function that ensures fair distribution.</p>
+</header>
+
+<p>The protocol employs a quadratic bonding curve where price increases proportionally to the square of the current supply. This curve shape provides gentle initial pricing that accelerates as supply grows, rewarding early participants while maintaining accessibility.</p>
+
+<h4>Price Function</h4>
+
+<p>Given current supply S, the instantaneous price P is:</p>
+
+<div class="equation">P(S) = k × S²</div>
+
+<p>Where k is the curve coefficient determining price sensitivity. The protocol uses k = 10⁻¹⁵, calibrated so that graduation occurs at approximately 800 million tokens with a $69,420 market cap.</p>
+
+<h4>Purchase Cost Calculation</h4>
+
+<p>Buying tokens requires integrating the price function over the purchase quantity. For a purchase of quantity Q starting from supply S:</p>
+
+<div class="equation">Cost = ∫ k × s² ds = k/3 × [(S+Q)³ - S³]</div>
+
+<p>This integral gives the exact ETH required to mint Q tokens. The contract computes this on-chain using integer arithmetic with appropriate scaling to prevent overflow.</p>
+
+<h4>Sale Return Calculation</h4>
+
+<p>Selling tokens follows the inverse process. For selling quantity Q from supply S:</p>
+
+<div class="equation">Return = k/3 × [S³ - (S-Q)³]</div>
+
+<p>The seller receives this ETH amount minus the protocol fee. Because purchase and sale use the same curve, there is no spread beyond the explicit fee. The protocol guarantees liquidity at the curve price for any trade size up to the current supply.</p>
+
+<h4>Curve Visualization</h4>
+
+<div class="diagram-container">
+<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+<line x1="60" y1="250" x2="560" y2="250" stroke="#333" stroke-width="2"/>
+<line x1="60" y1="250" x2="60" y2="30" stroke="#333" stroke-width="2"/>
+<text x="310" y="285" text-anchor="middle" font-family="Inter" font-size="12">Supply (tokens)</text>
+<text x="25" y="140" text-anchor="middle" font-family="Inter" font-size="12" transform="rotate(-90, 25, 140)">Price (ETH)</text>
+<path d="M 60 250 Q 200 245, 300 220 Q 400 180, 450 100 Q 480 50, 520 30" fill="none" stroke="#66FFFF" stroke-width="3"/>
+<line x1="450" y1="250" x2="450" y2="100" stroke="#999" stroke-width="1" stroke-dasharray="5,5"/>
+<line x1="60" y1="100" x2="450" y2="100" stroke="#999" stroke-width="1" stroke-dasharray="5,5"/>
+<circle cx="450" cy="100" r="6" fill="#66FFFF"/>
+<text x="450" y="270" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#666">800M</text>
+<text x="45" y="104" text-anchor="end" font-family="JetBrains Mono" font-size="10" fill="#666">$0.00008</text>
+<text x="470" y="90" font-family="Inter" font-size="11" fill="#333">Graduation</text>
+<text x="520" y="45" font-family="JetBrains Mono" font-size="10" fill="#666">$69,420 mcap</text>
+</svg>
+</div>
+
+<h4>Numerical Example</h4>
+
+<table>
+<thead><tr><th>Supply</th><th>Price per Token</th><th>Market Cap</th><th>Reserve</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>$0.00000000</td><td>$0</td><td>0 ETH</td></tr>
+<tr><td>100,000,000</td><td>$0.00000001</td><td>$1</td><td>0.0001 ETH</td></tr>
+<tr><td>200,000,000</td><td>$0.00000004</td><td>$8</td><td>0.0009 ETH</td></tr>
+<tr><td>400,000,000</td><td>$0.00000016</td><td>$64</td><td>0.007 ETH</td></tr>
+<tr><td>600,000,000</td><td>$0.00000036</td><td>$216</td><td>0.024 ETH</td></tr>
+<tr><td>800,000,000</td><td>$0.00000064</td><td>$512</td><td>0.057 ETH</td></tr>
+<tr><td>Graduation</td><td>~$0.0000868</td><td>$69,420</td><td>~23 ETH</td></tr>
+</tbody>
+</table>
+
+<p>At graduation, the contract holds approximately 23 ETH in reserves from cumulative purchases along the curve. This reserve forms the initial liquidity for the Uniswap pool.</p>
+
+</article>
+
+<article>
+<header>
+<h2>Graduation Process</h2>
+<p>Seamless transition from bonding curve to decentralized exchange.</p>
+</header>
+
+<p>When a token's market capitalization reaches $69,420, the graduation process initiates automatically. The contract locks all trading on the bonding curve and begins the migration sequence.</p>
+
+<div class="diagram-container">
+<svg viewBox="0 0 700 120" xmlns="http://www.w3.org/2000/svg">
+<rect x="40" y="40" width="120" height="50" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="100" y="70" text-anchor="middle" font-family="Inter" font-size="12" font-weight="500">Created</text>
+<rect x="220" y="40" width="120" height="50" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="280" y="70" text-anchor="middle" font-family="Inter" font-size="12" font-weight="500">Bonding</text>
+<rect x="400" y="40" width="120" height="50" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="460" y="70" text-anchor="middle" font-family="Inter" font-size="12" font-weight="500">Graduating</text>
+<rect x="580" y="40" width="120" height="50" fill="#111" stroke="#111"/>
+<text x="640" y="70" text-anchor="middle" font-family="Inter" font-size="12" font-weight="500" fill="#fff">Graduated</text>
+<line x1="160" y1="65" x2="218" y2="65" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="340" y1="65" x2="398" y2="65" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="520" y1="65" x2="578" y2="65" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="190" y="55" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#666">first buy</text>
+<text x="370" y="55" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#666">mcap ≥ $69,420</text>
+<text x="550" y="55" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#666">LP created</text>
+</svg>
+</div>
+
+<p class="path">BondingToken.sol:graduate()</p>
+<pre>function graduate() internal {
+    require(state == State.Bonding, "Not in bonding state");
+    require(getMarketCap() >= GRADUATION_THRESHOLD, "Below threshold");
+
+    state = State.Graduating;
+
+    // Calculate liquidity amounts
+    uint256 ethLiquidity = address(this).balance;
+    uint256 tokenLiquidity = _calculateGraduationTokens();
+
+    // Mint graduation tokens
+    _mint(address(this), tokenLiquidity);
+
+    // Mint fee to treasury (0.5% of supply)
+    uint256 graduationFee = totalSupply() * 50 / 10000;
+    _mint(treasury, graduationFee);
+
+    // Create Uniswap V3 pool
+    address pool = _createUniswapPool(ethLiquidity, tokenLiquidity);
+
+    // Lock liquidity (1 year minimum)
+    _lockLiquidity(pool, 365 days);
+
+    state = State.Graduated;
+    uniswapPool = pool;
+
+    emit Graduated(pool, ethLiquidity, tokenLiquidity);
+}</pre>
+
+<p>Graduated tokens deploy to Uniswap V3 with full-range liquidity. The protocol creates a new pool with 1% fee tier, deposits all accumulated ETH reserves paired with newly minted tokens, and locks the LP position for one year minimum. This prevents rug pulls where creators might remove liquidity after graduation.</p>
+
+</article>
+
+</div>
+
+<!-- MULTI-CHAIN -->
+<div id="multichain" class="panel">
+
+<article>
+<header>
+<h2>Multi-Chain Deployment</h2>
+<p>Extending the NOX ecosystem beyond Ethereum to Cellframe Network.</p>
+</header>
+
+<p>The NOX ecosystem operates across two complementary blockchain networks: Ethereum mainnet for established DeFi integration and the Cellframe Network for quantum-resistant infrastructure. This dual-chain architecture provides users with deployment flexibility while maintaining unified liquidity through the bridge protocol.</p>
+
+<p>Cellframe represents a strategic partnership that extends NOX capabilities into quantum-safe territory. As quantum computing advances threaten classical cryptographic systems, Cellframe's lattice-based cryptography provides long-term security guarantees. Tokens launched through NOX can exist natively on both chains, capturing users across both ecosystems.</p>
+
+<div class="stats">
+<div><strong>2</strong><span>Networks</span></div>
+<div><strong>ERC-20</strong><span>+ CF20</span></div>
+<div><strong>Unified</strong><span>Liquidity</span></div>
+<div><strong>Q-Safe</strong><span>Option</span></div>
+</div>
+
+<h3>Network Comparison</h3>
+
+<table>
+<thead><tr><th>Property</th><th>Ethereum Mainnet</th><th>Cellframe Network</th></tr></thead>
+<tbody>
+<tr><td>Token Standard</td><td>ERC-20</td><td>CF20</td></tr>
+<tr><td>Cryptography</td><td>ECDSA (secp256k1)</td><td>Lattice + Hash (Post-Quantum)</td></tr>
+<tr><td>Consensus</td><td>Proof of Stake</td><td>Two-Layer PoS + PoA</td></tr>
+<tr><td>Block Time</td><td>~12 seconds</td><td>~10 seconds</td></tr>
+<tr><td>Throughput</td><td>~15-30 TPS</td><td>1000+ TPS (sharded)</td></tr>
+<tr><td>Privacy</td><td>Pseudonymous</td><td>Ring Signatures Available</td></tr>
+<tr><td>Smart Contracts</td><td>EVM / Solidity</td><td>CellFrame VM</td></tr>
+<tr><td>DEX Integration</td><td>Uniswap V3</td><td>Native DEX</td></tr>
+</tbody>
+</table>
+
+<h3>MultiChainFactory Architecture</h3>
+
+<p>The MultiChainFactory contract enables token deployment across deployment strategies. Creators select their preferred approach based on project requirements, target audience, and security priorities.</p>
+
+<div class="diagram-container">
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arrowT" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+</marker>
+</defs>
+<rect x="300" y="20" width="200" height="60" fill="#111" stroke="#111"/>
+<text x="400" y="45" text-anchor="middle" font-family="Inter" font-size="13" font-weight="600" fill="#fff">MultiChainFactory</text>
+<text x="400" y="65" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#888">Unified Deployment Interface</text>
+<rect x="60" y="120" width="160" height="70" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="140" y="145" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600">createTokenEthereum</text>
+<text x="140" y="165" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#666">ERC-20 Only</text>
+<text x="140" y="180" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#666">Uniswap Graduation</text>
+<rect x="320" y="120" width="160" height="70" fill="#66FFFF" stroke="#333" stroke-width="2"/>
+<text x="400" y="145" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600">createTokenDualChain</text>
+<text x="400" y="165" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#333">ERC-20 + CF20</text>
+<text x="400" y="180" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#333">Bridge Enabled</text>
+<rect x="580" y="120" width="160" height="70" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="660" y="145" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600">createTokenCellframe</text>
+<text x="660" y="165" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#666">CF20 Only</text>
+<text x="660" y="180" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#666">Quantum-Safe</text>
+<line x1="340" y1="80" x2="170" y2="118" stroke="#333" stroke-width="1.5" marker-end="url(#arrowT)"/>
+<line x1="400" y1="80" x2="400" y2="118" stroke="#333" stroke-width="1.5" marker-end="url(#arrowT)"/>
+<line x1="460" y1="80" x2="630" y2="118" stroke="#333" stroke-width="1.5" marker-end="url(#arrowT)"/>
+<rect x="170" y="230" width="160" height="50" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="250" y="255" text-anchor="middle" font-family="Inter" font-size="11" font-weight="500">BondingToken</text>
+<text x="250" y="270" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#666">buy() / sell() / graduate()</text>
+<rect x="470" y="230" width="160" height="50" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="550" y="255" text-anchor="middle" font-family="Inter" font-size="11" font-weight="500">CellframeBridge</text>
+<text x="550" y="270" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#666">bridge() / confirm()</text>
+<line x1="140" y1="190" x2="140" y2="210" stroke="#333" stroke-width="1.5"/>
+<line x1="140" y1="210" x2="220" y2="210" stroke="#333" stroke-width="1.5"/>
+<line x1="220" y1="210" x2="220" y2="228" stroke="#333" stroke-width="1.5" marker-end="url(#arrowT)"/>
+<line x1="400" y1="190" x2="400" y2="210" stroke="#333" stroke-width="1.5"/>
+<line x1="280" y1="210" x2="520" y2="210" stroke="#333" stroke-width="1.5"/>
+<line x1="280" y1="210" x2="280" y2="228" stroke="#333" stroke-width="1.5" marker-end="url(#arrowT)"/>
+<line x1="520" y1="210" x2="520" y2="228" stroke="#333" stroke-width="1.5" marker-end="url(#arrowT)"/>
+<line x1="660" y1="190" x2="660" y2="210" stroke="#333" stroke-width="1.5"/>
+<line x1="660" y1="210" x2="580" y2="210" stroke="#333" stroke-width="1.5"/>
+<line x1="580" y1="210" x2="580" y2="228" stroke="#333" stroke-width="1.5" marker-end="url(#arrowT)"/>
+<rect x="60" y="320" width="280" height="45" fill="#111" stroke="#111"/>
+<text x="200" y="340" text-anchor="middle" font-family="Inter" font-size="11" font-weight="500" fill="#fff">Ethereum Mainnet</text>
+<text x="200" y="355" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#888">Uniswap V3 · DeFi Integration</text>
+<rect x="460" y="320" width="280" height="45" fill="#111" stroke="#111"/>
+<text x="600" y="340" text-anchor="middle" font-family="Inter" font-size="11" font-weight="500" fill="#fff">Cellframe Network</text>
+<text x="600" y="355" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#888">Quantum-Safe · Native DEX</text>
+</svg>
+</div>
+
+<h3>Deployment Strategies</h3>
+
+<div class="cols">
+<div>
+<h4>Ethereum Only</h4>
+<p>Standard deployment path for maximum EVM ecosystem compatibility. Tokens launch with bonding curves on Ethereum mainnet and graduate to Uniswap V3 upon reaching the market cap threshold. Full integration with existing wallets, DEX aggregators, and DeFi protocols.</p>
+</div>
+<div>
+<h4>Cellframe Only</h4>
+<p>Quantum-resistant deployment for projects prioritizing long-term cryptographic security. CF20 tokens operate natively on Cellframe Network with access to its sharded architecture and privacy features. Ideal for security-focused projects and Cellframe ecosystem participants.</p>
+</div>
+</div>
+
+<div class="cols">
+<div>
+<h4>Dual-Chain</h4>
+<p>Simultaneous deployment across both networks with bridge integration from launch. Tokens exist natively on each chain with synchronized total supply. Users trade on their preferred network while arbitrageurs ensure price consistency across chains.</p>
+</div>
+<div>
+<h4>Post-Launch Bridge</h4>
+<p>Ethereum-only tokens can bridge to Cellframe after initial deployment. Project evolution may warrant multi-chain presence as community grows. The bridge protocol enables expansion without requiring migration or token swaps.</p>
+</div>
+</div>
+
+<h3>Cellframe Partnership</h3>
+
+<p>The Cellframe Network integration represents a strategic alliance between privacy-focused ecosystems. Cellframe's unique technical capabilities complement NOX Launchpad's fair distribution mechanisms:</p>
+
+<table>
+<thead><tr><th>Capability</th><th>Benefit for NOX</th></tr></thead>
+<tbody>
+<tr><td>Post-Quantum Cryptography</td><td>Future-proof token storage and transactions</td></tr>
+<tr><td>Sharded Architecture</td><td>High throughput for active trading</td></tr>
+<tr><td>Ring Signatures</td><td>Enhanced privacy for token transfers</td></tr>
+<tr><td>Low Fees</td><td>Accessible micro-cap token trading</td></tr>
+<tr><td>Native DEX</td><td>Immediate liquidity on graduation</td></tr>
+</tbody>
+</table>
+
+</article>
+
+</div>
+
+<!-- BRIDGE -->
+<div id="bridge" class="panel">
+
+<article>
+<header>
+<h2>Cross-Chain Bridge Protocol</h2>
+<p>Secure asset transfer between Ethereum and Cellframe networks.</p>
+</header>
+
+<p>The bridge protocol enables bidirectional token transfers between Ethereum mainnet and Cellframe Network. Two implementations serve different needs: the general CellframeBridge handles any registered ERC-20 token, while the dedicated NOXBridge provides optimized parameters specifically for NOX token transfers.</p>
+
+<p>Bridge security relies on a decentralized validator network. Validators observe transactions on both chains and submit cryptographic attestations. Transfers complete only when the required threshold of validator signatures accumulates, preventing single points of failure or compromise.</p>
+
+<div class="stats">
+<div><strong>3</strong><span>Min Signatures</span></div>
+<div><strong>0.25%</strong><span>NOX Fee</span></div>
+<div><strong>0.30%</strong><span>General Fee</span></div>
+<div><strong>Both</strong><span>Directions</span></div>
+</div>
+
+<h3>NOXBridge Specification</h3>
+
+<p>The dedicated NOX bridge provides specialized infrastructure for bridging the ecosystem's native token. Purpose-built parameters balance security, usability, and liquidity management.</p>
+
+<table>
+<thead><tr><th>Parameter</th><th>Value</th><th>Rationale</th></tr></thead>
+<tbody>
+<tr><td>Minimum Amount</td><td>100 NOX</td><td>Prevent dust spam</td></tr>
+<tr><td>Maximum Amount</td><td>10,000,000 NOX</td><td>Limit single-tx risk</td></tr>
+<tr><td>Bridge Fee</td><td>0.25% (25 BPS)</td><td>Validator compensation</td></tr>
+<tr><td>Daily Limit</td><td>1,000,000 NOX</td><td>Rate limit attacks</td></tr>
+<tr><td>Confirmations</td><td>3 validators</td><td>Multi-sig security</td></tr>
+</tbody>
+</table>
+
+<h3>Bridge Flow Diagram</h3>
+
+<div class="diagram-container">
+<svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg">
+<rect x="40" y="30" width="180" height="80" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="130" y="60" text-anchor="middle" font-family="Inter" font-size="13" font-weight="600">Ethereum</text>
+<text x="130" y="80" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#666">NOX Token</text>
+<text x="130" y="95" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#666">0x0a26c80B...</text>
+<rect x="580" y="30" width="180" height="80" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="670" y="60" text-anchor="middle" font-family="Inter" font-size="13" font-weight="600">Cellframe</text>
+<text x="670" y="80" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#666">CF20_NOX Token</text>
+<text x="670" y="95" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#666">Native Asset</text>
+<rect x="290" y="40" width="220" height="60" fill="#111" stroke="#111"/>
+<text x="400" y="65" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600" fill="#fff">Validator Network</text>
+<text x="400" y="82" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#888">3-of-N Multi-Signature</text>
+<path d="M 220 55 L 288 65" stroke="#333" stroke-width="1.5" marker-end="url(#arrowT)"/>
+<path d="M 512 65 L 578 55" stroke="#333" stroke-width="1.5" marker-end="url(#arrowT)"/>
+<path d="M 578 85 L 512 75" stroke="#999" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowT)"/>
+<path d="M 288 75 L 220 85" stroke="#999" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowT)"/>
+<text x="250" y="45" font-family="Inter" font-size="9" fill="#666">Lock</text>
+<text x="540" y="45" font-family="Inter" font-size="9" fill="#666">Mint</text>
+<text x="250" y="105" font-family="Inter" font-size="9" fill="#999">Release</text>
+<text x="540" y="105" font-family="Inter" font-size="9" fill="#999">Burn</text>
+<rect x="150" y="150" width="500" height="45" fill="#66FFFF" stroke="#333" stroke-width="2"/>
+<text x="400" y="172" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600">NOXBridge Contract</text>
+<text x="400" y="187" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#333">bridgeToCell() · bridgeFromCell() · confirmBridge()</text>
+<rect x="80" y="220" width="200" height="40" fill="#111" stroke="#111"/>
+<text x="180" y="242" text-anchor="middle" font-family="Inter" font-size="10" font-weight="500" fill="#fff">Liquidity Pool</text>
+<text x="180" y="254" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#888">NOX Reserves</text>
+<rect x="300" y="220" width="200" height="40" fill="#111" stroke="#111"/>
+<text x="400" y="242" text-anchor="middle" font-family="Inter" font-size="10" font-weight="500" fill="#fff">Fee Collector</text>
+<text x="400" y="254" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#888">0.25% per transfer</text>
+<rect x="520" y="220" width="200" height="40" fill="#111" stroke="#111"/>
+<text x="620" y="242" text-anchor="middle" font-family="Inter" font-size="10" font-weight="500" fill="#fff">Daily Limits</text>
+<text x="620" y="254" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#888">1M NOX / 24h</text>
+</svg>
+</div>
+
+<h3>Transfer Process: Ethereum → Cellframe</h3>
+
+<p>Users initiate outbound transfers by calling bridgeToCell() with amount and Cellframe recipient address. The contract validates parameters, deducts fees, locks tokens, and emits an event for validator monitoring.</p>
+
+<p class="path">NOXBridge.sol:bridgeToCell()</p>
+<pre>function bridgeToCell(
+    uint256 amount,
+    bytes32 cfRecipient
+) external nonReentrant whenNotPaused returns (bytes32 txId) {
+    // Validate bounds
+    if (amount < MIN_BRIDGE_AMOUNT) revert BelowMinimum();
+    if (amount > MAX_BRIDGE_AMOUNT) revert AboveMaximum();
+    _checkDailyLimit(amount);
+
+    // Calculate and collect fee
+    uint256 fee = (amount * BRIDGE_FEE_BPS) / BPS_DENOMINATOR;
+    uint256 netAmount = amount - fee;
+
+    // Lock tokens in bridge
+    IERC20 nox = IERC20(NOX_TOKEN);
+    if (!nox.transferFrom(msg.sender, address(this), amount))
+        revert TransferFailed();
+
+    // Transfer fee to collector
+    if (fee > 0) {
+        if (!nox.transfer(feeCollector, fee)) revert TransferFailed();
+        totalFeesCollected += fee;
+    }
+
+    // Generate transaction ID
+    txId = keccak256(abi.encodePacked(
+        msg.sender, cfRecipient, amount, block.timestamp, _txCount++
+    ));
+
+    // Record transaction
+    transactions[txId] = BridgeTransaction({
+        txId: txId,
+        ethAddress: msg.sender,
+        cfAddress: cfRecipient,
+        amount: amount,
+        fee: fee,
+        netAmount: netAmount,
+        timestamp: block.timestamp,
+        confirmations: 0,
+        direction: BridgeDirection.ETH_TO_CF,
+        status: BridgeStatus.PENDING,
+        cfTxHash: bytes32(0)
+    });
+
+    emit BridgeToCell(txId, msg.sender, cfRecipient, amount, fee);
+}</pre>
+
+<h3>Validator Confirmation</h3>
+
+<p>Validators observe bridge events and verify transactions on both chains. Each validator submits confirmation with the destination chain transaction hash. When three validators confirm, the transaction completes.</p>
+
+<pre>function confirmBridgeToCell(
+    bytes32 txId,
+    bytes32 cfTxHash
+) external onlyRole(VALIDATOR_ROLE) {
+    BridgeTransaction storage tx_ = transactions[txId];
+    if (tx_.txId == bytes32(0)) revert TransactionNotFound();
+    if (tx_.status != BridgeStatus.PENDING &&
+        tx_.status != BridgeStatus.CONFIRMING) revert InvalidStatus();
+    if (validatorConfirmations[txId][msg.sender]) revert AlreadyConfirmed();
+
+    validatorConfirmations[txId][msg.sender] = true;
+    tx_.confirmations++;
+    tx_.status = BridgeStatus.CONFIRMING;
+
+    emit BridgeConfirmed(txId, msg.sender, tx_.confirmations);
+
+    if (tx_.confirmations >= MIN_CONFIRMATIONS) {
+        tx_.status = BridgeStatus.COMPLETED;
+        tx_.cfTxHash = cfTxHash;
+        _removePending(txId);
+        emit BridgeCompleted(txId, cfTxHash);
+    }
+}</pre>
+
+<h3>Transfer Process: Cellframe → Ethereum</h3>
+
+<p>Inbound transfers reverse the flow. Users burn CF20_NOX on Cellframe, validators observe and sign attestations, and any party can submit signatures to the Ethereum contract to release locked NOX.</p>
+
+<pre>function bridgeFromCell(
+    bytes32 cfTxHash,
+    bytes32 cfSender,
+    address ethRecipient,
+    uint256 amount,
+    bytes[] calldata signatures
+) external nonReentrant whenNotPaused {
+    if (ethRecipient == address(0)) revert ZeroAddress();
+    if (amount == 0) revert ZeroAmount();
+
+    bytes32 txId = keccak256(abi.encodePacked(
+        cfTxHash, cfSender, ethRecipient, amount
+    ));
+
+    BridgeTransaction storage tx_ = transactions[txId];
+    if (tx_.status == BridgeStatus.COMPLETED) revert AlreadyCompleted();
+
+    // Create record if new
+    if (tx_.txId == bytes32(0)) {
+        tx_.txId = txId;
+        tx_.ethAddress = ethRecipient;
+        tx_.cfAddress = cfSender;
+        tx_.amount = amount;
+        tx_.netAmount = amount;
+        tx_.timestamp = block.timestamp;
+        tx_.direction = BridgeDirection.CF_TO_ETH;
+        tx_.status = BridgeStatus.CONFIRMING;
+        tx_.cfTxHash = cfTxHash;
+    }
+
+    // Process validator signatures
+    for (uint256 i = 0; i < signatures.length; i++) {
+        address signer = _recoverSigner(
+            txId, cfTxHash, ethRecipient, amount, signatures[i]
+        );
+        if (!hasRole(VALIDATOR_ROLE, signer)) continue;
+        if (validatorConfirmations[txId][signer]) continue;
+
+        validatorConfirmations[txId][signer] = true;
+        tx_.confirmations++;
+        emit BridgeConfirmed(txId, signer, tx_.confirmations);
+    }
+
+    // Release if threshold met
+    if (tx_.confirmations >= MIN_CONFIRMATIONS) {
+        IERC20 nox = IERC20(NOX_TOKEN);
+        if (nox.balanceOf(address(this)) < amount)
+            revert InsufficientLiquidity();
+
+        tx_.status = BridgeStatus.COMPLETED;
+        _removePending(txId);
+
+        if (!nox.transfer(ethRecipient, amount)) revert TransferFailed();
+
+        totalBridgedToEth += amount;
+        emit BridgeToEth(txId, cfSender, ethRecipient, amount);
+        emit BridgeCompleted(txId, cfTxHash);
+    }
+}</pre>
+
+<h3>Security Architecture</h3>
+
+<table>
+<thead><tr><th>Layer</th><th>Implementation</th><th>Protection</th></tr></thead>
+<tbody>
+<tr><td>Consensus</td><td>3-of-N multi-signature</td><td>Validator collusion requires majority</td></tr>
+<tr><td>Rate Limiting</td><td>1M NOX daily cap</td><td>Limits attack surface per day</td></tr>
+<tr><td>Amount Bounds</td><td>100 - 10M per tx</td><td>Prevents dust and whale attacks</td></tr>
+<tr><td>Replay Prevention</td><td>Unique txId derivation</td><td>Each transfer one-time only</td></tr>
+<tr><td>Reentrancy</td><td>OpenZeppelin guard</td><td>Callback exploitation</td></tr>
+<tr><td>Emergency</td><td>Pausable contract</td><td>Active exploit response</td></tr>
+</tbody>
+</table>
+
+<h3>CellframeBridge: General Token Bridge</h3>
+
+<p>The general CellframeBridge handles any ERC-20 token registered by administrators. It operates similarly to the NOXBridge but with different fee parameters and without NOX-specific daily limits.</p>
+
+<table>
+<thead><tr><th>Parameter</th><th>NOXBridge</th><th>CellframeBridge</th></tr></thead>
+<tbody>
+<tr><td>Fee</td><td>0.25% (25 BPS)</td><td>0.30% (30 BPS)</td></tr>
+<tr><td>Min Signatures</td><td>3</td><td>3</td></tr>
+<tr><td>Daily Limit</td><td>1M NOX</td><td>Per-token configurable</td></tr>
+<tr><td>Supported Tokens</td><td>NOX only</td><td>Any registered ERC-20</td></tr>
+<tr><td>Liquidity</td><td>Dedicated pool</td><td>Per-token pools</td></tr>
+</tbody>
+</table>
+
+</article>
+
+</div>
+
+<!-- ECONOMICS -->
+<div id="economics" class="panel">
+
+<article>
+<header>
+<h2>Protocol Economics</h2>
+<p>How value flows through the system.</p>
+</header>
+
+<p>The NOX Launchpad generates revenue through three mechanisms: token creation fees, trading fees on bonding curve transactions, and graduation fees when tokens migrate to Uniswap. All fees ultimately flow into the NOX ecosystem through buybacks and liquidity provisioning.</p>
+
+<div class="stats">
+<div><strong>10,000</strong><span>NOX Creation Fee</span></div>
+<div><strong>1%</strong><span>Trading Fee</span></div>
+<div><strong>0.5%</strong><span>Graduation Fee</span></div>
+<div><strong>40/40/20</strong><span>Fee Split</span></div>
+</div>
+
+<h3>Fee Structure</h3>
+
+<h4>Creation Fee</h4>
+
+<p>Deploying a new token requires payment of 10,000 NOX (approximately $50-100 at current prices). This fee serves dual purposes: funding protocol development and filtering low-quality deployments. The fee transfers directly to the Treasury upon token creation.</p>
+
+<p>ZeroState Pass NFT holders receive a complete fee waiver. Holding any quantity of the NFT grants unlimited free token deployments. This creates genuine utility for the NFT beyond staking boosts while rewarding early ecosystem participants.</p>
+
+<h4>Trading Fee</h4>
+
+<p>Each buy or sell transaction on the bonding curve incurs a 1% fee calculated on the transaction value. For purchases, the fee applies to the ETH spent. For sales, the fee reduces the ETH returned. The fee collects in ETH and accumulates in the Treasury.</p>
+
+<p>NFT holders receive a reduced 0.5% trading fee, providing ongoing savings for active traders who hold ecosystem NFTs. The fee reduction applies automatically when the trading wallet holds any ZeroState Pass NFT.</p>
+
+<h4>Graduation Fee</h4>
+
+<p>Upon graduation, 0.5% of the token supply mints to the Treasury as a graduation fee. This one-time fee compensates the protocol for facilitating the transition to decentralized exchange trading. The Treasury may hold, sell, or burn these tokens according to governance decisions.</p>
+
+<h3>Treasury Operations</h3>
+
+<div class="diagram-container">
+<svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+<rect x="250" y="20" width="200" height="60" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="350" y="45" text-anchor="middle" font-family="Inter" font-size="13" font-weight="600">Fee Collection</text>
+<text x="350" y="65" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#666">ETH + NOX</text>
+<line x1="350" y1="80" x2="350" y2="110" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="250" y="120" width="200" height="50" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="350" y="150" text-anchor="middle" font-family="Inter" font-size="12" font-weight="500">Convert ETH → NOX</text>
+<line x1="350" y1="170" x2="350" y2="200" stroke="#333" stroke-width="1.5"/>
+<line x1="150" y1="200" x2="550" y2="200" stroke="#333" stroke-width="1.5"/>
+<line x1="150" y1="200" x2="150" y2="220" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="350" y1="200" x2="350" y2="220" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="550" y1="200" x2="550" y2="220" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="80" y="230" width="140" height="45" fill="#111" stroke="#111"/>
+<text x="150" y="250" text-anchor="middle" font-family="Inter" font-size="11" font-weight="500" fill="#fff">40% BURN</text>
+<text x="150" y="266" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#888">→ 0xdead</text>
+<rect x="280" y="230" width="140" height="45" fill="#111" stroke="#111"/>
+<text x="350" y="250" text-anchor="middle" font-family="Inter" font-size="11" font-weight="500" fill="#fff">40% LP</text>
+<text x="350" y="266" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#888">NOX + ETH</text>
+<rect x="480" y="230" width="140" height="45" fill="#111" stroke="#111"/>
+<text x="550" y="250" text-anchor="middle" font-family="Inter" font-size="11" font-weight="500" fill="#fff">20% STAKERS</text>
+<text x="550" y="266" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#888">rewards</text>
+</svg>
+</div>
+
+<p>The Treasury executes weekly operations to convert accumulated fees into protocol value. ETH converts to NOX through Uniswap, with slippage protection and TWAP oracles preventing manipulation. The converted NOX then splits according to fixed ratios.</p>
+
+<table>
+<thead><tr><th>Allocation</th><th>Percentage</th><th>Mechanism</th><th>Effect</th></tr></thead>
+<tbody>
+<tr><td>Burn</td><td>40%</td><td>Transfer to 0xdead</td><td>Permanent supply reduction</td></tr>
+<tr><td>Liquidity</td><td>40%</td><td>Add to NOX/ETH pool</td><td>Deeper trading liquidity</td></tr>
+<tr><td>Stakers</td><td>20%</td><td>Distribute to staking contract</td><td>Reward token holders</td></tr>
+</tbody>
+</table>
+
+<h3>NFT Holder Benefits</h3>
+
+<p>ZeroState Pass NFT provides tangible, ongoing value within the Launchpad ecosystem:</p>
+
+<table>
+<thead><tr><th>Benefit</th><th>Standard User</th><th>NFT Holder</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Creation Fee</td><td>10,000 NOX</td><td>FREE</td><td>Unlimited launches</td></tr>
+<tr><td>Trading Fee</td><td>1.0%</td><td>0.5%</td><td>50% savings</td></tr>
+<tr><td>Early Access</td><td>None</td><td>1 hour before public</td><td>First-mover advantage</td></tr>
+<tr><td>Featured Slots</td><td>50,000 NOX/week</td><td>1 free slot/month</td><td>~600,000 NOX/year</td></tr>
+<tr><td>Revenue Share</td><td>None</td><td>5% of protocol fees</td><td>Variable</td></tr>
+</tbody>
+</table>
+
+</article>
+
+<article>
+<header>
+<h2>Revenue Projections</h2>
+<p>Estimated protocol economics at various adoption levels.</p>
+</header>
+
+<h4>Conservative Scenario (Month 1-3)</h4>
+
+<div class="stats">
+<div><strong>10</strong><span>Daily Launches</span></div>
+<div><strong>$50K</strong><span>Daily Volume</span></div>
+<div><strong>$650</strong><span>Daily Revenue</span></div>
+<div><strong>$19.5K</strong><span>Monthly Revenue</span></div>
+</div>
+
+<h4>Growth Scenario (Month 6-12)</h4>
+
+<div class="stats">
+<div><strong>50</strong><span>Daily Launches</span></div>
+<div><strong>$500K</strong><span>Daily Volume</span></div>
+<div><strong>$5.5K</strong><span>Daily Revenue</span></div>
+<div><strong>$165K</strong><span>Monthly Revenue</span></div>
+</div>
+
+<h4>Scale Scenario (Year 2+)</h4>
+
+<div class="stats">
+<div><strong>200</strong><span>Daily Launches</span></div>
+<div><strong>$2M</strong><span>Daily Volume</span></div>
+<div><strong>$22K</strong><span>Daily Revenue</span></div>
+<div><strong>$660K</strong><span>Monthly Revenue</span></div>
+</div>
+
+</article>
+
+</div>
+
+<!-- CAPSULES -->
+<div id="capsules" class="panel">
+
+<article>
+<header>
+<h2>The Problem With App Stores</h2>
+<p>Centralized distribution creates dependencies, censorship vectors, and value extraction.</p>
+</header>
+
+<p>Modern application distribution relies on centralized gatekeepers. Apple and Google control mobile software access for billions of users. Microsoft and Apple control desktop distribution. These entities decide what software users can install, extract significant revenue shares, and maintain permanent surveillance over user behavior.</p>
+
+<p>The centralization of software distribution creates systemic risks. Platform policy changes can instantly destroy businesses built on their ecosystems. Controversial applications face removal without recourse. Geographic restrictions fragment the global software market. Privacy-focused applications face particular hostility from platforms whose business models depend on data collection.</p>
+
+<div class="cols">
+<div>
+<h4>Censorship Risk</h4>
+<p>Centralized app stores routinely remove applications for policy violations, political content, or competitive reasons. Developers have no guaranteed distribution channel. Users cannot access software that platforms deem inappropriate. The global software ecosystem fragments along political and corporate boundaries.</p>
+</div>
+<div>
+<h4>Economic Extraction</h4>
+<p>Platform fees consume 15-30% of application revenue. Payment processing adds additional costs. Subscription requirements force recurring revenue models. Small developers cannot negotiate better terms. The platform captures value that should flow to creators and users.</p>
+</div>
+</div>
+
+<h3>Decentralized Distribution</h3>
+
+<p>NONOS requires a distribution model aligned with its privacy-first principles. Applications cannot depend on centralized servers for discovery or download. Users must verify software authenticity without trusting third parties. The economic relationship between developers and users should be direct, without intermediary extraction.</p>
+
+<p>The Capsule Marketplace implements these requirements through cryptographic verification, decentralized storage, and token-embedded economics. Applications distribute through IPFS, making them resistant to takedowns and censorship. Ethereum smart contracts provide immutable registries of application metadata and developer credentials. Optional token integration enables new economic models impossible in traditional app stores.</p>
+
+<h3>System Architecture</h3>
+
+<div class="diagram-container">
+<svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+<rect x="270" y="20" width="160" height="50" fill="#111" stroke="#111"/>
+<text x="350" y="45" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600" fill="#fff">Ethereum</text>
+<text x="350" y="60" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#888">Registry + Tokens</text>
+<rect x="100" y="100" width="140" height="55" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="170" y="125" text-anchor="middle" font-family="Inter" font-size="11" font-weight="600">CapsuleRegistry</text>
+<text x="170" y="142" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#666">metadata + CIDs</text>
+<rect x="280" y="100" width="140" height="55" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="350" y="125" text-anchor="middle" font-family="Inter" font-size="11" font-weight="600">CapsuleToken</text>
+<text x="350" y="142" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#666">bonding curve</text>
+<rect x="460" y="100" width="140" height="55" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="530" y="125" text-anchor="middle" font-family="Inter" font-size="11" font-weight="600">DeveloperRegistry</text>
+<text x="530" y="142" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#666">keys + identity</text>
+<line x1="310" y1="70" x2="200" y2="98" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="350" y1="70" x2="350" y2="98" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="390" y1="70" x2="500" y2="98" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="220" y="185" width="260" height="45" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="350" y="210" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600">IPFS Storage Layer</text>
+<text x="350" y="222" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#666">capsule binaries</text>
+<rect x="220" y="255" width="260" height="45" fill="#111" stroke="#111"/>
+<text x="350" y="280" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600" fill="#fff">NONOS Verification</text>
+<line x1="170" y1="155" x2="170" y2="170" stroke="#333" stroke-width="1"/>
+<line x1="170" y1="170" x2="280" y2="170" stroke="#333" stroke-width="1"/>
+<line x1="280" y1="170" x2="280" y2="183" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="350" y1="230" x2="350" y2="253" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+</svg>
+</div>
+
+</article>
+
+<article>
+<header>
+<h2>Capsule Format</h2>
+<p>The standardized package structure for NONOS applications.</p>
+</header>
+
+<p>A capsule is a signed archive containing application code, metadata, and optional token configuration. The format supports multiple application types while maintaining consistent verification and installation procedures.</p>
+
+<h4>Archive Structure</h4>
+
+<pre>/capsule.toml          # Manifest with metadata and permissions
+/signature.sig         # Developer signature over manifest hash
+/icon.png              # Application icon (256x256)
+/app/                  # Application-specific contents
+  /native/             # NONOS native binaries
+  /linux/              # Linux compatibility binaries
+  /web/                # Web application bundle
+/token.toml            # Optional token configuration</pre>
+
+<h4>Manifest Format</h4>
+
+<pre>[capsule]
+id = "com.example.myapp"
+name = "My Application"
+version = "1.2.0"
+description = "A privacy-focused productivity tool"
+developer = "0x1234...abcd"
+
+[permissions]
+network = ["api.example.com"]
+filesystem = ["~/Documents/MyApp"]
+camera = false
+microphone = false
+
+[platforms]
+nonos = "native/myapp"
+linux = "linux/myapp.AppImage"
+web = "web/index.html"
+
+[token]
+enabled = true
+config = "token.toml"</pre>
+
+<h3>Permission Model</h3>
+
+<p>Capsules declare required permissions in their manifest. NONOS enforces these declarations at runtime through kernel-level sandboxing. Applications cannot access resources beyond their declared permissions.</p>
+
+<table>
+<thead><tr><th>Permission</th><th>Scope</th><th>User Prompt</th></tr></thead>
+<tbody>
+<tr><td>network</td><td>Specific domains only</td><td>First connection attempt</td></tr>
+<tr><td>filesystem</td><td>Declared paths only</td><td>Installation</td></tr>
+<tr><td>camera</td><td>Boolean access</td><td>Each use</td></tr>
+<tr><td>microphone</td><td>Boolean access</td><td>Each use</td></tr>
+<tr><td>location</td><td>Precision level</td><td>Each use</td></tr>
+<tr><td>wallet</td><td>Transaction signing</td><td>Each transaction</td></tr>
+</tbody>
+</table>
+
+</article>
+
+</div>
+
+<!-- APPS -->
+<div id="apps" class="panel">
+
+<article>
+<header>
+<h2>Token-Embedded Applications</h2>
+<p>Aligning developer and user incentives through integrated tokenomics.</p>
+</header>
+
+<p>The Capsule Marketplace enables developers to launch tokens alongside their applications. These tokens integrate with the NOX Launchpad bonding curve mechanism, providing fair distribution and automatic liquidity. Token economics can align developer incentives with user adoption and satisfaction in ways impossible with traditional app stores.</p>
+
+<div class="stats">
+<div><strong>Bonding</strong><span>Curve Launch</span></div>
+<div><strong>Fair</strong><span>Distribution</span></div>
+<div><strong>Auto</strong><span>Liquidity</span></div>
+<div><strong>App</strong><span>Integration</span></div>
+</div>
+
+<h3>Integration Patterns</h3>
+
+<p>Developers choose how tokens integrate with their applications. Common patterns include:</p>
+
+<div class="cols">
+<div>
+<h4>Premium Access</h4>
+<p>Token holdings unlock premium features within the application. Users who believe in the application's future acquire tokens early, gaining access to features while the token appreciates with adoption. No subscriptions, no recurring payments, just one-time token acquisition.</p>
+</div>
+<div>
+<h4>Governance Rights</h4>
+<p>Token holders vote on application development priorities. Feature requests, UI changes, and roadmap decisions go to token holder votes. This creates genuine community ownership over software direction, replacing corporate product management with user governance.</p>
+</div>
+</div>
+
+<div class="cols">
+<div>
+<h4>Revenue Distribution</h4>
+<p>Application revenue distributes to token holders. If the application charges for services, a portion flows to token stakers. This aligns user incentives with application success and creates sustainable value accrual to the token.</p>
+</div>
+<div>
+<h4>Usage Incentives</h4>
+<p>Applications reward active users with token emissions. Early adopters who contribute usage data, bug reports, or community support earn tokens. This bootstraps network effects and rewards the users who make the application valuable.</p>
+</div>
+</div>
+
+<h3>Token Configuration</h3>
+
+<p class="path">token.toml</p>
+<pre>[token]
+name = "MyApp Token"
+symbol = "MYAPP"
+curve_coefficient = 1e-15
+graduation_mcap = 69420
+
+[distribution]
+creator_allocation = 0          # No pre-mine
+initial_liquidity = 0           # Start from zero
+
+[integration]
+premium_features = true         # Token unlocks features
+governance = true               # Token holders vote on roadmap
+revenue_share = true            # Fees distributed to holders</pre>
+
+<h3>Zero Platform Fees</h3>
+
+<p>The Capsule Marketplace charges no fees for publishing or distributing applications. Developers retain 100% of any revenue their applications generate. This contrasts starkly with traditional app stores that extract 15-30% of all transactions.</p>
+
+<p>The only fees in the system are bonding curve trading fees for applications that choose token integration. These fees flow to the NOX Treasury, supporting the broader ecosystem. Applications without tokens incur no fees whatsoever.</p>
+
+</article>
+
+</div>
+
+<!-- STAKING -->
+<div id="staking" class="panel">
+
+<article>
+<header>
+<h2>Staking Protocol</h2>
+<p>Lock NOX tokens to earn protocol fee distributions with time-weighted rewards.</p>
+</header>
+
+<p>The staking protocol allows NOX holders to lock tokens for specified durations, earning a share of protocol fees proportional to their stake weight. Longer lock periods earn higher multipliers, incentivizing long-term commitment to the ecosystem and reducing circulating supply.</p>
+
+<div class="stats">
+<div><strong>Flexible</strong><span>No Lock Option</span></div>
+<div><strong>365 Days</strong><span>Maximum Lock</span></div>
+<div><strong>6.25x</strong><span>Max Total Boost</span></div>
+<div><strong>Continuous</strong><span>Reward Accrual</span></div>
+</div>
+
+<h3>Lock Period Boosts</h3>
+
+<p>Stakers can choose flexible (no lock) staking or lock their tokens for enhanced rewards. Lock boosts multiply the base APY, rewarding long-term commitment. Combined with NFT boosts, stakers can achieve up to 6.25x total multiplier on their rewards.</p>
+
+<table>
+<thead><tr><th>Lock Duration</th><th>Lock Boost</th><th>Example: 100% Base APY</th></tr></thead>
+<tbody>
+<tr><td>No Lock (Flexible)</td><td>+0%</td><td>100% APY</td></tr>
+<tr><td>30 Days</td><td>+20%</td><td>120% APY</td></tr>
+<tr><td>60 Days</td><td>+40%</td><td>140% APY</td></tr>
+<tr><td>90 Days</td><td>+60%</td><td>160% APY</td></tr>
+<tr><td>180 Days</td><td>+80%</td><td>180% APY</td></tr>
+<tr><td>365 Days</td><td>+150%</td><td>250% APY</td></tr>
+</tbody>
+</table>
+
+<h3>NFT Boost System</h3>
+
+<p>ZeroState Pass NFT holders receive multiplicative boosts on their staking rewards. The NFT boost stacks with lock period boosts for maximum yield optimization.</p>
+
+<table>
+<thead><tr><th>NFTs Held</th><th>NFT Boost</th><th>Combined with 365-Day Lock</th></tr></thead>
+<tbody>
+<tr><td>0 NFTs</td><td>1.00x</td><td>2.50x total</td></tr>
+<tr><td>1 NFT</td><td>1.50x</td><td>3.75x total</td></tr>
+<tr><td>2 NFTs</td><td>2.00x</td><td>5.00x total</td></tr>
+<tr><td>3+ NFTs</td><td>2.50x</td><td>6.25x total</td></tr>
+</tbody>
+</table>
+
+<h3>Staking Contract</h3>
+
+<p class="path">NoxStaking.sol</p>
+<pre>function stake(uint256 amount, uint256 lockDuration) external {
+    require(lockDuration >= MIN_LOCK, "Lock too short");
+    require(lockDuration <= MAX_LOCK, "Lock too long");
+
+    uint256 multiplier = calculateMultiplier(lockDuration);
+    uint256 weight = amount * multiplier / PRECISION;
+
+    stakes[msg.sender].push(Stake({
+        amount: amount,
+        weight: weight,
+        lockedUntil: block.timestamp + lockDuration,
+        lastClaim: block.timestamp
+    }));
+
+    totalWeight += weight;
+    noxToken.transferFrom(msg.sender, address(this), amount);
+
+    emit Staked(msg.sender, amount, lockDuration, weight);
+}</pre>
+
+<h3>NFT Holder Bonuses</h3>
+
+<p>ZeroState Pass NFT holders receive enhanced staking benefits across all lock durations:</p>
+
+<table>
+<thead><tr><th>Benefit</th><th>Standard</th><th>NFT Holder</th></tr></thead>
+<tbody>
+<tr><td>Multiplier Bonus</td><td>0%</td><td>+20%</td></tr>
+<tr><td>Early Unstake Fee</td><td>10%</td><td>5%</td></tr>
+<tr><td>Claim Frequency</td><td>Weekly</td><td>Daily</td></tr>
+<tr><td>Compound Option</td><td>Manual</td><td>Auto-compound</td></tr>
+</tbody>
+</table>
+
+</article>
+
+</div>
+
+<!-- REWARDS -->
+<div id="rewards" class="panel">
+
+<article>
+<header>
+<h2>Reward Distribution</h2>
+<p>How protocol fees flow to stakers.</p>
+</header>
+
+<p>The Treasury executes weekly reward distributions. All accumulated fees convert to NOX through Uniswap, then split according to protocol parameters. The 20% staker allocation distributes proportionally to stake weights across all active positions.</p>
+
+<div class="diagram-container">
+<svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+<rect x="250" y="20" width="200" height="50" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="350" y="45" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600">Protocol Fees (ETH)</text>
+<line x1="350" y1="70" x2="350" y2="100" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="250" y="110" width="200" height="50" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="350" y="140" text-anchor="middle" font-family="Inter" font-size="12" font-weight="500">Convert ETH → NOX</text>
+<line x1="350" y1="160" x2="350" y2="185" stroke="#333" stroke-width="1.5"/>
+<line x1="150" y1="185" x2="550" y2="185" stroke="#333" stroke-width="1.5"/>
+<line x1="150" y1="185" x2="150" y2="205" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="350" y1="185" x2="350" y2="205" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="550" y1="185" x2="550" y2="205" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="80" y="215" width="140" height="40" fill="#111" stroke="#111"/>
+<text x="150" y="240" text-anchor="middle" font-family="Inter" font-size="11" font-weight="500" fill="#fff">40% BURN</text>
+<rect x="280" y="215" width="140" height="40" fill="#111" stroke="#111"/>
+<text x="350" y="240" text-anchor="middle" font-family="Inter" font-size="11" font-weight="500" fill="#fff">40% LP</text>
+<rect x="480" y="215" width="140" height="40" fill="#66FFFF" stroke="#66FFFF"/>
+<text x="550" y="240" text-anchor="middle" font-family="Inter" font-size="11" font-weight="600">20% STAKERS</text>
+</svg>
+</div>
+
+<h3>Reward Calculation</h3>
+
+<div class="equation">Reward = (StakerWeight / TotalWeight) × WeeklyDistribution</div>
+
+<p>Rewards accrue continuously but claim weekly. NFT holders can claim daily. Unclaimed rewards remain in the contract, accumulating until claimed. Users can optionally compound rewards by restaking claimed NOX into new positions.</p>
+
+<h3>Privacy-Preserving Claims</h3>
+
+<p>The staking contract supports optional privacy-preserving reward claims through integration with privacy protocols. Stakers can withdraw rewards to fresh addresses without on-chain linkage to their staking address. This prevents third parties from profiling staker behavior or estimating net worth.</p>
+
+<pre>function claimPrivate(
+    bytes calldata proof,
+    address recipient
+) external {
+    uint256 rewards = calculateRewards(msg.sender);
+    require(verifyPrivacyProof(proof, rewards), "Invalid proof");
+
+    stakes[msg.sender].lastClaim = block.timestamp;
+    noxToken.transfer(recipient, rewards);
+
+    emit RewardsClaimed(bytes32(0), rewards); // No address logged
+}</pre>
+
+<h3>Projected Returns</h3>
+
+<p>Returns depend on total staked amount and protocol activity:</p>
+
+<table>
+<thead><tr><th>Protocol Volume</th><th>Total Staked</th><th>Staker APY</th></tr></thead>
+<tbody>
+<tr><td>$50K/day</td><td>10M NOX</td><td>~36%</td></tr>
+<tr><td>$500K/day</td><td>50M NOX</td><td>~73%</td></tr>
+<tr><td>$2M/day</td><td>100M NOX</td><td>~146%</td></tr>
+</tbody>
+</table>
+
+<p>Returns are not guaranteed and depend entirely on protocol usage. Higher protocol activity generates higher fees; more staked NOX dilutes per-token returns.</p>
+
+</article>
+
+<article>
+<header>
+<h2>Governance</h2>
+<p>Staked NOX enables protocol governance participation.</p>
+</header>
+
+<p>Stakers vote on protocol parameters with voting power equal to their stake weight. Governance proposals require quorum and supermajority to pass. Governance operates through timelock: approved changes take effect after 7-day delay.</p>
+
+<table>
+<thead><tr><th>Parameter</th><th>Current Value</th><th>Governance Control</th></tr></thead>
+<tbody>
+<tr><td>Creation Fee</td><td>10,000 NOX</td><td>Adjustable 1K-100K</td></tr>
+<tr><td>Trading Fee</td><td>1.0%</td><td>Adjustable 0.5%-2%</td></tr>
+<tr><td>Burn Ratio</td><td>40%</td><td>Adjustable 20%-60%</td></tr>
+<tr><td>Staker Ratio</td><td>20%</td><td>Adjustable 10%-40%</td></tr>
+<tr><td>Lock Multipliers</td><td>1x-4x</td><td>Adjustable curve</td></tr>
+</tbody>
+</table>
+
+</article>
+
+</div>
+
+<!-- SECURITY -->
+<div id="security" class="panel">
+
+<article>
+<header>
+<h2>Security Model</h2>
+<p>Threat analysis and mitigation strategies.</p>
+</header>
+
+<p>The protocol operates in an adversarial environment where rational actors will exploit any profitable vulnerability. Security design assumes sophisticated attackers with significant capital, technical expertise, and MEV infrastructure.</p>
+
+<h3>Threat Categories</h3>
+
+<table>
+<thead><tr><th>Threat</th><th>Vector</th><th>Mitigation</th><th>Risk</th></tr></thead>
+<tbody>
+<tr><td>Price Manipulation</td><td>Large buys/sells to move curve</td><td>Curve math makes manipulation expensive</td><td>Low</td></tr>
+<tr><td>Front-running</td><td>MEV bots sandwich user trades</td><td>Slippage parameters, private mempools</td><td>Medium</td></tr>
+<tr><td>Reentrancy</td><td>Callback during state transition</td><td>CEI pattern, reentrancy guards</td><td>Low</td></tr>
+<tr><td>Oracle Manipulation</td><td>Price feed attacks</td><td>TWAP oracles, manipulation bounds</td><td>Low</td></tr>
+<tr><td>Governance Attack</td><td>Malicious parameter changes</td><td>Timelock, parameter bounds</td><td>Low</td></tr>
+<tr><td>Rug Pull</td><td>Creator drains liquidity</td><td>Locked LP, no admin functions</td><td>Very Low</td></tr>
+</tbody>
+</table>
+
+<h3>Smart Contract Security</h3>
+
+<h4>Reentrancy Protection</h4>
+
+<p>All state-changing functions follow the checks-effects-interactions pattern. External calls occur only after all state updates complete. Critical functions additionally use reentrancy guards.</p>
+
+<pre>modifier nonReentrant() {
+    require(_status != _ENTERED, "ReentrancyGuard: reentrant call");
+    _status = _ENTERED;
+    _;
+    _status = _NOT_ENTERED;
+}</pre>
+
+<h4>Access Control</h4>
+
+<p>The protocol minimizes privileged operations. No admin can pause trading, modify curve parameters, or access user funds. The only privileged operation is Treasury parameter adjustment, protected by timelock and governance multisig.</p>
+
+<h3>Risk Disclosure</h3>
+
+<h4>Smart Contract Risk</h4>
+<p>Despite audits and testing, smart contracts may contain undiscovered vulnerabilities. Exploits could result in partial or total loss of funds deposited in the protocol.</p>
+
+<h4>Market Risk</h4>
+<p>Tokens launched through the protocol have no guaranteed value. Most launched tokens will likely decrease in value over time. Early participation does not guarantee profit.</p>
+
+<h4>Regulatory Risk</h4>
+<p>The regulatory status of token launches remains uncertain in most jurisdictions. Regulatory actions could affect protocol operation or token tradability.</p>
+
+</article>
+
+</div>
+
+<div id="contracts" class="panel">
+
+<article>
+<header>
+<h2>Deployed Contracts</h2>
+<p>All mainnet contract addresses verified on Etherscan.</p>
+</header>
+
+<h3>Core Token Contracts</h3>
+
+<table>
+<thead><tr><th>Contract</th><th>Address</th><th>Network</th></tr></thead>
+<tbody>
+<tr><td>NOX Token</td><td><code>0x0a26c80Be4E060e688d7C23aDdB92cBb5D2C9eCA</code></td><td>Ethereum</td></tr>
+<tr><td>ZeroState Pass NFT</td><td><code>0x7b575DD8e8b111c52Ab1e872924d4Efd4DF403df</code></td><td>Ethereum</td></tr>
+<tr><td>NOX Staking V3</td><td><code>0xa94d6009790Ba13597A1E1b7cF4e1531eA513613</code></td><td>Ethereum</td></tr>
+<tr><td>NOX Bridge</td><td><code>0x70Fb00075879E7D9d87EA5536c6c374cc2d14435</code></td><td>Ethereum</td></tr>
+</tbody>
+</table>
+
+<h3>Launchpad Contracts</h3>
+
+<table>
+<thead><tr><th>Contract</th><th>Address</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td>LaunchpadTreasury</td><td><code>0x3fd90833eb1D90bE8b39a3297b516206d78D1015</code></td><td>Proxy (UUPS)</td></tr>
+<tr><td>TokenFactory</td><td><code>0xed32A86f95c5593Aac4dB1937Ed21078da200d7c</code></td><td>Proxy (UUPS)</td></tr>
+</tbody>
+</table>
+
+<h3>Capsule Marketplace Contracts</h3>
+
+<table>
+<thead><tr><th>Contract</th><th>Address</th><th>Type</th></tr></thead>
+<tbody>
+<tr><td>CapsuleRegistry</td><td><code>0xB47FBd4E668faD29C374523B1f7F82EA8ba178D7</code></td><td>Proxy</td></tr>
+<tr><td>CapsuleRegistry</td><td><code>0x98486618A37D276D8521354b322fB606cd528DBF</code></td><td>Implementation</td></tr>
+<tr><td>RevenueSplitter</td><td><code>0x0FbfFdbc658b88Bc741B7a183FbD634deA63C93c</code></td><td>Proxy</td></tr>
+<tr><td>RevenueSplitter</td><td><code>0x2D952F362Dd4082C4B0354f862d64D6591292B5f</code></td><td>Implementation</td></tr>
+<tr><td>RewardPool</td><td><code>0xF3A4bAc4629Aab574731EDf5A78f4ec4FA142079</code></td><td>Proxy</td></tr>
+<tr><td>RewardPool</td><td><code>0xEdEaE738b6F67718d31D72Ef9E2e38094d3BfED3</code></td><td>Implementation</td></tr>
+</tbody>
+</table>
+
+<h3>Protocol Parameters</h3>
+
+<div class="cols">
+<div>
+<h4>Launchpad</h4>
+<table>
+<tbody>
+<tr><td>Creation Fee</td><td>10,000 NOX</td></tr>
+<tr><td>Trading Fee</td><td>1%</td></tr>
+<tr><td>Graduation Target</td><td>800M tokens</td></tr>
+<tr><td>LP Lock</td><td>Forever (dead address)</td></tr>
+</tbody>
+</table>
+</div>
+<div>
+<h4>Capsule Marketplace</h4>
+<table>
+<tbody>
+<tr><td>Developer Share</td><td>68%</td></tr>
+<tr><td>NFT Holder Share</td><td>30%</td></tr>
+<tr><td>Treasury Share</td><td>2%</td></tr>
+<tr><td>Unlock Duration</td><td>24 hours</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<h3>Contract Verification</h3>
+
+<p>All contracts are verified on Etherscan. Source code is publicly available and matches deployed bytecode. Contracts use UUPS proxy pattern for upgradeability with admin controls limited to the deployer multisig.</p>
+
+</article>
+
+</div>
+
+</main>
+
+<footer>
+<p>NOX Tokenomics v2.0.0</p>
+<p>Multi-Chain · Launchpad · Bridge · Capsules · Staking</p>
+<p>April 2026</p>
+</footer>
+
+<script>
+function show(id){
+document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+event.target.classList.add('active');
+window.scrollTo(0,0);
+}
+</script>
+
+</body>
+</html>
